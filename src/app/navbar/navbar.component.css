@@ -1,0 +1,100 @@
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 20px; /* Adjust to match the height of your fixed navbar */
+}
+
+
+.navbar {
+  margin: 0px auto;
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  position: fixed; /* Fixes the navbar at the top */
+  top: 0; /* Aligns the navbar to the top of the viewport */
+  width: 100%; /* Ensures the navbar spans the entire width of the page */
+  z-index: 1000; /* Keeps the navbar on top of other elements */
+  background-color: #fefefe;
+
+}
+
+.navbar-brand {
+  color: #333;
+  font-size: 1.5em;
+  text-transform: uppercase;
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links li {
+  position: relative;
+}
+
+.navbar-links a {
+  text-decoration:none;
+  text-transform:uppercase;
+  color: #333;
+  font-size: 14px;
+  display: block;
+  padding: 10px 15px;
+}
+/* Add a small down arrow on hover */
+.navbar-links a::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -5px; /* Position below the link */
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #e2e2e2; /* Arrow color */
+  opacity: 0; /* Initially hidden */
+  transition: opacity 0.3s ease;
+}
+
+/* Show the arrow on hover */
+.navbar-links a:hover::after {
+  opacity: 1;
+}
+/* Dropdown menu styling */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fefefe;
+  list-style: none;
+  padding: 0;
+  margin:  0;
+  z-index: 1000; /* Ensure dropdown is on top */
+}
+
+.dropdown-menu li {
+  border-bottom: 1px solid #ddd;
+}
+
+.dropdown-menu a {
+  padding: 15px 20px;
+  color: #333;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+/* Optional: add hover effect for links */
+.navbar-links a:hover {
+  background-color: #f7f7f7;
+}
+

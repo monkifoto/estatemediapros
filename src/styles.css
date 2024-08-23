@@ -1,0 +1,81 @@
+body {
+  font-family: 'Helvetica', sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #333;
+  background-color: #fefefe;
+  padding-top: 60px;
+}
+
+.container{
+  border-bottom: 1px solid #ddd;
+}
+
+.main-content {
+  padding: 20px;
+}
+
+
+.image-placeholder {
+  width: 100%;
+  height: 400px; /* Adjust the height as needed */
+  background-color: #e0e0e0; /* Light grey background as a placeholder */
+  border: 1px solid #ccc;
+}
+
+.about {
+  margin: 50px auto;
+  max-width: 1200px;
+  text-align: left;
+  line-height: 1.6;
+}
+
+.about-link {
+  text-decoration: none;
+  color: #000;
+  border-bottom: 1px solid #000;
+  padding-bottom: 2px;
+  transition: color 0.3s, border-color 0.3s;
+}
+
+.about-link:hover {
+  color: #666;
+  border-color: #666;
+}
+
+@media (max-width: 1200px) {
+  .hero-title {
+    font-size: 11vw; /* Adjust font size relative to viewport width */
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-title {
+    font-size: 9vw; /* Further reduce the font size for smaller screens */
+  }
+}
+
+
+
+.montserrat-h1 {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 900;
+  font-style: normal;
+}
+
+
+.roboto-slab-about{
+  font-family: "Roboto Slab", serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+}
+
+img{
+  opacity: .7;
+}
+
+img:hover{
+  opacity: 1;
+}
