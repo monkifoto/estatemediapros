@@ -9,6 +9,8 @@ body {
 
 .container{
   border-bottom: 1px solid #ddd;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .main-content {
@@ -85,6 +87,7 @@ img:hover{
   font-size: 30px;
   max-width: 50%;
   margin: 0;
+  letter-spacing: -1px;
 }
 
 .top-paragraph {

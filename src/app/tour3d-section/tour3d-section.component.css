@@ -37,7 +37,7 @@
 }
 
 .right {
-  width: 40%;
+  width: 20%;
 
 }
 
@@ -52,7 +52,7 @@
 }
 
 .left {
-  width: 40%;
+  width: 80%;
 }
 
 .right img {
@@ -62,11 +62,73 @@
 }
 
 .right {
-  width: 60%;
+  width: 20%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 20px; /* Optional: adds some padding inside the right div */
 }
 
+
+
+
+
+
+.wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  row-gap: 1em;
+  column-gap: 1em;
+}
+
+
+
+.box1  {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+.box2 {
+
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+.box3  {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+.box4 {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+.box5  {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+
+.box6 {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
 
