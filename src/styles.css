@@ -79,3 +79,27 @@ img{
 img:hover{
   opacity: 1;
 }
+/* shared by all pages */
+
+.hero-subtitle {
+  font-size: 30px;
+  max-width: 50%;
+  margin: 0;
+}
+
+.top-paragraph {
+  margin: 0;
+  /* Additional styling if needed */
+}
+
+.bottom-paragraph {
+  margin: 0;
+  font-size: .8rem;
+  /* Additional styling if needed */
+}
+
+.small-image
+{
+  margin-top: 10px;
+  max-width: fit-content;
+}

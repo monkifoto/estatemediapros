@@ -52,21 +52,9 @@
   /* Additional styling if needed */
 }
 
- .hero-subtitle {
-  font-size: 18px;
-  max-width: 50%;
-  margin: 0;
-}
-/*
-.hero-image {
-  max-width: 50%;
-  flex-grow: 1;
-}
-*/
 .hero-image img{
   max-width: 500px;
 }
-
 
 .details_container {
   display: flex;
@@ -90,19 +78,4 @@
   padding: 20px; /* Optional: adds some padding inside the right div */
 }
 
-.top-paragraph {
-  margin: 0;
-  /* Additional styling if needed */
-}
 
-.bottom-paragraph {
-  margin: 0;
-  /* Additional styling if needed */
-}
-
-
-.small-image
-{
-  margin-top: 10px;
-  max-width: fit-content;
-}
