@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./staging-section.component.css']
 })
 export class StagingSectionComponent {
-
+  constructor() {}
 }

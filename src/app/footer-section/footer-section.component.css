@@ -1,0 +1,123 @@
+.wrapper{
+  width: 100%;
+  background-color: #1c1c1c;
+}
+
+
+.container{
+  background-color: #1c1c1c;
+}
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: #1c1c1c;
+  color: white;
+  padding: 40px;
+  text-align: left;
+}
+
+.subscribe {
+  max-width: 300px;
+}
+
+h2, h3 {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+p {
+  margin: 0 0 15px;
+  font-size: 14px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.email-input {
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  border: none;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.sign-up-btn {
+  background-color: transparent;
+  color: white;
+  padding: 10px;
+  border: 1px solid white;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.sign-up-btn:hover {
+  background-color: white;
+  color: black;
+}
+
+.privacy-text {
+  font-size: 12px;
+  color: #b3b3b3;
+}
+
+.links {
+  display: flex;
+  justify-content: space-between;
+  max-width: 400px;
+}
+
+.sitemap, .follow {
+  display: flex;
+  flex-direction: column;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul li {
+  margin: 5px 0;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.brand {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin-top: auto;
+  font-size: 100px;
+  font-weight: 900;
+  letter-spacing: 5px;
+}
+
+@media screen and (max-width: 768px) {
+  .footer {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .links {
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+
+  .brand {
+    font-size: 20px;
+  }
+}

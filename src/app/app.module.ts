@@ -12,6 +12,7 @@ import { VideoSectionComponent } from './video-section/video-section.component';
 import { Tour3dSectionComponent } from './tour3d-section/tour3d-section.component';
 import { FloorplanSectionComponent } from './floorplan-section/floorplan-section.component';
 import { StagingSectionComponent } from './staging-section/staging-section.component';
+import { FooterSectionComponent } from './footer-section/footer-section.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { StagingSectionComponent } from './staging-section/staging-section.compo
     VideoSectionComponent,
     Tour3dSectionComponent,
     FloorplanSectionComponent,
-    StagingSectionComponent
+    StagingSectionComponent,
+    FooterSectionComponent
   ],
   imports: [
     BrowserModule,
