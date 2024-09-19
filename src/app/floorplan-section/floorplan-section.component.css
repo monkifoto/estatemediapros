@@ -1,33 +1,34 @@
 .still-life-collection {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  flex-direction: column;
   gap: 20px;
 }
 
-.text-section {
+.grid-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 20px;
+}
+
+.row-1 .text-section {
   grid-column: span 2;
 }
 
-.gallery {
-  display: contents;
-}
-
-.image.large {
-  grid-column: 3 / span 2;
-  grid-row: 1 / span 2;
-}
-
-.image.large-landscape {
-  grid-column: 1 / span 3;
-}
-
-.image.medium {
-  grid-column: 4;
-  grid-row: 2;
-}
-
-.image.small {
+.row-1 .image.large {
   grid-column: span 2;
+}
+
+.row-2 .image.vertical {
+  grid-column: span 1;
+  grid-row: span 2;
+}
+
+.row-3 .image.small {
+  grid-column: span 1 / 4;
+}
+
+.row-4 .image.small {
+  grid-column: 2;
 }
 
 img {
