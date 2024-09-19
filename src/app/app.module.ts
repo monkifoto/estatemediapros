@@ -13,6 +13,8 @@ import { Tour3dSectionComponent } from './tour3d-section/tour3d-section.componen
 import { FloorplanSectionComponent } from './floorplan-section/floorplan-section.component';
 import { StagingSectionComponent } from './staging-section/staging-section.component';
 import { FooterSectionComponent } from './footer-section/footer-section.component';
+import { ContactSectionComponent } from './contact-section/contact-section.component';
+import { PricingSectionComponent } from './pricing-section/pricing-section.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { FooterSectionComponent } from './footer-section/footer-section.componen
     Tour3dSectionComponent,
     FloorplanSectionComponent,
     StagingSectionComponent,
-    FooterSectionComponent
+    FooterSectionComponent,
+    ContactSectionComponent,
+    PricingSectionComponent
   ],
   imports: [
     BrowserModule,
