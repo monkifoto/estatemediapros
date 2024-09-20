@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../Services/cart.service';
 import { Product } from '../Model/product.model';
+import { Customer } from '../Model/customer.model';
 
 @Component({
   selector: 'app-shopping-section',
@@ -14,17 +15,17 @@ export class ShoppingSectionComponent implements OnInit {
   cart: any[] = [];
 
   // Customer Information
-  customer = {
+  customer: Customer = {
     name: '',
     address: '',
     email: '',
     phone: '',
-    date:'',
+    date: new Date(),
     time:'',
   };
 
   // Available products with base prices
-  products = [
+  products: Product[] = [
     {
       id: '001',
       name: 'Basic Photography',
@@ -189,7 +190,7 @@ export class ShoppingSectionComponent implements OnInit {
       address: '',
       email: '',
       phone: '',
-      date:'',
+      date: new Date(),
       time: ''
     };
   }

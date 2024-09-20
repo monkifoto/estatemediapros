@@ -104,3 +104,62 @@
   padding: 20px; /* Optional: adds some padding inside the right div */
 }
 
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .hero-title, .hero-title-small {
+    font-size: 60px; /* Scale down title on smaller screens */
+  }
+
+  .hero-subtitle {
+    font-size: 20px; /* Adjust subtitle font size */
+    max-width: 100%; /* Let the subtitle span the full width */
+  }
+
+  .hero-details {
+    flex-direction: column; /* Stack the image and text vertically */
+    align-items: center; /* Center-align the content */
+  }
+
+  .details_container {
+    flex-direction: column;
+    width: 100%; /* Make content span full width */
+  }
+
+  .left, .right {
+    width: 100%; /* Each section takes full width */
+    margin-bottom: 20px; /* Add spacing between stacked items */
+  }
+
+  .left img {
+    width: 100%;
+    height: auto;
+    object-fit: contain; /* Adjust image to fit properly in narrow screens */
+  }
+
+  .bottom-paragraph {
+    font-size: 0.9rem; /* Adjust the paragraph text size for better readability */
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title, .hero-title-small {
+    font-size: 40px; /* Further scale down titles for very small screens */
+  }
+
+  .hero-subtitle {
+    font-size: 18px;
+  }
+
+  .right {
+    padding: 10px; /* Reduce padding on small screens */
+  }
+
+  .bottom-paragraph {
+    font-size: 0.8rem; /* Make paragraph slightly smaller */
+  }
+
+  .left img {
+    height: auto;
+  }
+}

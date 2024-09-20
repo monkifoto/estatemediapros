@@ -1,8 +1,8 @@
+/* General styles for contact section */
 .contact-us {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
   padding: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .grid-row {
@@ -12,8 +12,9 @@
 }
 
 .form-section {
-  grid-column: span 1;
   padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
 }
 
 .form-group {
@@ -42,10 +43,10 @@
   border: none;
   cursor: pointer;
   font-size: 16px;
+  border-radius: 5px;
 }
 
 .image {
-  grid-column: span 1;
   align-self: center;
 }
 
@@ -53,4 +54,45 @@ img {
   width: 100%;
   height: auto;
   object-fit: cover;
+}
+
+/* Mobile Styles - adjust layout for smaller screens */
+@media (max-width: 768px) {
+  .grid-row {
+    grid-template-columns: 1fr; /* Stack form and image vertically */
+  }
+
+  .form-section {
+    margin-bottom: 20px; /* Add some space below the form */
+  }
+
+  .submit-btn {
+    width: 100%; /* Full-width button for mobile */
+  }
+
+  h2 {
+    text-align: center; /* Center-align the heading on mobile */
+  }
+}
+
+/* Extra small screens (below 480px) */
+@media (max-width: 480px) {
+  .contact-us {
+    padding: 20px; /* Reduce padding on small screens */
+  }
+
+  .form-group label {
+    font-size: 12px; /* Smaller labels for extra small screens */
+  }
+
+  .form-group input,
+  .form-group textarea {
+    font-size: 14px; /* Adjust input font size */
+    padding: 8px; /* Reduce padding inside input fields */
+  }
+
+  .submit-btn {
+    font-size: 14px; /* Smaller button font for better scaling */
+    padding: 10px; /* Adjust padding for smaller button */
+  }
 }
