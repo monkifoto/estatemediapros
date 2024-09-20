@@ -28,6 +28,16 @@
   height: 65px;
 }
 
+.cart-total a {
+  color: white;
+  text-decoration: none;
+}
+
+.cart-total a:hover {
+  text-decoration: underline;
+}
+
+
 .navbar-brand {
   color: #333;
   font-size: 1.5em;

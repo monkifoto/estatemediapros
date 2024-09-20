@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +16,7 @@ import { StagingSectionComponent } from './staging-section/staging-section.compo
 import { FooterSectionComponent } from './footer-section/footer-section.component';
 import { ContactSectionComponent } from './contact-section/contact-section.component';
 import { PricingSectionComponent } from './pricing-section/pricing-section.component';
+import { ShoppingSectionComponent } from './shopping-section/shopping-section.component';
 
 @NgModule({
   declarations: [
@@ -30,11 +32,13 @@ import { PricingSectionComponent } from './pricing-section/pricing-section.compo
     StagingSectionComponent,
     FooterSectionComponent,
     ContactSectionComponent,
-    PricingSectionComponent
+    PricingSectionComponent,
+    ShoppingSectionComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
