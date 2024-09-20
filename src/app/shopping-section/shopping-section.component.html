@@ -99,9 +99,9 @@
                   </p>
                   <div class="product-size">
                     <div class="product-details">
-                      <p><strong>Base Price:</strong> {{ product.basePrice | currency }}</p>
-                      <p><strong>Selected Sq Ft:</strong> {{ selectedSqFt }} sq ft</p>
-                      <p><strong>Increment Price:</strong>{{product.priceIncrementPerSqFt | currency}}</p>
+                      <p><strong>Base Price:</strong> {{ product.basePrice | currency }}</p><br>
+                      <small><strong>Selected Sq Ft:</strong> {{ selectedSqFt }}</small><br>
+                      <small><strong>Increment Price:</strong>{{product.priceIncrementPerSqFt | currency}}</small><br><br>
                       <p><strong>Total Price:</strong> {{ product.price | currency }}</p>
                     </div>
                   </div>
