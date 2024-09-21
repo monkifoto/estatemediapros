@@ -1,35 +1,33 @@
-<div class="container">
+
 <nav class="navbar">
-  <!-- <div class="navbar-brand montserrat-h1">PACIFIC PROPERTY PHOTOS</div> -->
-  <div class="logo"><img src="../../assets/p3Logo.png" alt="p3logo"></div>
-
-  <div class="cart-total">
-    Total: ${{ cartTotal }}
-  </div>
-     <!-- Hamburger Icon -->
-     <div class="hamburger" (click)="toggleMenu()">
-      <span></span>
-      <span></span>
-      <span></span>
+  <div class="navbar-container">
+    <div class="logo">
+      <div class="logo"><img src="../../assets/p3Logo.png" alt="p3logo"></div>
     </div>
-
-    <ul class="navbar-links" [ngClass]="{'show': isMenuOpen}">
-    <li >
-      <a href="#">Services</a>
-    </li>
-    <!-- <li class="dropdown"><a href="#">Portfolio</a>
-      <ul class="dropdown-menu">
-        <li><a href="#">Photography</a></li>
-        <li><a href="#">Aerial</a></li>
-        <li><a href="#">3D Tour</a></li>
-        <li><a href="#">Video</a></li>
-        <li><a href="#">Floor Plan</a></li>
-        <li><a href="#">Virtual Staging</a></li>
-      </ul>
-    </li> -->
-    <li><a href="#">Portfolio</a></li>
-    <li><a href="#">Pricing</a></li>
-    <li><a href="#">Schedule a Shoot</a></li>
-  </ul>
+    <div class="menu-icon" (click)="toggleMenu()">
+      <!-- <i class="fa" [ngClass]="{'fa-bars': !menuOpen, 'fa-times': menuOpen}"></i> -->
+      <div class="bar1" [ngClass]="{'open-bar1': menuOpen}"></div>
+      <div class="bar2" [ngClass]="{'open-bar2': menuOpen}"></div>
+      <div class="bar3" [ngClass]="{'open-bar3': menuOpen}"></div>
+    </div>
+    <div class="cart-total">
+      Total: ${{ cartTotal }}
+    </div>
+    <ul class="nav-menu" [ngClass]="{'active': menuOpen}">
+      <li class="nav-item">
+        <a routerLink="/" class="nav-links" (click)="closeMenu()">Home</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/services" class="nav-links" (click)="closeMenu()">Services</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/offers" class="nav-links" (click)="closeMenu()">Portfolio</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/events" class="nav-links" (click)="closeMenu()">Schedule a Shoot</a>
+      </li>
+      <li class="nav-item">
+      </li>
+    </ul>
+  </div>
 </nav>
-</div>

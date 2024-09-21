@@ -1,25 +1,24 @@
-.container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  padding-top: 20px; /* Adjust to match the height of your fixed navbar */
-}
-
 
 .navbar {
-  margin: 0px auto;
-  /* max-width: 1200px; */
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  /* padding: 20px; */
-  position: relative; /* Fixes the navbar at the top */
-  top: 0; /* Aligns the navbar to the top of the viewport */
-  width: 100%; /* Ensures the navbar spans the entire width of the page */
-  z-index: 1000; /* Keeps the navbar on top of other elements */
-  background-color: #fefefe;
-
+  background-color: #fff;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
 }
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  height: 70px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 .logo{
   max-height: 65px;
 }
@@ -28,26 +27,16 @@
   height: 65px;
 }
 
-
-
-.navbar-brand {
-  color: #333;
-  font-size: 1.5em;
-  text-transform: uppercase;
-}
-
-.navbar-links {
+.nav-menu {
   list-style: none;
-  display: flex;
   margin: 0;
   padding: 0;
+  display: flex;
+  align-items: center;
 }
 
-.navbar-links li {
-  position: relative;
-}
-
-.navbar-links a {
+.nav-menu li a {
+  color: var(--nav-text-color);
   text-decoration:none;
   text-transform:uppercase;
   color: #333;
@@ -55,100 +44,143 @@
   display: block;
   padding: 10px 15px;
 }
-/* Add a small down arrow on hover */
-.navbar-links a::after {
-  content: '';
+
+.nav-menu li a {
+  color: var(--nav-text-color);
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #333;
+  font-size: 14px;
+  display: block;
+  padding: 10px 15px;
+  position: relative; /* Important to position the triangle relative to the link */
+}
+
+.nav-menu li a::after {
+  content: "";
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: -5px; /* Position below the link */
   width: 0;
   height: 0;
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
-  border-top: 5px solid #e2e2e2; /* Arrow color */
-  opacity: 0; /* Initially hidden */
-  transition: opacity 0.3s ease;
+  border-top: 5px solid #333; /* Triangle color */
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.3s;
 }
 
-/* Show the arrow on hover */
-.navbar-links a:hover::after {
+.nav-menu li a:hover::after {
   opacity: 1;
+  transform: translateX(-50%) translateY(5px); /* Moves the triangle down slightly */
 }
-/* Dropdown menu styling */
-.dropdown-menu {
-  display: none;
+
+.menu-icon {
   position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: #fefefe;
-  list-style: none;
-  padding: 0;
-  margin:  0;
-  z-index: 1000; /* Ensure dropdown is on top */
-}
-
-.dropdown-menu li {
-  border-bottom: 1px solid #ddd;
-}
-
-.dropdown-menu a {
-  padding: 15px 20px;
-  color: #333;
-}
-
-/* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-menu {
-  display: block;
-}
-
-/* Optional: add hover effect for links */
-.navbar-links a:hover {
-  background-color: #f7f7f7;
-}
-
-
-
-/* Hamburger menu */
-.hamburger {
   display: none;
-  flex-direction: column;
   cursor: pointer;
-  gap: 4px;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 30px;
+  z-index: 1;
 }
 
-.hamburger span {
-  height: 3px;
-  width: 25px;
-  background-color: #333;
-  border-radius: 2px;
+.menu-icon div {
+  width: 100%;
+  height: 4px;
+  background-color: var(--nav-text-color);
+  transition: all 0.3s;
+}
+
+.menu-icon.open .bar1,
+.menu-icon.open .bar2,
+.menu-icon.open .bar3 {
+  background-color: var(--nav-active-text);
+}
+
+.menu-icon .open-bar1 {
+  transform: rotate(-45deg) translate(-5px, 5px);
+  background-color: white;
+}
+
+.menu-icon .open-bar2 {
+  opacity: 0;
+}
+
+.menu-icon .open-bar3 {
+  transform: rotate(45deg) translate(-5px, -5px);
+  background-color: white;
+}
+
+.nav-menu.active {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--nav-active-background);
+  opacity: .9;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: left 0.3s;
+}
+
+.nav-menu.active li a {
+  color: var(--nav-active-text);
+  font-size: 24px;
+  margin: 20px 0;
+}
+
+.cart-total {
+  position: absolute;
+  top: 15px;
+  right: 20px;
 }
 
 @media (max-width: 768px) {
-  .navbar-links {
-    display: none;
-    position: absolute;
-    top: 70px;
-    right: 0;
-    background-color: #fff;
+  .navbar-container {
+    justify-content: flex-start;
+  }
+
+  .logo {
+    order: 2;
+    margin-left: auto;
+  }
+
+  .menu-icon {
+    display: flex;
+    order: 1;
+  }
+
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    left: -100%;
     width: 100%;
+    height: 100vh;
+    background-color: var(--nav-active-background);
     flex-direction: column;
-    gap: 10px;
-    padding: 10px;
-    border-top: 1px solid #ccc;
+    justify-content: center;
+    align-items: center;
+    transition: left 0.3s;
   }
 
-  .navbar-links.show {
-    display: flex;
+  .nav-menu li {
+    margin: 20px 0;
   }
 
-  .hamburger {
-    display: flex;
-  }
-
-  .cart-total {
-    position: absolute;
-    top: 15px;
-    right: 20px;
+  .nav-menu li a {
+    color: var(--nav-text-color);
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: "Montserrat", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 200;
+      font-style: normal;
+    color: var(--nav-active-text);
+    font-size: 24px;
   }
 }
