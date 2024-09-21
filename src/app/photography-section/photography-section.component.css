@@ -1,4 +1,9 @@
 
+.container {
+  width: 100%;
+  padding: 20px;
+}
+
 .hero {
   text-align: left;
   margin: 50px auto;
@@ -74,3 +79,51 @@ h1{
 }
 
 
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .hero-details,
+  .details_container {
+    flex-direction: column;
+  }
+
+  .left,
+  .right {
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  .hero-subtitle {
+    font-size: 1.2em;
+  }
+
+  .roboto-slab-about {
+    font-size: 0.9em;
+  }
+
+  .about-link {
+    font-size: 1em;
+  }
+
+  .small-image img {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    margin: 20px auto;
+  }
+
+  .hero-subtitle {
+    font-size: 1em;
+  }
+
+  .roboto-slab-about {
+    font-size: 0.85em;
+  }
+
+  .about-link {
+    font-size: 0.9em;
+  }
+}

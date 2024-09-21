@@ -8,6 +8,7 @@ import { CartService } from '../Services/cart.service';
 })
 export class NavbarComponent implements OnInit {
   cartTotal: number = 0;  // Variable to hold the total cost
+  isMenuOpen: boolean = false;
 
   constructor(private cartService: CartService) {}
 
@@ -16,5 +17,9 @@ export class NavbarComponent implements OnInit {
     this.cartService.currentCartTotal.subscribe(total => {
       this.cartTotal = total;
     });
+  }
+
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
   }
 }

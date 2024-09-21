@@ -6,7 +6,14 @@
   <div class="cart-total">
     Total: ${{ cartTotal }}
   </div>
-  <ul class="navbar-links">
+     <!-- Hamburger Icon -->
+     <div class="hamburger" (click)="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <ul class="navbar-links" [ngClass]="{'show': isMenuOpen}">
     <li >
       <a href="#">Services</a>
     </li>
