@@ -1,0 +1,9 @@
+<div class="mt-5">
+  <h3>Shopping Cart</h3>
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let product of cartItems">
+      {{ product.name }} - {{ product.description }}
+    </li>
+  </ul>
+  <button class="btn btn-success mt-3" (click)="checkout()">Checkout</button>
+</div>

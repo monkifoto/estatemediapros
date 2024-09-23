@@ -1,0 +1,10 @@
+<div class="photo-video-container">
+  <div class="photo-video-item" *ngFor="let product of photos">
+    <img [src]="product.image" alt="{{ product.name }}">
+    <div class="photo-video-info">
+      <h3>{{ product.name }}</h3>
+      <p>{{ product.description }}</p>
+      <button class="view-details-btn" (click)="addToCart(product)">Add to Cart</button>
+    </div>
+  </div>
+</div>

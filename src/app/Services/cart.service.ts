@@ -5,6 +5,15 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class CartService {
+  private cart: any[] = [];
+
+  addProduct(product: any) {
+    this.cart.push(product);
+  }
+
+  getCartItems() {
+    return this.cart;
+  }
   private cartTotalSource = new BehaviorSubject<number>(0);  // Holds the current cart total
   currentCartTotal = this.cartTotalSource.asObservable();    // Observable for cart total changes
 

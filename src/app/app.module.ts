@@ -17,6 +17,15 @@ import { FooterSectionComponent } from './footer-section/footer-section.componen
 import { ContactSectionComponent } from './contact-section/contact-section.component';
 import { PricingSectionComponent } from './pricing-section/pricing-section.component';
 import { ShoppingSectionComponent } from './shopping-section/shopping-section.component';
+import { StoreComponent } from './Store/store/store.component';
+import { CartComponent } from './Store/cart/cart.component';
+import { PhotosComponent } from './Store/photos/photos.component';
+import { VideoComponent } from './Store/video/video.component';
+import { TourComponent } from './Store/tour/tour.component';
+import { StagingComponent } from './Store/staging/staging.component';
+import { ProductDetailsComponent } from './Store/product-details/product-details.component';
+import { FloorplanComponent } from './Store/floorplan/floorplan.component';
+import { BundlesComponent } from './Store/bundles/bundles.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +42,16 @@ import { ShoppingSectionComponent } from './shopping-section/shopping-section.co
     FooterSectionComponent,
     ContactSectionComponent,
     PricingSectionComponent,
-    ShoppingSectionComponent
+    ShoppingSectionComponent,
+    StoreComponent,
+    CartComponent,
+    PhotosComponent,
+    VideoComponent,
+    TourComponent,
+    StagingComponent,
+    ProductDetailsComponent,
+    FloorplanComponent,
+    BundlesComponent
   ],
   imports: [
     BrowserModule,

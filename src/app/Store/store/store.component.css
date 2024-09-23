@@ -1,0 +1,102 @@
+/* Container and General Layout */
+.store-container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* Tabs */
+.nav-tabs.custom-tabs .nav-link {
+  padding: 12px 20px;
+  font-weight: bold;
+  color: #666;
+  border-bottom: 3px solid transparent;
+  transition: color 0.3s, border-color 0.3s;
+}
+
+.nav-tabs.custom-tabs .nav-link.active {
+  color: #007bff;
+  border-bottom-color: #007bff;
+}
+
+.nav-tabs.custom-tabs .nav-link:hover {
+  color: #0056b3;
+}
+
+/* Radio Options */
+.radio-option {
+  margin-right: 10px;
+  font-size: 14px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.radio-option input {
+  margin-right: 5px;
+}
+
+.radio-option:hover {
+  background-color: #f0f0f0;
+}
+
+/* Product Grid */
+.store {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.product {
+  flex: 0 1 calc(25% - 20px);
+  text-align: center;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.product-image img {
+  max-width: 100%;
+  border-radius: 8px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.product:hover .product-image img {
+  transform: scale(1.05);
+}
+
+/* Product Info */
+.product-name {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.product-price {
+  color: #007bff;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+/* View Details Button */
+.view-details-btn {
+  font-size: 14px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+}
+
+.view-details-btn:hover {
+  background-color: #0056b3;
+}
