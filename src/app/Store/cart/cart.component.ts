@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Customer } from 'src/app/Model/customer.model';
 import { CartService } from 'src/app/Services/cart.service';
 
@@ -8,6 +8,7 @@ import { CartService } from 'src/app/Services/cart.service';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
+  @Output() bookNowClicked: EventEmitter<void> = new EventEmitter<void>();
   totalCost: number = 0;
   cartItems: any[] = [];
   customer: Customer = {
@@ -30,11 +31,14 @@ export class CartComponent implements OnInit {
 
   removeFromCart(index: number) {
     this.cartService.removeItemFromCart(index); // Remove the item
-    this.cartService.updateCartTotal(this.totalCost); // Update the total cost
+    //this.cartService.updateCartTotal(this.totalCost); // Update the total cost
   }
 
   checkout() {
-
-    console.log('Proceeding to checkout');
+    if (this.cartItems.length > 0) {
+      this.bookNowClicked.emit();  // Emit the event to the parent
+    } else {
+      alert("Your cart is empty!");
+    }
   }
 }

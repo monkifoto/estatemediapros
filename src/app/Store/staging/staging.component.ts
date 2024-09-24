@@ -10,13 +10,14 @@ import { ProductService } from 'src/app/Services/product.service';
 })
 export class StagingComponent implements OnInit {
   products!: Product[];
- @Input()
+  @Input()
   listOfProducts: Product[] = [];
+  selectedProduct: any = null;
 
   constructor(
     private cartService: CartService,
-     private productService: ProductService
-    ) {}
+    private productService: ProductService
+  ) {}
 
   ngOnInit(): void {
     this.products = this.listOfProducts;
@@ -26,5 +27,12 @@ export class StagingComponent implements OnInit {
     this.cartService.addProduct(product);
   }
 
+  viewDetails(product: any) {
+    this.selectedProduct = product;
+  }
 
+  // Function to close the product details view
+  closeDetails() {
+    this.selectedProduct = null;
+  }
 }

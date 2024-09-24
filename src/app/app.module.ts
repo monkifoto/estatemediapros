@@ -16,14 +16,12 @@ import { StagingSectionComponent } from './staging-section/staging-section.compo
 import { FooterSectionComponent } from './footer-section/footer-section.component';
 import { ContactSectionComponent } from './contact-section/contact-section.component';
 import { PricingSectionComponent } from './pricing-section/pricing-section.component';
-import { ShoppingSectionComponent } from './shopping-section/shopping-section.component';
 import { StoreComponent } from './Store/store/store.component';
 import { CartComponent } from './Store/cart/cart.component';
 import { PhotosComponent } from './Store/photos/photos.component';
 import { VideoComponent } from './Store/video/video.component';
 import { TourComponent } from './Store/tour/tour.component';
 import { StagingComponent } from './Store/staging/staging.component';
-import { ProductDetailsComponent } from './Store/product-details/product-details.component';
 import { FloorplanComponent } from './Store/floorplan/floorplan.component';
 import { BundlesComponent } from './Store/bundles/bundles.component';
 import { CustomerInfoComponent } from './Store/customer-info/customer-info.component';
@@ -45,14 +43,12 @@ import { FilterByTypePipe } from './Pipes/filter-by-type.pipe';
     FooterSectionComponent,
     ContactSectionComponent,
     PricingSectionComponent,
-    ShoppingSectionComponent,
     StoreComponent,
     CartComponent,
     PhotosComponent,
     VideoComponent,
     TourComponent,
     StagingComponent,
-    ProductDetailsComponent,
     FloorplanComponent,
     BundlesComponent,
     CustomerInfoComponent,

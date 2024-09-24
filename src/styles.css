@@ -48,8 +48,8 @@ body {
 
 .about-link {
   text-decoration: none;
-  color: #000;
-  border-bottom: 1px solid #000;
+  color: #333;
+  border-bottom: 1px solid #333;
   padding-bottom: 2px;
   transition: color 0.3s, border-color 0.3s;
 }

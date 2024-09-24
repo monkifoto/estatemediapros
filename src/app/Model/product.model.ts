@@ -9,4 +9,5 @@ export interface Product {
   incrementSqFtStep: number;     // Sq Ft step for each price increment (1000 in this case)
   price: number;
   productType: string;
+  isDetailsVisible:boolean;
 }

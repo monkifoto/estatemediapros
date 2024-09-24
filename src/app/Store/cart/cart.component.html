@@ -1,19 +1,23 @@
 <div class="mt-5">
-  <!-- <h3>Shopping Cart</h3>
-  <ul class="list-group">
-    <li class="list-group-item" *ngFor="let product of cartItems">
-      {{ product.name }} - {{ product.description }}
-    </li>
-  </ul> -->
   <div class="cart-summary">
     <h3>Your Cart</h3>
     <div *ngFor="let item of cartItems; let i = index" class="cart-item">
-      <span>{{ item.name }}</span>
-      <span>{{ item.price | currency }}</span>
-      <!-- Remove button -->
-      <button  class="remove-button" (click)="removeFromCart(i)">Remove</button>
+      <div class="cart-item-name">{{ item.name }}</div>
+      <div class="cart-item-cost">
+        <div class="cart-item-price"> {{ item.price | currency }}</div>
+        <div><button class="remove-button" (click)="removeFromCart(i)">Remove</button></div>
+      </div>
+
     </div>
-    <p>Total: {{ totalCost | currency }}</p>
+    <div class="total-summary">
+      <div class="total-label">Total:</div>
+      <div class="total-cost">
+        <p> {{ totalCost | currency }}</p>
+      </div>
+    </div>
+
   </div>
-  <button class="checkout-button" (click)="checkout()">Checkout</button>
+  <div class="cart-checkout">
+    <button class="checkout-button" (click)="checkout()">Book Now</button>
+  </div>
 </div>

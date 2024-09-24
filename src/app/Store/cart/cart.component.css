@@ -8,12 +8,36 @@
   justify-content: space-between;
   margin-bottom: 10px;
 }
+.cart-item-cost{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
+.cart-item-price{
+  padding-right: 10px;
+}
+
+.cart-checkout{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 50px 0;
+}
+
+.total-summary{
+  display: flex;
+  justify-content: space-between;
+  border-top: solid 1px #333;
+}
+
+.total-cost{
+  padding-right: 105px;
+}
 .remove-button {
-  position: absolute;
   bottom: 20px;
   right: 20px;
-  background-color: #000;
+  background-color: #333;
   color: #fff;
   border: none;
   padding: 10px 20px;
@@ -24,10 +48,9 @@
 
 
 .checkout-button {
-  position: absolute;
   bottom: 20px;
   right: 20px;
-  background-color: #000;
+  background-color: #333;
   color: #fff;
   border: none;
   padding: 10px 20px;

@@ -1,6 +1,6 @@
 <div class="container mt-5 store-container">
   <form (ngSubmit)="onSubmit()">
-    <app-customer-info [customerForm]="orderForm"></app-customer-info>
+
   <!-- Square Footage Radio Button Selector -->
   <div class="mb-3">
     <label>Select Square Footage:</label>
@@ -23,6 +23,9 @@
   <!-- Tabs -->
   <ul class="nav nav-tabs justify-content-center custom-tabs">
     <li class="nav-item">
+      <a class="nav-link" [class.active]="activeTab === 'bundles'" (click)="activeTab = 'bundles'">Bundles</a>
+    </li>
+    <li class="nav-item">
       <a class="nav-link" [class.active]="activeTab === 'photos'" (click)="activeTab = 'photos'">Photos</a>
     </li>
     <li class="nav-item">
@@ -37,9 +40,7 @@
     <li class="nav-item">
       <a class="nav-link" [class.active]="activeTab === 'staging'" (click)="activeTab = 'staging'">Staging</a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" [class.active]="activeTab === 'bundles'" (click)="activeTab = 'bundles'">Bundles</a>
-    </li>
+
   </ul>
 
   <!-- Tab Content -->
@@ -53,7 +54,8 @@
   </div>
 
 
-  <app-cart></app-cart>
+  <app-cart (bookNowClicked)="onBookNow()"></app-cart>
+  <app-customer-info *ngIf="showCustomerInfo" [customerForm]="orderForm"></app-customer-info>
 
 </form>
 </div>
