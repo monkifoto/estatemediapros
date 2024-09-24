@@ -90,11 +90,15 @@
 
 /* View Details Button */
 .view-details-btn {
-  font-size: 14px;
+  bottom: 20px;
+  right: 20px;
+  background-color: #000;
+  color: #fff;
+  border: none;
   padding: 10px 20px;
-  border-radius: 5px;
-  background-color: #007bff;
-  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .view-details-btn:hover {

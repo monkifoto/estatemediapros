@@ -26,6 +26,9 @@ import { StagingComponent } from './Store/staging/staging.component';
 import { ProductDetailsComponent } from './Store/product-details/product-details.component';
 import { FloorplanComponent } from './Store/floorplan/floorplan.component';
 import { BundlesComponent } from './Store/bundles/bundles.component';
+import { CustomerInfoComponent } from './Store/customer-info/customer-info.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FilterByTypePipe } from './Pipes/filter-by-type.pipe';
 
 @NgModule({
   declarations: [
@@ -51,12 +54,15 @@ import { BundlesComponent } from './Store/bundles/bundles.component';
     StagingComponent,
     ProductDetailsComponent,
     FloorplanComponent,
-    BundlesComponent
+    BundlesComponent,
+    CustomerInfoComponent,
+    FilterByTypePipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

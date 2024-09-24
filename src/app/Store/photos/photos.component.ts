@@ -1,21 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Product } from 'src/app/Model/product.model';
 import { CartService } from 'src/app/Services/cart.service';
+import { ProductService } from 'src/app/Services/product.service';
 
 @Component({
   selector: 'app-photos',
   templateUrl: './photos.component.html',
   styleUrls: ['./photos.component.css']
 })
-export class PhotosComponent {
-  photos = [
-    { name: 'Essential Photos', description: 'High-quality photos', image: 'path/to/image.jpg' },
-    { name: 'Showcase Photos', description: 'Premium quality', image: 'path/to/image2.jpg' },
-    { name: 'Aerial Photos', description: 'Drone photos', image: 'path/to/image3.jpg' }
-  ];
+export class PhotosComponent implements OnInit {
+  products!: Product[];
+ @Input()
+  listOfProducts: Product[] = [];
 
-  constructor(private cartService: CartService) {}
+  constructor(
+    private cartService: CartService,
+     private productService: ProductService
+    ) {}
 
-  addToCart(product: any) {
+  ngOnInit(): void {
+    this.products = this.listOfProducts;
+  }
+
+  addToCart(product: Product) {
     this.cartService.addProduct(product);
   }
+
+
 }

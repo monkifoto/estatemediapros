@@ -1,10 +1,38 @@
-<div class="photo-video-container">
-  <div class="photo-video-item" *ngFor="let product of videos">
-    <img [src]="product.image" alt="{{ product.name }}">
-    <div class="photo-video-info">
-      <h3>{{ product.name }}</h3>
-      <p>{{ product.description }}</p>
-      <button class="view-details-btn" (click)="addToCart(product)">Add to Cart</button>
+<div class="general-product-container">
+  <div class="general-product-item" *ngFor="let product of products">
+    <div class="product-container">
+      <div class="product-header">
+        <h1 class="product-name">{{ product.name }}</h1>
+        <p class="product-id">{{ product.id }}</p>
+      </div>
+      <div class="product-content">
+        <img src="https://via.placeholder.com/100x200" alt="Product Image" class="product-image">
+        <div class="product-details">
+          <p class="product-description">
+            {{ product.description }}
+          </p>
+          <div class="product-size">
+            <div class="product-details">
+              <p><strong>Base Price:</strong> {{ product.basePrice | currency }}</p><br>
+              <!-- <small><strong>Selected Sq Ft:</strong> {{ selectedSqFt }}</small><br> -->
+              <small><strong>Increment Price:</strong>{{product.priceIncrementPerSqFt | currency}}</small><br><br>
+              <p><strong>Total Price:</strong> {{ product.price | currency }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="additional-info">
+        <h2 class="product-name"></h2>
+        <p>Available in (3) colors</p>
+        <p>100% cow leather outer with suede lining</p>
+        <div class="product-thumbnails">
+          <img src="https://via.placeholder.com/50x100" alt="Thumbnail 1" class="thumbnail">
+          <img src="https://via.placeholder.com/50x100" alt="Thumbnail 2" class="thumbnail">
+          <img src="https://via.placeholder.com/50x100" alt="Thumbnail 3" class="thumbnail">
+        </div>
+        <a href="#" class="bag-detail-link">BAG DETAIL →</a>
+      </div>
+      <button class="add-to-cart-button" (click)="addToCart(product)">Add To Cart</button>
     </div>
   </div>
 </div>

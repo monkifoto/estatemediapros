@@ -1,19 +1,21 @@
 <div class="container mt-5 store-container">
+  <form (ngSubmit)="onSubmit()">
+    <app-customer-info [customerForm]="orderForm"></app-customer-info>
   <!-- Square Footage Radio Button Selector -->
   <div class="mb-3">
     <label>Select Square Footage:</label>
     <div class="d-flex flex-wrap">
       <label class="radio-option">
-        <input type="radio" name="squareFt" [(ngModel)]="selectedSqFt" value="1000-2000"> 1000-2000 sq ft
+        <input type="radio" name="squareFt" [(ngModel)]="selectedSqFt" value="1000-2000" (change)="onSqftChange(1000, 2000)"> 1000-2000 sq ft
       </label>
       <label class="radio-option">
-        <input type="radio" name="squareFt" [(ngModel)]="selectedSqFt" value="2001-3000"> 2001-3000 sq ft
+        <input type="radio" name="squareFt" [(ngModel)]="selectedSqFt" value="2001-3000" (change)="onSqftChange(2000, 3000)"> 2001-3000 sq ft
       </label>
       <label class="radio-option">
-        <input type="radio" name="squareFt" [(ngModel)]="selectedSqFt" value="3001-4000"> 3001-4000 sq ft
+        <input type="radio" name="squareFt" [(ngModel)]="selectedSqFt" value="3001-4000" (change)="onSqftChange(3000, 4000)"> 3001-4000 sq ft
       </label>
       <label class="radio-option">
-        <input type="radio" name="squareFt" [(ngModel)]="selectedSqFt" value="4001-5000"> 4001-5000 sq ft
+        <input type="radio" name="squareFt" [(ngModel)]="selectedSqFt" value="4001-5000" (change)="onSqftChange(4000, 5000)"> 4001-5000 sq ft
       </label>
     </div>
   </div>
@@ -42,27 +44,16 @@
 
   <!-- Tab Content -->
   <div class="tab-content mt-3">
-    <app-photos *ngIf="activeTab === 'photos'"></app-photos>
-    <app-video *ngIf="activeTab === 'video'"></app-video>
-    <app-tour *ngIf="activeTab === '3dTour'"></app-tour>
-    <app-floorplan *ngIf="activeTab === 'floorplan'"></app-floorplan>
-    <app-staging *ngIf="activeTab === 'staging'"></app-staging>
-    <app-bundles *ngIf="activeTab === 'bundles'"></app-bundles>
+    <app-photos *ngIf="activeTab === 'photos'" [listOfProducts]="(products | filterByType: 'photo')"></app-photos>
+    <app-video *ngIf="activeTab === 'video'" [listOfProducts]="(products | filterByType: 'video')"></app-video>
+    <app-tour *ngIf="activeTab === '3dTour'" [listOfProducts]="(products | filterByType: 'tour')"></app-tour>
+    <app-floorplan *ngIf="activeTab === 'floorplan'" [listOfProducts]="(products | filterByType: 'floorplan')"></app-floorplan>
+    <app-staging *ngIf="activeTab === 'staging'" [listOfProducts]="(products | filterByType: 'staging')"></app-staging>
+    <app-bundles *ngIf="activeTab === 'bundles'" [listOfProducts]="(products | filterByType: 'bundle')"></app-bundles>
   </div>
 
-  <div class="store mt-4">
-    <div class="product" *ngFor="let product of products">
-      <div class="product-image">
-        <img [src]="product.imageUrl" alt="{{ product.name }}" />
-      </div>
-      <h3 class="product-name">{{ product.name }}</h3>
-      <p class="product-price">{{ product.price | currency:'USD' }}</p>
-      <button class="btn btn-secondary view-details-btn" [routerLink]="['/product', product.id]">
-        View Details
-      </button>
-    </div>
-  </div>
 
-  <!-- Shopping Cart -->
   <app-cart></app-cart>
+
+</form>
 </div>

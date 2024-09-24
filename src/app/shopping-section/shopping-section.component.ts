@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from '../Services/cart.service';
 import { Product } from '../Model/product.model';
 import { Customer } from '../Model/customer.model';
+import { ProductService } from '../Services/product.service';
 
 @Component({
   selector: 'app-shopping-section',
@@ -13,6 +14,7 @@ export class ShoppingSectionComponent implements OnInit {
   selectedSqFt: number = 2000; // Default square footage
   totalCost: number = 0;
   cart: any[] = [];
+  products!: Product[];
 
   // Customer Information
   customer: Customer = {
@@ -24,56 +26,8 @@ export class ShoppingSectionComponent implements OnInit {
     time:'',
   };
 
-  // Available products with base prices
-  products: Product[] = [
-    {
-      id: '001',
-      name: 'Basic Photography',
-      description: 'High-quality basic photography for real estate listings.',
-      imageUrl: '/assets/photo-basic.jpg',
-      baseSqFt: 2000,
-      basePrice: 150,
-      priceIncrementPerSqFt: 50, // $50 for each additional 1000 sq ft
-      incrementSqFtStep: 1000, // Increment step size
-      price: 0,
-    },
-    {
-      id: '002',
-      name: 'Video Tour',
-      description: 'Professional video tour for real estate.',
-      imageUrl: '/assets/video-tour.jpg',
-      baseSqFt: 2000,
-      basePrice: 200,
-      priceIncrementPerSqFt: 100, // $100 for each additional 1000 sq ft
-      incrementSqFtStep: 1000, // Increment step size
-      price: 0,
-    },
-    {
-      id: '003',
-      name: '3D Tour',
-      description: 'High-quality Matterport Tour for real estate listings.',
-      imageUrl: '/assets/photo-basic.jpg',
-      baseSqFt: 2000,
-      basePrice: 150,
-      priceIncrementPerSqFt: 50, // $50 for each additional 1000 sq ft
-      incrementSqFtStep: 1000, // Increment step size
-      price: 0,
-    },
-    {
-      id: '004',
-      name: 'Floor Plans',
-      description: 'High-quality Floor Plan real estate listings.',
-      imageUrl: '/assets/photo-basic.jpg',
-      baseSqFt: 2000,
-      basePrice: 70,
-      priceIncrementPerSqFt: 10, // $50 for each additional 1000 sq ft
-      incrementSqFtStep: 1000, // Increment step size
-      price: 0,
-    },
-    // Add other products as needed
-  ];
 
-  constructor(private cartService: CartService) {}
+  constructor(private cartService: CartService, private productService: ProductService) {}
 
   ngOnInit() {
     // Subscribe to cart items
@@ -85,6 +39,7 @@ export class ShoppingSectionComponent implements OnInit {
     this.cartService.currentCartTotal.subscribe((total) => {
       this.totalCost = total;
     });
+    this.products = this.productService.products;
   }
 
   // Handle square footage changes
@@ -152,7 +107,7 @@ export class ShoppingSectionComponent implements OnInit {
       ...product,
       price: product.price, // Use the updated price from product.price
     };
-    this.cartService.addItemToCart(cartItem); // Add the item to the cart using the service
+    //this.cartService.addItemToCart(cartItem); // Add the item to the cart using the service
   }
 
   removeFromCart(index: number) {
