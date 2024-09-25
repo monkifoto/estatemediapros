@@ -3,11 +3,11 @@
 .hero {
   text-align: left;
   margin: 50px auto;
-  max-width: 1200px;
+  max-width: 1480px;
 }
 
 .hero-title {
-  font-size: 105px;
+  font-size: clamp(105px, 6vw, 130px);;
   font-weight: 900;
   line-height: 1;
   margin: 0;
@@ -20,7 +20,7 @@
 }
 
 .hero-title-small {
-  font-size: clamp(16px, 5vw, 98px);;
+  font-size: clamp(90px, 5vw, 110px);;
   font-weight: 200;
   line-height: 1;
   margin: 0;

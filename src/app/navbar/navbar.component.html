@@ -1,17 +1,12 @@
-
 <nav class="navbar">
   <div class="navbar-container">
     <div class="logo">
-      <div class="logo"><img src="../../assets/p3Logo.png" alt="p3logo"></div>
+      <img src="../../assets/p3Logo.png" alt="p3logo">
     </div>
     <div class="menu-icon" (click)="toggleMenu()">
-      <!-- <i class="fa" [ngClass]="{'fa-bars': !menuOpen, 'fa-times': menuOpen}"></i> -->
       <div class="bar1" [ngClass]="{'open-bar1': menuOpen}"></div>
       <div class="bar2" [ngClass]="{'open-bar2': menuOpen}"></div>
       <div class="bar3" [ngClass]="{'open-bar3': menuOpen}"></div>
-    </div>
-    <div class="cart-total">
-      Total: ${{ cartTotal }}
     </div>
     <ul class="nav-menu" [ngClass]="{'active': menuOpen}">
       <li class="nav-item">
@@ -24,13 +19,14 @@
         <a routerLink="/floorplan" class="nav-links" (click)="closeMenu()">Floor Plans</a>
       </li>
       <li class="nav-item">
-        <a routerLink="/virtualstagingGit " class="nav-links" (click)="closeMenu()">Virtual Staging</a>
+        <a routerLink="/virtualstaging" class="nav-links" (click)="closeMenu()">Virtual Staging</a>
       </li>
       <li class="nav-item">
         <a routerLink="/book" class="nav-links" (click)="closeMenu()">Schedule a Shoot</a>
       </li>
-      <li class="nav-item">
-      </li>
     </ul>
+    <div class="cart-total">
+      Total: ${{ cartTotal }}
+    </div>
   </div>
 </nav>

@@ -1,4 +1,3 @@
-
 .navbar {
   background-color: #fff;
   position: fixed;
@@ -15,45 +14,38 @@
   align-items: center;
   padding: 10px 20px;
   height: 70px;
-  width: 1200px;
+  width: 100%;
   margin: 0 auto;
 }
 
-.logo{
-  max-height: 65px;
+.logo {
+  flex: 1;
 }
 
-.logo > img {
+.logo img {
   height: 65px;
 }
 
 .nav-menu {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+  flex: 2;
   display: flex;
+  justify-content: center;
   align-items: center;
+  list-style: none;
+  /* display: none;  */
+}
+
+.nav-menu.active {
+  display: flex; /* Show the menu when it's active */
 }
 
 .nav-menu li a {
-  color: var(--nav-text-color);
-  text-decoration:none;
-  text-transform:uppercase;
   color: #333;
-  font-size: 14px;
-  display: block;
-  padding: 10px 15px;
-}
-
-.nav-menu li a {
-  color: var(--nav-text-color);
   text-decoration: none;
   text-transform: uppercase;
-  color: #333;
   font-size: 14px;
-  display: block;
   padding: 10px 15px;
-  position: relative; /* Important to position the triangle relative to the link */
+  position: relative;
 }
 
 .nav-menu li a::after {
@@ -63,7 +55,7 @@
   height: 0;
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
-  border-top: 5px solid #333; /* Triangle color */
+  border-top: 5px solid #333;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
@@ -73,90 +65,65 @@
 
 .nav-menu li a:hover::after {
   opacity: 1;
-  transform: translateX(-50%) translateY(5px); /* Moves the triangle down slightly */
-}
-
-.menu-icon {
-  position: absolute;
-  display: none;
-  cursor: pointer;
-  flex-direction: column;
-  justify-content: space-around;
-  width: 30px;
-  height: 30px;
-  z-index: 1;
-}
-
-.menu-icon div {
-  width: 100%;
-  height: 4px;
-  background-color: var(--nav-text-color);
-  transition: all 0.3s;
-}
-
-.menu-icon.open .bar1,
-.menu-icon.open .bar2,
-.menu-icon.open .bar3 {
-  background-color: var(--nav-active-text);
-}
-
-.menu-icon .open-bar1 {
-  transform: rotate(-45deg) translate(-5px, 5px);
-  background-color: white;
-}
-
-.menu-icon .open-bar2 {
-  opacity: 0;
-}
-
-.menu-icon .open-bar3 {
-  transform: rotate(45deg) translate(-5px, -5px);
-  background-color: white;
-}
-
-.nav-menu.active {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background-color: var(--nav-active-background);
-  opacity: .9;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  transition: left 0.3s;
-}
-
-.nav-menu.active li a {
-  color: var(--nav-active-text);
-  font-size: 24px;
-  margin: 20px 0;
+  transform: translateX(-50%) translateY(5px);
 }
 
 .cart-total {
-  position: absolute;
-  top: 15px;
-  right: 20px;
+  flex: 1;
+  text-align: right;
+}
+
+.menu-icon {
+  display: none;
 }
 
 @media (max-width: 768px) {
   .navbar-container {
-    justify-content: flex-start;
+    justify-content: space-between;
+    /* border: 1px solid red; */
+    width: 100%;
   }
 
   .logo {
-    order: 2;
     margin-left: auto;
   }
 
-  .menu-icon {
-    display: flex;
+  .logo {
     order: 1;
+    flex: 1;
+    position: absolute;
+    top:10px;
+    left: 10px;
+  }
+
+  .cart-total{
+    position: absolute;
+    top:20px;
+    left: 150px;
+    order: 2;
+  }
+
+  .menu-icon {
+    display: flex; /* Ensure the menu icon shows up in mobile view */
+    flex-direction: column;
+    cursor: pointer;
+    z-index: 1001; /* Make sure it's on top of other elements */
+    position: absolute;
+    top:20px;
+    right: 30px;
+  }
+
+  .menu-icon div {
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    margin: 4px 0;
+    transition: all 0.3s;
   }
 
   .nav-menu {
     position: fixed;
+    color: #fff;
     top: 0;
     left: -100%;
     width: 100%;
@@ -168,19 +135,21 @@
     transition: left 0.3s;
   }
 
+  .nav-menu.active {
+    left: 0;
+    color: #fff;
+  }
+
   .nav-menu li {
     margin: 20px 0;
   }
 
   .nav-menu li a {
-    color: var(--nav-text-color);
-    text-decoration: none;
-    text-transform: uppercase;
-    font-family: "Montserrat", sans-serif;
-      font-optical-sizing: auto;
-      font-weight: 200;
-      font-style: normal;
-    color: var(--nav-active-text);
     font-size: 24px;
+    color: white;
+  }
+  .menu-icon {
+    order: 3;
+
   }
 }

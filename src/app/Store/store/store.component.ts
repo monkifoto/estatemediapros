@@ -75,7 +75,7 @@ export class StoreComponent {
         cartContents: this.cartService.getCartItems(),
       };
 
-      console.log('Order:', order);
+      console.log('Order has been submitted:', order);
     } else {
       console.log('Form is not valid.');
     }

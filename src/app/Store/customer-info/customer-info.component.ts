@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Customer } from 'src/app/Model/customer.model';
 
@@ -9,5 +9,9 @@ import { Customer } from 'src/app/Model/customer.model';
 })
 export class CustomerInfoComponent {
   @Input() customerForm!: FormGroup;
+  @Output() submitForm = new EventEmitter<void>();
 
+  bookNow() {
+    this.submitForm.emit(); // Emit event to the parent component
+  }
 }

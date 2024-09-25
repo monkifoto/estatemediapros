@@ -37,3 +37,15 @@
   border-color: #007bff;
   outline: none;
 }
+
+.book-now-btn {
+  bottom: 20px;
+  right: 20px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}

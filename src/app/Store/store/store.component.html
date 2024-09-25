@@ -1,5 +1,5 @@
 <div class="container mt-5 store-container">
-  <form (ngSubmit)="onSubmit()">
+  <form >
 
   <!-- Square Footage Radio Button Selector -->
   <div class="sqft-selection-section mb-3">
@@ -55,7 +55,7 @@
 
 
   <app-cart (bookNowClicked)="onBookNow()"></app-cart>
-  <app-customer-info *ngIf="showCustomerInfo" [customerForm]="orderForm"></app-customer-info>
+  <app-customer-info *ngIf="showCustomerInfo" [customerForm]="orderForm" (submitForm)="onSubmit()"></app-customer-info>
 
 </form>
 </div>

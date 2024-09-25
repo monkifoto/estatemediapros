@@ -99,7 +99,7 @@
 
 /* .container {
 
-  max-width: 1200px;
+  max-width: 1480px;
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -224,7 +224,7 @@
     top: 0;
     left: 0;
     right: 0;
-    max-width: 1200px;
+    max-width: 1480px;
     margin: 0 auto;
   }
 
@@ -291,7 +291,7 @@ body{
   align-items: center;
   padding: 10px 20px;
   height: 70px;
-  max-width: 1200px;
+  max-width: 1480px;
   margin: 0 auto;
 }
 

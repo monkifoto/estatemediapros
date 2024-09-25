@@ -1,4 +1,9 @@
 /* General Styles */
+.container {
+  width: 100%;
+  padding: 20px;
+  margin-top: 70px;
+}
 .still-life-collection {
   display: flex;
   flex-direction: column;
@@ -37,6 +42,11 @@ img {
 
 /* Mobile Styles */
 @media (max-width: 768px) {
+
+  .container{
+    padding-top:20px;
+  }
+
   .grid-row {
     grid-template-columns: 1fr; /* Stack elements vertically */
   }
@@ -80,3 +90,4 @@ img {
     object-fit: contain; /* Prevent image overflow in very narrow screens */
   }
 }
+
