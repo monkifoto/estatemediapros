@@ -10,10 +10,10 @@ export class ProductService {
     {
       id: '001',
       name: 'Essentials',
-      description: 'High-quality basic photography for real estate listings.',
+      description: 'High-quality HDR photography for real estate listings.',
       imageUrl: 'https://via.placeholder.com/200x400',
       baseSqFt: 1000,
-      basePrice: 170,
+      basePrice: 150,
       priceIncrementPerSqFt: 50, // $50 for each additional 1000 sq ft
       incrementSqFtStep: 1000, // Increment step size
       price: 0,
@@ -23,7 +23,7 @@ export class ProductService {
     {
       id: '002',
       name: 'Showcase',
-      description: 'High-quality basic photography for real estate listings.',
+      description: 'High-quality HDR blend with Professional lighting photography for real estate listings.',
       imageUrl: 'https://via.placeholder.com/200x400',
       baseSqFt: 1000,
       basePrice: 230,
@@ -33,19 +33,19 @@ export class ProductService {
       productType:'photo',
       isDetailsVisible: false
     },
-    {
-      id: '003',
-      name: 'Aerial',
-      description: 'High-quality basic photography for real estate listings.',
-      imageUrl: 'https://via.placeholder.com/200x400',
-      baseSqFt: 1000,
-      basePrice: 120,
-      priceIncrementPerSqFt: 0, // $50 for each additional 1000 sq ft
-      incrementSqFtStep: 1000, // Increment step size
-      price: 0,
-      productType:'photo',
-      isDetailsVisible: false
-    },
+    // {
+    //   id: '003',
+    //   name: 'Aerial',
+    //   description: 'High-quality basic photography for real estate listings.',
+    //   imageUrl: 'https://via.placeholder.com/200x400',
+    //   baseSqFt: 1000,
+    //   basePrice: 120,
+    //   priceIncrementPerSqFt: 0, // $50 for each additional 1000 sq ft
+    //   incrementSqFtStep: 1000, // Increment step size
+    //   price: 0,
+    //   productType:'photo',
+    //   isDetailsVisible: false
+    // },
     {
       id: '004',
       name: 'Done  Add-On',
@@ -150,26 +150,26 @@ export class ProductService {
       productType:'staging',
       isDetailsVisible: false
     },
-    {
-      id: '012',
-      name: 'Staging Company',
-      description: 'High-quality Floor Plan real estate listings.',
-      imageUrl: 'https://via.placeholder.com/200x400',
-      baseSqFt: 1000,
-      basePrice: 3500,
-      priceIncrementPerSqFt: 10, // $50 for each additional 1000 sq ft
-      incrementSqFtStep: 1000, // Increment step size
-      price: 0,
-      productType:'staging',
-      isDetailsVisible: false
-    },
+    // {
+    //   id: '012',
+    //   name: 'Staging Company',
+    //   description: 'High-quality Floor Plan real estate listings.',
+    //   imageUrl: 'https://via.placeholder.com/200x400',
+    //   baseSqFt: 1000,
+    //   basePrice: 3500,
+    //   priceIncrementPerSqFt: 10, // $50 for each additional 1000 sq ft
+    //   incrementSqFtStep: 1000, // Increment step size
+    //   price: 0,
+    //   productType:'staging',
+    //   isDetailsVisible: false
+    // },
     {
       id: '013',
-      name: 'Basic Bundle',
-      description: 'High-quality Floor Plan real estate listings.',
+      name: 'Essentials Bundle',
+      description: 'High-quality HDR photos, floor plan.',
       imageUrl: 'https://via.placeholder.com/200x400',
       baseSqFt: 1000,
-      basePrice: 3500,
+      basePrice: 200,
       priceIncrementPerSqFt: 10, // $50 for each additional 1000 sq ft
       incrementSqFtStep: 1000, // Increment step size
       price: 0,
@@ -178,30 +178,30 @@ export class ProductService {
     },
     {
       id: '014',
-      name: 'Advanced Bundle',
-      description: 'High-quality Floor Plan real estate listings.',
+      name: 'Showcase Bundle',
+      description: 'High-quality photos with professional lighting, and a floor plan with aproximate dimmentions.',
       imageUrl: 'https://via.placeholder.com/200x400',
       baseSqFt: 1000,
-      basePrice: 3500,
-      priceIncrementPerSqFt: 10, // $50 for each additional 1000 sq ft
+      basePrice: 250,
+      priceIncrementPerSqFt: 30, // $50 for each additional 1000 sq ft
       incrementSqFtStep: 1000, // Increment step size
       price: 0,
       productType:'bundle',
       isDetailsVisible: false
     },
-    {
-      id: '015',
-      name: 'Total Bundle',
-      description: 'High-quality Floor Plan real estate listings.',
-      imageUrl: 'https://via.placeholder.com/200x400',
-      baseSqFt: 1000,
-      basePrice: 3500,
-      priceIncrementPerSqFt: 10, // $50 for each additional 1000 sq ft
-      incrementSqFtStep: 1000, // Increment step size
-      price: 0,
-      productType:'bundle',
-      isDetailsVisible: false
-    },
+    // {
+    //   id: '015',
+    //   name: 'Total Bundle',
+    //   description: 'High-quality Floor Plan real estate listings.',
+    //   imageUrl: 'https://via.placeholder.com/200x400',
+    //   baseSqFt: 1000,
+    //   basePrice: 3500,
+    //   priceIncrementPerSqFt: 10, // $50 for each additional 1000 sq ft
+    //   incrementSqFtStep: 1000, // Increment step size
+    //   price: 0,
+    //   productType:'bundle',
+    //   isDetailsVisible: false
+    // },
     // Add other products as needed
   ];
 

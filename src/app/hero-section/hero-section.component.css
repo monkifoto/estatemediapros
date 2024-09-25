@@ -20,7 +20,7 @@
 }
 
 .hero-title-small {
-  font-size: 105px;
+  font-size: clamp(16px, 5vw, 98px);;
   font-weight: 200;
   line-height: 1;
   margin: 0;

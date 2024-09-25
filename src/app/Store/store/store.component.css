@@ -5,17 +5,20 @@
 }
 
 /* Tabs */
+
+
 .nav-tabs.custom-tabs .nav-link {
   padding: 12px 20px;
   font-weight: bold;
   color: #666;
   border-bottom: 3px solid transparent;
   transition: color 0.3s, border-color 0.3s;
+  width: 250px;
 }
 
 .nav-tabs.custom-tabs .nav-link.active {
-  color: #007bff;
-  border-bottom-color: #007bff;
+  color: #333;
+  border-bottom-color: #333;
 }
 
 .nav-tabs.custom-tabs .nav-link:hover {

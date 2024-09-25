@@ -30,14 +30,12 @@ export class CartService {
     return this.cart;
   }
 
-
   addProduct(product: Product) {
     this.cart.push(product);
     const currentItems = [...this.cartItemsSource.value, product];
     this.cartItemsSource.next(currentItems);
     this.updateCartTotal(this.calculateTotal(currentItems)); // Recalculate total
   }
-
 
   // Updates the total cost of the cart
   updateCartTotal(newTotal: number): void {
@@ -49,7 +47,7 @@ export class CartService {
     const currentItems = [...this.cartItemsSource.value];
     if (index > -1) {
       currentItems.splice(index, 1); // Remove the item from the array
-      this.cart.splice(index,1);
+      this.cart.splice(index, 1);
       this.cartItemsSource.next(currentItems);
       this.updateCartTotal(this.calculateTotal(currentItems)); // Recalculate total
     }
@@ -64,7 +62,4 @@ export class CartService {
   getTotal() {
     return this.cart.reduce((total, item) => total + item.price, 0);
   }
-
-
-
 }
