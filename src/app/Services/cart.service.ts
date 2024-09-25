@@ -49,6 +49,7 @@ export class CartService {
     const currentItems = [...this.cartItemsSource.value];
     if (index > -1) {
       currentItems.splice(index, 1); // Remove the item from the array
+      this.cart.splice(index,1);
       this.cartItemsSource.next(currentItems);
       this.updateCartTotal(this.calculateTotal(currentItems)); // Recalculate total
     }
