@@ -5,6 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './photography-section.component.html',
   styleUrls: ['./photography-section.component.css']
 })
-export class AboutSectionComponent {
+export class PhotoSectionComponent {
 
 }

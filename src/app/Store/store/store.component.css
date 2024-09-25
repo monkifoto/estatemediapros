@@ -4,6 +4,12 @@
   margin: auto;
 }
 
+.sqft-selection-section{
+  display: flex;
+  justify-content: space-between;
+}
+
+
 /* Tabs */
 
 

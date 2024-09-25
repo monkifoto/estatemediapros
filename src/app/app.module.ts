@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HeroSectionComponent } from './hero-section/hero-section.component';
-import { AboutSectionComponent } from './photography-section/photography-section.component';
+import { PhotoSectionComponent } from './photography-section/photography-section.component';
 import { TestPageComponent } from './test-page/test-page.component';
 import { AerialSectionComponent } from './aerial-section/aerial-section.component';
 import { VideoSectionComponent } from './video-section/video-section.component';
@@ -27,13 +27,14 @@ import { BundlesComponent } from './Store/bundles/bundles.component';
 import { CustomerInfoComponent } from './Store/customer-info/customer-info.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FilterByTypePipe } from './Pipes/filter-by-type.pipe';
+import { HomeSectionComponent } from './home-section/home-section.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     HeroSectionComponent,
-    AboutSectionComponent,
+    PhotoSectionComponent,
     TestPageComponent,
     AerialSectionComponent,
     VideoSectionComponent,
@@ -52,7 +53,8 @@ import { FilterByTypePipe } from './Pipes/filter-by-type.pipe';
     FloorplanComponent,
     BundlesComponent,
     CustomerInfoComponent,
-    FilterByTypePipe
+    FilterByTypePipe,
+    HomeSectionComponent
   ],
   imports: [
     BrowserModule,
