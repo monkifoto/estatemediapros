@@ -11,7 +11,7 @@ const transporter = nodemailer.createTransport({
   service: 'Gmail',
   auth: {
     user: 'pacificpropertyphotos@gmail.com',
-    pass: 'ywwu joug obdw ewzr',
+    pass: 'qmxu snqx rfns cwxr',
   },
 });
 
