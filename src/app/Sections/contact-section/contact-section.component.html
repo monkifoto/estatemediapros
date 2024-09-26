@@ -4,7 +4,7 @@
   <div class="grid-row row-1">
     <div class="form-section">
       <h2>Contact Us</h2>
-      <form action="#" method="post">
+      <form (ngSubmit)="onSubmit()" #contactForm="ngForm">
         <div class="form-group">
           <label for="name">Name</label>
           <input type="text" id="name" name="name" placeholder="Enter your name" required>
@@ -20,7 +20,7 @@
           <textarea id="message" name="message" rows="5" placeholder="Enter your message" required></textarea>
         </div>
 
-        <button type="submit" class="submit-btn">Send Message</button>
+        <button type="submit" [disabled]="!contactForm.form.valid" class="submit-btn">Send Message</button>
       </form>
     </div>
 
