@@ -28,6 +28,7 @@ import { CustomerInfoComponent } from './Sections/Store/customer-info/customer-i
 import { ReactiveFormsModule } from '@angular/forms';
 import { FilterByTypePipe } from './Pipes/filter-by-type.pipe';
 import { HomeSectionComponent } from './Sections/home-section/home-section.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { HomeSectionComponent } from './Sections/home-section/home-section.compo
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
