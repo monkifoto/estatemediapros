@@ -13,7 +13,7 @@ import { ProductService } from 'src/app/Services/product.service';
 export class StoreComponent {
   activeTab: string = 'bundles';
   squareFootage: { min: number; max: number } = { min: 2000, max: 3000 };
-  selectedSqFt: number = 2000;
+  selectedSqFt: string = '2001-3000';
   product: any;
   products!: Product[];
   productsPhotos!: Product[];
