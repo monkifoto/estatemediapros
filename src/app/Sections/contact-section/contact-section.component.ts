@@ -16,10 +16,15 @@ export class ContactSectionComponent {
   constructor(private http: HttpClient) {}
 
   onSubmit() {
-    this.http.post('https://us-central1-pacificpropertyphotos-50a8c.cloudfunctions.net/sendContactEmail', this.formData)
-      .subscribe(
-        response => console.log('Email sent successfully', response),
-        error => console.error('Error sending email', error)
-      );
+    console.log(this.formData);
+    this.http.post('https://us-central1-pacificpropertyphotos-50a8c.cloudfunctions.net/sendContactEmail', this.formData, { responseType: 'text' })
+    .subscribe(
+      (response) => {
+        console.log('Email sent successfully', response);
+      },
+      (error) => {
+        console.error('Error sending email', error);
+      }
+    );
   }
 }
