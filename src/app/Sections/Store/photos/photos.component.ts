@@ -13,11 +13,9 @@ export class PhotosComponent implements OnInit {
   @Input()
   listOfProducts: Product[] = [];
   @Output() viewProductDetails = new EventEmitter<Product>();
-  selectedProduct: any = null;
 
   constructor(
     private cartService: CartService,
-    private productService: ProductService
   ) {}
 
   ngOnInit(): void {

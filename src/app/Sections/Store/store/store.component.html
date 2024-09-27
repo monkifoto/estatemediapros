@@ -40,15 +40,12 @@
 
         <!-- Tab Content -->
         <div class="tab-content mt-3">
-          <app-photos *ngIf="activeTab === 'photos'"
-                      [listOfProducts]="(products | filterByType: 'photo')"
-                      (viewProductDetails)="openModal($event)">
-          </app-photos>
-          <app-video *ngIf="activeTab === 'video'" [listOfProducts]="(products | filterByType: 'video')"></app-video>
-          <app-tour *ngIf="activeTab === '3dTour'" [listOfProducts]="(products | filterByType: 'tour')"></app-tour>
-          <app-floorplan *ngIf="activeTab === 'floorplan'" [listOfProducts]="(products | filterByType: 'floorplan')"></app-floorplan>
-          <app-staging *ngIf="activeTab === 'staging'" [listOfProducts]="(products | filterByType: 'staging')"></app-staging>
-          <app-bundles *ngIf="activeTab === 'bundles'" [listOfProducts]="(products | filterByType: 'bundle')"></app-bundles>
+          <app-photos *ngIf="activeTab === 'photos'" [listOfProducts]="(products | filterByType: 'photo')"(viewProductDetails)="openModal($event)"></app-photos>
+          <app-video *ngIf="activeTab === 'video'" [listOfProducts]="(products | filterByType: 'video')" (viewProductDetails)="openModal($event)"></app-video>
+          <app-tour *ngIf="activeTab === '3dTour'" [listOfProducts]="(products | filterByType: 'tour')" (viewProductDetails)="openModal($event)"></app-tour>
+          <app-floorplan *ngIf="activeTab === 'floorplan'" [listOfProducts]="(products | filterByType: 'floorplan')" (viewProductDetails)="openModal($event)"></app-floorplan>
+          <app-staging *ngIf="activeTab === 'staging'" [listOfProducts]="(products | filterByType: 'staging')" (viewProductDetails)="openModal($event)"></app-staging>
+          <app-bundles *ngIf="activeTab === 'bundles'" [listOfProducts]="(products | filterByType: 'bundle')" (viewProductDetails)="openModal($event)"></app-bundles>
         </div>
       </div>
 

@@ -1,5 +1,6 @@
+
 <div class="general-product-container">
   <div class="general-product-item" *ngFor="let product of products">
-    <app-product-item [product]="product"></app-product-item>
+    <app-product-item [product]="product" (viewDetails)="viewDetails(product)"></app-product-item>
   </div>
 </div>
