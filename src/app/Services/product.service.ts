@@ -150,6 +150,19 @@ export class ProductService {
       productType:'staging',
       isDetailsVisible: false
     },
+    {
+      id: '012',
+      name: 'Virtual Declutering',
+      description: 'High-quality Floor Plan real estate listings.',
+      imageUrl: 'https://via.placeholder.com/200x400',
+      baseSqFt: 1000,
+      basePrice: 40,
+      priceIncrementPerSqFt: 10, // $50 for each additional 1000 sq ft
+      incrementSqFtStep: 1000, // Increment step size
+      price: 0,
+      productType:'staging',
+      isDetailsVisible: false
+    },
     // {
     //   id: '012',
     //   name: 'Staging Company',
@@ -179,6 +192,19 @@ export class ProductService {
     {
       id: '014',
       name: 'Showcase Bundle',
+      description: 'High-quality photos with professional lighting, and a floor plan with aproximate dimmentions.',
+      imageUrl: 'https://via.placeholder.com/200x400',
+      baseSqFt: 1000,
+      basePrice: 250,
+      priceIncrementPerSqFt: 30, // $50 for each additional 1000 sq ft
+      incrementSqFtStep: 1000, // Increment step size
+      price: 0,
+      productType:'bundle',
+      isDetailsVisible: false
+    },
+    {
+      id: '015',
+      name: 'Luxurious Bundle',
       description: 'High-quality photos with professional lighting, and a floor plan with aproximate dimmentions.',
       imageUrl: 'https://via.placeholder.com/200x400',
       baseSqFt: 1000,

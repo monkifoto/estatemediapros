@@ -1,30 +1,50 @@
-/* Container and General Layout */
+/* General Container Styling */
 .container {
   width: 100%;
   padding: 20px;
   margin-top: 70px;
 }
+
 .store-container {
-  max-width: 1480px;
+  max-width: 1200px; /* Increased width for more space */
   margin: auto;
 }
 
-.sqft-selection-section{
+/* Main Flex Container */
+.main-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+/* Product Section */
+.products-section {
+  flex: 3;
+}
+
+/* Cart Section */
+.cart-section {
+  flex: 1;
+  border-left: 1px solid #ddd;
+  padding: 20px;
+  /* border-radius: 10px; */
+  background-color: #fff;
+}
+
+/* Square Footage Selection */
+.sqft-selection-section {
   display: flex;
   justify-content: space-between;
 }
 
-
-/* Tabs */
-
-
+/* Tabs Styling */
 .nav-tabs.custom-tabs .nav-link {
   padding: 12px 20px;
   font-weight: bold;
   color: #666;
   border-bottom: 3px solid transparent;
   transition: color 0.3s, border-color 0.3s;
-  width: 250px;
+  /* width: 250px; */
 }
 
 .nav-tabs.custom-tabs .nav-link.active {
@@ -36,7 +56,7 @@
   color: #0056b3;
 }
 
-/* Radio Options */
+/* Radio Option Styling */
 .radio-option {
   margin-right: 10px;
   font-size: 14px;
@@ -55,7 +75,7 @@
   background-color: #f0f0f0;
 }
 
-/* Product Grid */
+/* Product Styling */
 .store {
   display: flex;
   flex-wrap: wrap;
@@ -89,7 +109,6 @@
   transform: scale(1.05);
 }
 
-/* Product Info */
 .product-name {
   font-size: 16px;
   font-weight: bold;
@@ -114,8 +133,6 @@
   cursor: pointer;
   transition: background-color 0.3s;
 }
-
-
 
 .view-details-btn:hover {
   background-color: #0056b3;

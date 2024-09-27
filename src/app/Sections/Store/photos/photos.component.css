@@ -9,7 +9,7 @@
 }
 
 .general-product-item {
-  width: 23.5%; /* Max 24% width of the parent */
+  width: 30%; /* Max 24% width of the parent */
   position: relative;
   /* border-radius: 8px; */
   overflow: hidden;

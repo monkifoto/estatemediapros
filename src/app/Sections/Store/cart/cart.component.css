@@ -15,7 +15,7 @@
 }
 
 .cart-item-price{
-  padding-right: 10px;
+  padding-right: 5px;
 }
 
 .cart-checkout{
@@ -28,19 +28,16 @@
 .total-summary{
   display: flex;
   justify-content: space-between;
-  border-top: solid 1px #333;
+  border-top: solid 1px #ddd;
 }
 
-.total-cost{
-  padding-right: 105px;
-}
 .remove-button {
   bottom: 20px;
   right: 20px;
-  background-color: #333;
-  color: #fff;
+  background-color: transparent;
+  color: #333;
   border: none;
-  padding: 10px 20px;
+  /* padding: 10px 20px; */
   font-size: 14px;
   cursor: pointer;
   transition: background-color 0.3s;
