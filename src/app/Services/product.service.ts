@@ -11,7 +11,7 @@ export class ProductService {
       id: '001',
       name: 'Essentials',
       description: 'High-quality HDR photography for real estate listings.',
-      imageUrl: 'https://via.placeholder.com/200x400',
+      imageUrl: '../../assets/productImages/EssentialPhotos.jpg',
       baseSqFt: 1000,
       basePrice: 150,
       priceIncrementPerSqFt: 50, // $50 for each additional 1000 sq ft
@@ -24,7 +24,7 @@ export class ProductService {
       id: '002',
       name: 'Showcase',
       description: 'High-quality HDR blend with Professional lighting photography for real estate listings.',
-      imageUrl: 'https://via.placeholder.com/200x400',
+      imageUrl: '../../assets/productImages/ShowcasePhotos.jpg',
       baseSqFt: 1000,
       basePrice: 230,
       priceIncrementPerSqFt: 60, // $50 for each additional 1000 sq ft
@@ -33,24 +33,37 @@ export class ProductService {
       productType:'photo',
       isDetailsVisible: false
     },
-    // {
-    //   id: '003',
-    //   name: 'Aerial',
-    //   description: 'High-quality basic photography for real estate listings.',
-    //   imageUrl: 'https://via.placeholder.com/200x400',
-    //   baseSqFt: 1000,
-    //   basePrice: 120,
-    //   priceIncrementPerSqFt: 0, // $50 for each additional 1000 sq ft
-    //   incrementSqFtStep: 1000, // Increment step size
-    //   price: 0,
-    //   productType:'photo',
-    //   isDetailsVisible: false
-    // },
+    {
+      id: '003',
+      name: 'Aerial Add On',
+      description: 'High-quality basic photography for real estate listings.',
+      imageUrl: '../../assets/productImages/AerialPhotos.jpg',
+      baseSqFt: 1000,
+      basePrice: 120,
+      priceIncrementPerSqFt: 0, // $50 for each additional 1000 sq ft
+      incrementSqFtStep: 1000, // Increment step size
+      price: 0,
+      productType:'photo',
+      isDetailsVisible: false
+    },
+    {
+      id: '004',
+      name: 'Virtual Twilight',
+      description: 'High-quality basic photography for real estate listings.',
+      imageUrl: '../../assets/productImages/VirtualTwilight.jpg',
+      baseSqFt: 1000,
+      basePrice: 120,
+      priceIncrementPerSqFt: 0, // $50 for each additional 1000 sq ft
+      incrementSqFtStep: 1000, // Increment step size
+      price: 0,
+      productType:'photo',
+      isDetailsVisible: false
+    },
     {
       id: '004',
       name: 'Done  Add-On',
       description: 'Professional video tour for real estate.',
-      imageUrl: 'https://via.placeholder.com/200x400',
+      imageUrl: '../../assets/productImages/AerialPhotos.jpg',
       baseSqFt: 1000,
       basePrice: 200,
       priceIncrementPerSqFt: 100, // $100 for each additional 1000 sq ft
@@ -128,7 +141,7 @@ export class ProductService {
       id: '010',
       name: 'Floor Plans',
       description: 'High-quality Floor Plan real estate listings.',
-      imageUrl: 'https://via.placeholder.com/200x400',
+      imageUrl: '../../assets/productImages/FloorPlan.jpg',
       baseSqFt: 1000,
       basePrice: 70,
       priceIncrementPerSqFt: 10, // $50 for each additional 1000 sq ft
@@ -141,7 +154,7 @@ export class ProductService {
       id: '011',
       name: 'Virtual Staging',
       description: 'High-quality Floor Plan real estate listings.',
-      imageUrl: 'https://via.placeholder.com/200x400',
+      imageUrl: '../../assets/productImages/VirtualStaging.jpg',
       baseSqFt: 1000,
       basePrice: 35,
       priceIncrementPerSqFt: 10, // $50 for each additional 1000 sq ft
@@ -152,9 +165,9 @@ export class ProductService {
     },
     {
       id: '012',
-      name: 'Virtual Declutering',
+      name: 'Virtual Decluter',
       description: 'High-quality Floor Plan real estate listings.',
-      imageUrl: 'https://via.placeholder.com/200x400',
+      imageUrl: '../../assets/productImages/VirtualDecluter.jpg',
       baseSqFt: 1000,
       basePrice: 40,
       priceIncrementPerSqFt: 10, // $50 for each additional 1000 sq ft
@@ -180,7 +193,7 @@ export class ProductService {
       id: '013',
       name: 'Essentials Bundle',
       description: 'High-quality HDR photos, floor plan.',
-      imageUrl: 'https://via.placeholder.com/200x400',
+      imageUrl: '../../assets/productImages/MultiBundle.jpg',
       baseSqFt: 1000,
       basePrice: 200,
       priceIncrementPerSqFt: 10, // $50 for each additional 1000 sq ft
@@ -193,7 +206,7 @@ export class ProductService {
       id: '014',
       name: 'Showcase Bundle',
       description: 'High-quality photos with professional lighting, and a floor plan with aproximate dimmentions.',
-      imageUrl: 'https://via.placeholder.com/200x400',
+      imageUrl: '../../assets/productImages/MultiBundle.jpg',
       baseSqFt: 1000,
       basePrice: 250,
       priceIncrementPerSqFt: 30, // $50 for each additional 1000 sq ft
@@ -206,7 +219,7 @@ export class ProductService {
       id: '015',
       name: 'Luxurious Bundle',
       description: 'High-quality photos with professional lighting, and a floor plan with aproximate dimmentions.',
-      imageUrl: 'https://via.placeholder.com/200x400',
+      imageUrl: '../../assets/productImages/MultiBundle.jpg',
       baseSqFt: 1000,
       basePrice: 250,
       priceIncrementPerSqFt: 30, // $50 for each additional 1000 sq ft

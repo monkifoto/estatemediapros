@@ -5,7 +5,7 @@
     <p class="product-id">{{ product.id }}</p>
   </div>
   <div class="product-content">
-    <img src="https://via.placeholder.com/250x150" alt="Product Image" class="product-image">
+    <img src="{{product.imageUrl}}" alt="Product Image" class="product-image">
     <div class="product-details">
       <p class="product-description">{{ product.description }}</p>
       <p><strong>Total Price:</strong> {{ product.price | currency }}</p>
