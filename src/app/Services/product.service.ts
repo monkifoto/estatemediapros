@@ -152,17 +152,41 @@ export class ProductService {
     },
     {
       id: '012',
+<<<<<<< HEAD
       name: 'Staging Company',
       description: 'High-quality Floor Plan real estate listings.',
       imageUrl: 'https://via.placeholder.com/200x400',
       baseSqFt: 1000,
       basePrice: 3500,
+=======
+      name: 'Virtual Declutering',
+      description: 'High-quality Floor Plan real estate listings.',
+      imageUrl: 'https://via.placeholder.com/200x400',
+      baseSqFt: 1000,
+      basePrice: 40,
+>>>>>>> pacificpropertyphotos
       priceIncrementPerSqFt: 10, // $50 for each additional 1000 sq ft
       incrementSqFtStep: 1000, // Increment step size
       price: 0,
       productType:'staging',
       isDetailsVisible: false
     },
+<<<<<<< HEAD
+=======
+    // {
+    //   id: '012',
+    //   name: 'Staging Company',
+    //   description: 'High-quality Floor Plan real estate listings.',
+    //   imageUrl: 'https://via.placeholder.com/200x400',
+    //   baseSqFt: 1000,
+    //   basePrice: 3500,
+    //   priceIncrementPerSqFt: 10, // $50 for each additional 1000 sq ft
+    //   incrementSqFtStep: 1000, // Increment step size
+    //   price: 0,
+    //   productType:'staging',
+    //   isDetailsVisible: false
+    // },
+>>>>>>> pacificpropertyphotos
     {
       id: '013',
       name: 'Essentials Bundle',
@@ -191,17 +215,42 @@ export class ProductService {
     },
     {
       id: '015',
+<<<<<<< HEAD
       name: 'Total Bundle',
       description: 'High-quality Floor Plan real estate listings.',
       imageUrl: 'https://via.placeholder.com/200x400',
       baseSqFt: 1000,
       basePrice: 3500,
       priceIncrementPerSqFt: 10, // $50 for each additional 1000 sq ft
+=======
+      name: 'Luxurious Bundle',
+      description: 'High-quality photos with professional lighting, and a floor plan with aproximate dimmentions.',
+      imageUrl: 'https://via.placeholder.com/200x400',
+      baseSqFt: 1000,
+      basePrice: 250,
+      priceIncrementPerSqFt: 30, // $50 for each additional 1000 sq ft
+>>>>>>> pacificpropertyphotos
       incrementSqFtStep: 1000, // Increment step size
       price: 0,
       productType:'bundle',
       isDetailsVisible: false
     },
+<<<<<<< HEAD
+=======
+    // {
+    //   id: '015',
+    //   name: 'Total Bundle',
+    //   description: 'High-quality Floor Plan real estate listings.',
+    //   imageUrl: 'https://via.placeholder.com/200x400',
+    //   baseSqFt: 1000,
+    //   basePrice: 3500,
+    //   priceIncrementPerSqFt: 10, // $50 for each additional 1000 sq ft
+    //   incrementSqFtStep: 1000, // Increment step size
+    //   price: 0,
+    //   productType:'bundle',
+    //   isDetailsVisible: false
+    // },
+>>>>>>> pacificpropertyphotos
     // Add other products as needed
   ];
 

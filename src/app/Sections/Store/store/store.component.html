@@ -1,0 +1,59 @@
+<div class="container mt-5 store-container">
+  <form>
+    <div class="main-content">
+      <!-- Product Section on the Left -->
+      <div class="products-section">
+        <!-- Square Footage Radio Button Selector -->
+        <div class="sqft-selection-section mb-3">
+          <label>Select Square Footage:</label>
+          <div class="d-flex flex-wrap">
+            <label class="radio-option">
+              <input type="radio" name="squareFt" [(ngModel)]="selectedSqFt" value="1000-2000" (change)="onSqftChange(1000, 2000)"> 1000-2000
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="squareFt" [(ngModel)]="selectedSqFt" value="2001-3000" (change)="onSqftChange(2000, 3000)"> 2001-3000
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="squareFt" [(ngModel)]="selectedSqFt" value="3001-4000" (change)="onSqftChange(3000, 4000)"> 3001-4000
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="squareFt" [(ngModel)]="selectedSqFt" value="4001-5000" (change)="onSqftChange(4000, 5000)"> 4001-5000
+            </label>
+          </div>
+        </div>
+
+        <!-- Tabs -->
+        <ul class="nav nav-tabs justify-content-center custom-tabs">
+          <li class="nav-item">
+            <a class="nav-link" [class.active]="activeTab === 'bundles'" (click)="activeTab = 'bundles'">Bundles</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [class.active]="activeTab === 'photos'" (click)="activeTab = 'photos'">Photos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [class.active]="activeTab === 'floorplan'" (click)="activeTab = 'floorplan'">Floor Plans</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [class.active]="activeTab === 'staging'" (click)="activeTab = 'staging'">Staging</a>
+          </li>
+        </ul>
+
+        <!-- Tab Content -->
+        <div class="tab-content mt-3">
+          <app-photos *ngIf="activeTab === 'photos'" [listOfProducts]="(products | filterByType: 'photo')"></app-photos>
+          <app-video *ngIf="activeTab === 'video'" [listOfProducts]="(products | filterByType: 'video')"></app-video>
+          <app-tour *ngIf="activeTab === '3dTour'" [listOfProducts]="(products | filterByType: 'tour')"></app-tour>
+          <app-floorplan *ngIf="activeTab === 'floorplan'" [listOfProducts]="(products | filterByType: 'floorplan')"></app-floorplan>
+          <app-staging *ngIf="activeTab === 'staging'" [listOfProducts]="(products | filterByType: 'staging')"></app-staging>
+          <app-bundles *ngIf="activeTab === 'bundles'" [listOfProducts]="(products | filterByType: 'bundle')"></app-bundles>
+        </div>
+      </div>
+
+      <!-- Cart Section on the Right -->
+      <div class="cart-section">
+        <app-cart (bookNowClicked)="onBookNow()"></app-cart>
+        <app-customer-info *ngIf="showCustomerInfo" [customerForm]="orderForm" (submitForm)="onSubmit()"></app-customer-info>
+      </div>
+    </div>
+  </form>
+</div>

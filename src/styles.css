@@ -23,7 +23,7 @@ body {
 
 .container{
   border-bottom: 1px solid #ddd;
-  max-width: 1200px;
+  max-width: 1480px;
   margin: 0 auto;
 }
 
@@ -41,7 +41,7 @@ body {
 
 .about {
   margin: 50px auto;
-  max-width: 1200px;
+  max-width: 1480px;
   text-align: left;
   line-height: 1.6;
 }
@@ -59,7 +59,7 @@ body {
   border-color: #666;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1480px) {
   .hero-title {
     font-size: 11vw; /* Adjust font size relative to viewport width */
   }

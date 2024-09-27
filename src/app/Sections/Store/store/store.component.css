@@ -1,0 +1,139 @@
+/* General Container Styling */
+.container {
+  width: 100%;
+  padding: 20px;
+  margin-top: 70px;
+}
+
+.store-container {
+  max-width: 1200px; /* Increased width for more space */
+  margin: auto;
+}
+
+/* Main Flex Container */
+.main-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+/* Product Section */
+.products-section {
+  flex: 3;
+}
+
+/* Cart Section */
+.cart-section {
+  flex: 1;
+  border-left: 1px solid #ddd;
+  padding: 20px;
+  /* border-radius: 10px; */
+  background-color: #fff;
+}
+
+/* Square Footage Selection */
+.sqft-selection-section {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Tabs Styling */
+.nav-tabs.custom-tabs .nav-link {
+  padding: 12px 20px;
+  font-weight: bold;
+  color: #666;
+  border-bottom: 3px solid transparent;
+  transition: color 0.3s, border-color 0.3s;
+  /* width: 250px; */
+}
+
+.nav-tabs.custom-tabs .nav-link.active {
+  color: #333;
+  border-bottom-color: #333;
+}
+
+.nav-tabs.custom-tabs .nav-link:hover {
+  color: #0056b3;
+}
+
+/* Radio Option Styling */
+.radio-option {
+  margin-right: 10px;
+  font-size: 14px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.radio-option input {
+  margin-right: 5px;
+}
+
+.radio-option:hover {
+  background-color: #f0f0f0;
+}
+
+/* Product Styling */
+.store {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.product {
+  flex: 0 1 calc(25% - 20px);
+  text-align: center;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.product-image img {
+  max-width: 100%;
+  border-radius: 8px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.product:hover .product-image img {
+  transform: scale(1.05);
+}
+
+.product-name {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.product-price {
+  color: #333;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+/* View Details Button */
+.view-details-btn {
+  bottom: 20px;
+  right: 20px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.view-details-btn:hover {
+  background-color: #0056b3;
+}

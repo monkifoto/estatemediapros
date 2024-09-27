@@ -1,0 +1,98 @@
+/* General styles */
+.hero {
+  text-align: left;
+  margin: 50px auto;
+  max-width: 1480px;
+}
+
+.hero-details {
+  display: flex;
+  width: 100%;
+}
+
+.details_container {
+  display: flex;
+  width: 100%;
+}
+
+.left, .right {
+  padding: 20px;
+}
+
+/* Image settings */
+.left img, .right img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Specific settings for text */
+.top-paragraph {
+  margin: 0;
+}
+
+.bottom-paragraph {
+  margin: 0;
+}
+
+/* Mobile Styles - adjust layout for smaller screens */
+@media (max-width: 768px) {
+  .hero {
+    margin: 20px auto;
+    padding: 10px;
+  }
+
+  .hero-details {
+    flex-direction: column; /* Stack the elements vertically on mobile */
+  }
+
+  .details_container {
+    flex-direction: column; /* Stack the content */
+  }
+
+  .left, .right {
+    width: 100%; /* Make both sections take full width */
+    padding: 10px; /* Reduce padding on mobile */
+  }
+
+  .hero-title {
+    font-size: 60px; /* Adjust the title size for smaller screens */
+    text-align: center; /* Center align title for mobile */
+  }
+
+  .top-paragraph {
+    font-size: 18px; /* Scale down subtitle text */
+  }
+
+  .bottom-paragraph {
+    font-size: 16px; /* Scale down body text */
+  }
+
+  .hero-image img, .small-image img {
+    max-width: 100%; /* Ensure the images fit well on smaller screens */
+    height: auto; /* Maintain aspect ratio */
+  }
+}
+
+/* Extra small screens (below 480px) */
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 40px; /* Even smaller title for very small screens */
+  }
+
+  .top-paragraph {
+    font-size: 16px; /* Smaller subtitle */
+  }
+
+  .bottom-paragraph {
+    font-size: 14px; /* Smaller body text */
+  }
+
+  .left, .right {
+    padding: 5px; /* Minimal padding for extra small devices */
+  }
+
+  a.about-link {
+    font-size: 14px; /* Adjust link size for small screens */
+  }
+}

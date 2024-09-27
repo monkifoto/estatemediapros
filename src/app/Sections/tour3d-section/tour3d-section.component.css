@@ -1,0 +1,134 @@
+
+.hero {
+  text-align: left;
+  margin: 50px auto;
+  max-width: 1480px;
+}
+
+.hero-title {
+  font-size: 140px;
+  font-weight: bold;
+  line-height: 1;
+  margin: 0;
+  display: inline-block; /* Ensures it respects the parent width */
+  width: 100%; /* Ensures it spans the entire parent width */
+  word-wrap: break-word; /* Prevents overflow by breaking long words */
+  overflow-wrap: break-word; /* Ensures that the text doesn't overflow */
+  box-sizing: border-box; /* Ensures padding is included in width */
+}
+
+.hero-details {
+  display: flex;
+  width: 100%;
+}
+
+.left {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px; /* Optional: adds some padding inside the right div */
+}
+
+.left img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image covers the entire div without distortion */
+}
+
+.right {
+  width: 20%;
+
+}
+
+.hero-image img{
+  max-width: 500px;
+}
+
+
+.details_container {
+  display: flex;
+  width: 100%;
+}
+
+.left {
+  width: 80%;
+}
+
+.right img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image covers the entire div without distortion */
+}
+
+.right {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px; /* Optional: adds some padding inside the right div */
+}
+
+
+
+
+
+
+.wrapper {
+  max-width: 1480px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  row-gap: 1em;
+  column-gap: 1em;
+}
+
+
+
+.box1  {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+.box2 {
+
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+.box3  {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+.box4 {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+.box5  {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+
+.box6 {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+
