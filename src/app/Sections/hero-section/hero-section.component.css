@@ -7,11 +7,7 @@
 }
 
 .hero-title {
-<<<<<<< HEAD:src/app/hero-section/hero-section.component.css
-  font-size: 135px;
-=======
   font-size: clamp(105px, 6vw, 130px);;
->>>>>>> pacificpropertyphotos:src/app/Sections/hero-section/hero-section.component.css
   font-weight: 900;
   line-height: 1;
   margin: 0;
