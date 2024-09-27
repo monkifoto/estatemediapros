@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Product } from 'src/app/Model/product.model';
 import { CartService } from 'src/app/Services/cart.service';
 import { ProductService } from 'src/app/Services/product.service';
@@ -12,6 +12,7 @@ export class PhotosComponent implements OnInit {
   products!: Product[];
   @Input()
   listOfProducts: Product[] = [];
+  @Output() viewProductDetails = new EventEmitter<Product>();
   selectedProduct: any = null;
 
   constructor(
@@ -27,12 +28,9 @@ export class PhotosComponent implements OnInit {
     this.cartService.addProduct(product);
   }
 
-  viewDetails(product: any) {
-    this.selectedProduct = product;
+  viewDetails(product: Product) {
+    this.viewProductDetails.emit(product); // Emit the product to the parent
   }
 
-  // Function to close the product details view
-  closeDetails() {
-    this.selectedProduct = null;
-  }
+
 }

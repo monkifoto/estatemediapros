@@ -20,6 +20,10 @@ export class StoreComponent {
   orderForm!: FormGroup;
   showCustomerInfo: boolean = false;
 
+    // Modal properties
+    showModal: boolean = false;
+    selectedProduct: Product | null = null;
+
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
@@ -84,4 +88,18 @@ export class StoreComponent {
   onBookNow() {
     this.showCustomerInfo = true; // Show the customer info form
   }
+
+
+    // Function to open the modal and set the selected product
+    openModal(product: Product): void {
+      this.selectedProduct = product;
+      this.showModal = true;
+    }
+
+    // Function to close the modal
+    closeModal(): void {
+      this.showModal = false;
+      this.selectedProduct = null;
+    }
+
 }

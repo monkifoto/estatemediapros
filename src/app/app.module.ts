@@ -29,6 +29,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FilterByTypePipe } from './Pipes/filter-by-type.pipe';
 import { HomeSectionComponent } from './Sections/home-section/home-section.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ProductItemComponent } from './Sections/Store/product-item/product-item.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { HttpClientModule } from '@angular/common/http';
     BundlesComponent,
     CustomerInfoComponent,
     FilterByTypePipe,
-    HomeSectionComponent
+    HomeSectionComponent,
+    ProductItemComponent
   ],
   imports: [
     BrowserModule,

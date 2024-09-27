@@ -137,3 +137,71 @@
 .view-details-btn:hover {
   background-color: #0056b3;
 }
+
+
+
+/* Modal overlay (covers the entire screen) */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensures the modal is on top */
+}
+
+/* Modal window */
+.modal-window {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 600px;
+  width: 90%;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.3s ease; /* Optional fade-in animation */
+}
+
+/* Close button in the top-right corner */
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #333;
+}
+
+.close-button:hover {
+  color: #ff0000;
+}
+
+/* Product thumbnails inside the modal */
+.product-thumbnails {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.thumbnail {
+  width: 50px;
+  height: 100px;
+  object-fit: cover;
+  border: 1px solid #ccc;
+}
+
+/* Fade-in animation for the modal */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
