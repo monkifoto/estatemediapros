@@ -1,0 +1,50 @@
+<!-- <div class="admin-container">
+  <h1>Admin Dashboard</h1>
+  <div class="admin-nav">
+    <button (click)="activeTab = 'products'">Products</button>
+    <button (click)="activeTab = 'orders'">Orders</button>
+    <button (click)="activeTab = 'subscribers'">Subscribers</button>
+    <button (click)="addProduct()">Add Product</button>
+    <button (click)="logout()">Logout</button>
+  </div>
+
+  <div *ngIf="activeTab === 'products'">
+    <app-product-list></app-product-list>
+  </div>
+  <div *ngIf="activeTab === 'orders'">
+    <app-order-list></app-order-list>
+  </div>
+  <div *ngIf="activeTab === 'subscribers'">
+    <app-subscribers></app-subscribers>
+  </div>
+  <div *ngIf="activeTab === 'addProduct'">
+    <app-add-edit-product></app-add-edit-product>
+  </div>
+</div> -->
+
+
+<!-- admin.component.html -->
+<div class="admin-container">
+  <!-- Sidebar Navigation -->
+  <nav class="admin-sidebar">
+    <ul>
+      <li (click)="setActiveSection('products')" [class.active]="activeSection === 'products'">Products</li>
+      <li (click)="setActiveSection('orders')" [class.active]="activeSection === 'orders'">Orders</li>
+      <li (click)="setActiveSection('subscribers')" [class.active]="activeSection === 'subscribers'">Subscribers</li>
+      <li (click)="setActiveSection('add-product')" [class.active]="activeSection === 'add-product'">Add/Edit Products</li>
+    </ul>
+    <button class="btn btn-primary" (click)="logout()">Logout</button>
+  </nav>
+
+  <!-- Main Content Area -->
+  <div class="admin-content">
+    <ng-container [ngSwitch]="activeSection">
+      <app-product-list *ngSwitchCase="'products'"></app-product-list>
+      <app-order-list *ngSwitchCase="'orders'"></app-order-list>
+      <app-subscribers *ngSwitchCase="'subscribers'"></app-subscribers>
+      <!-- <app-add-edit-product *ngSwitchCase="'add-product'"></app-add-edit-product> -->
+      <router-outlet *ngSwitchCase="'add-product'"></router-outlet> <!-- Use router outlet here -->
+    </ng-container>
+  </div>
+
+</div>

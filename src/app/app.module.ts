@@ -30,6 +30,15 @@ import { FilterByTypePipe } from './Pipes/filter-by-type.pipe';
 import { HomeSectionComponent } from './Sections/home-section/home-section.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductItemComponent } from './Sections/Store/product-item/product-item.component';
+import { AngularFireModule } from '@angular/fire/compat'
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { environment } from 'src/Environments/environment';
+import { AdminComponent } from './Admin/admin/admin.component';
+import { LoginComponent } from './Admin/login/login.component';
+import { ProductListComponent } from './Admin/product-list/product-list.component';
+import { SubscribersComponent } from './Admin/subscribers/subscribers.component';
+import { AddEditProductComponent } from './Admin/add-edit-product/add-edit-product.component';
+import { OrderListComponent } from './Admin/order-list/order-list.component';
 
 @NgModule({
   declarations: [
@@ -57,14 +66,22 @@ import { ProductItemComponent } from './Sections/Store/product-item/product-item
     CustomerInfoComponent,
     FilterByTypePipe,
     HomeSectionComponent,
-    ProductItemComponent
+    ProductItemComponent,
+    AdminComponent,
+    LoginComponent,
+    ProductListComponent,
+    SubscribersComponent,
+    AddEditProductComponent,
+    OrderListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

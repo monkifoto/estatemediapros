@@ -36,7 +36,7 @@ export class ProductService {
     {
       id: '003',
       name: 'Aerial Add On',
-      description: 'High-quality basic photography for real estate listings.',
+      description: 'High-quality drone photography',
       imageUrl: '../../assets/productImages/AerialPhotos.jpg',
       baseSqFt: 1000,
       basePrice: 120,
@@ -49,7 +49,7 @@ export class ProductService {
     {
       id: '004',
       name: 'Virtual Twilight',
-      description: 'High-quality basic photography for real estate listings.',
+      description: '3 High quality photos converted from Day to Twilight.',
       imageUrl: '../../assets/productImages/VirtualTwilight.jpg',
       baseSqFt: 1000,
       basePrice: 120,
@@ -61,7 +61,7 @@ export class ProductService {
     },
     {
       id: '004',
-      name: 'Done  Add-On',
+      name: 'Done Video Add-On',
       description: 'Professional video tour for real estate.',
       imageUrl: '../../assets/productImages/AerialPhotos.jpg',
       baseSqFt: 1000,
@@ -74,7 +74,7 @@ export class ProductService {
     },
     {
       id: '005',
-      name: 'Standard  Tour',
+      name: 'Standard Video Tour',
       description: 'Professional video tour for real estate.',
         imageUrl: 'https://via.placeholder.com/200x400',
       baseSqFt: 1000,
@@ -87,7 +87,7 @@ export class ProductService {
     },
     {
       id: '006',
-      name: 'Reel  Tour',
+      name: 'Video Reel Tour',
       description: 'Professional video tour for real estate.',
         imageUrl: 'https://via.placeholder.com/200x400',
       baseSqFt: 1000,
@@ -192,8 +192,8 @@ export class ProductService {
     {
       id: '013',
       name: 'Essentials Bundle',
-      description: 'High-quality HDR photos, floor plan.',
-      imageUrl: '../../assets/productImages/MultiBundle.jpg',
+      description: 'High-quality HDR photos, Aerial and Floor plan.',
+      imageUrl: '../../assets/productImages/MultiBundle2.jpg',
       baseSqFt: 1000,
       basePrice: 200,
       priceIncrementPerSqFt: 10, // $50 for each additional 1000 sq ft
@@ -218,7 +218,7 @@ export class ProductService {
     {
       id: '015',
       name: 'Luxurious Bundle',
-      description: 'High-quality photos with professional lighting, and a floor plan with aproximate dimmentions.',
+      description: 'High-quality photos with professional lighting, Aerial Photo and Video, Walkthrouh Video, 3D Matterport and Floor Plan.',
       imageUrl: '../../assets/productImages/MultiBundle.jpg',
       baseSqFt: 1000,
       basePrice: 250,
@@ -250,7 +250,7 @@ export class ProductService {
     return this.products;
   }
 
-  getProductById(id: string) {
+  getProductById(id: string): Product | undefined {
     return this.products.find(product => product.id === id);
   }
 

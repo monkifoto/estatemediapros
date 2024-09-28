@@ -12,8 +12,8 @@ import { ProductService } from 'src/app/Services/product.service';
 })
 export class StoreComponent {
   activeTab: string = 'bundles';
-  squareFootage: { min: number; max: number } = { min: 2000, max: 3000 };
-  selectedSqFt: string = '2001-3000';
+  squareFootage: { min: number; max: number } = { min: 500, max: 2000 };
+  selectedSqFt: string = '500-2000';
   product: any;
   products!: Product[];
   productsPhotos!: Product[];
@@ -31,16 +31,17 @@ export class StoreComponent {
     public cartService: CartService
   ) {
     this.orderForm = this.fb.group({
-      Name: ['Alex Bucse '],
+      Name: ['Alex'],
       Address: ['15325 SE 155th Pl Unit E2, Renton Wa 980058'],
       Email: ['seattlerealestatephoto@gmail.com'],
       PhoneNumber: ['425 390 4204'],
       Date: ['10/01/2024'],
-      Time: ['5pm'],
+      Time: ['5 : 00 PM'],
     });
   }
   ngOnInit(): void {
     this.products = this.productService.getProducts();
+    this.onSqftChange(this.squareFootage.min, this.squareFootage.max);
   }
 
   onSqftChange(min: number, max: number) {

@@ -1,6 +1,10 @@
 <div class="mt-5">
   <div class="cart-summary">
     <h3>Your Cart</h3>
+    <div class="cart-header">
+      <div class="cart-header-product">Product</div>
+      <div class="cart-header-price">Price</div>
+    </div>
     <div *ngFor="let item of cartItems; let i = index" class="cart-item">
       <div class="cart-item-name">{{ item.name }}</div>
       <div class="cart-item-cost">
