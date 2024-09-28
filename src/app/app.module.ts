@@ -39,6 +39,7 @@ import { ProductListComponent } from './Admin/product-list/product-list.componen
 import { SubscribersComponent } from './Admin/subscribers/subscribers.component';
 import { AddEditProductComponent } from './Admin/add-edit-product/add-edit-product.component';
 import { OrderListComponent } from './Admin/order-list/order-list.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [

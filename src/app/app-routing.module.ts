@@ -27,17 +27,17 @@ const routes: Routes = [
     { path: 'products', component: ProductListComponent },
     { path: 'orders', component: OrderListComponent },
     { path: 'subscribers', component: SubscribersComponent },
-    { path: 'add-product/:id', component: AddEditProductComponent },
-    { path: 'add-product', component: AddEditProductComponent }, // For adding a new product without an ID
+    { path: 'edit-product/:id', component: AddEditProductComponent },
+    { path: 'add-product', component: AddEditProductComponent },
     { path: '', redirectTo: 'products', pathMatch: 'full' }, // Default route
 ] },
   { path: 'login', component: LoginComponent },
-  { path: 'admin/add-product/:id', component: AddEditProductComponent },
+  // { path: 'admin/add-product/:id', component: AddEditProductComponent },
   { path: '**', redirectTo: '' },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

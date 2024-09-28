@@ -18,7 +18,7 @@ export class ProductListComponent  implements OnInit {
   }
 
   editProduct(product: Product) {
-    this.router.navigate(['/admin/add-product', product.id]);
+    this.router.navigate(['/admin/edit-product', product.id]);
   }
   deleteProduct(productId: string) {
     //this.productService.deleteProduct(productId);
