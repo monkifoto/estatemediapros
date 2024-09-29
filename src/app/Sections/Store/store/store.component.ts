@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/Model/product.model';
 import { CartService } from 'src/app/Services/cart.service';
 import { ProductService } from 'src/app/Services/product.service';
+import { OrderService} from './../../../Services/order.service';
 
 @Component({
   selector: 'app-store',
@@ -24,11 +25,13 @@ export class StoreComponent {
     showModal: boolean = false;
     selectedProduct: Product | null = null;
 
+
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
     public productService: ProductService,
-    public cartService: CartService
+    public cartService: CartService,
+    public orderService: OrderService
   ) {
     this.orderForm = this.fb.group({
       Name: ['Alex'],
@@ -81,6 +84,24 @@ export class StoreComponent {
       };
 
       console.log('Order has been submitted:', order);
+
+      // 1. Save the order in Firestore
+      this.orderService.saveOrder(order).then(() => {
+        console.log('Order saved in Firestore successfully.');
+
+        // 2. Send email with order details
+        this.orderService.sendOrderEmail(order).subscribe(
+          (response: any) => {
+            console.log('Order email sent successfully:', response);
+          },
+          (error: any) => {
+            console.error('Error sending order email:', error);
+          }
+        );
+      }).catch((error: any) => {
+        console.error('Error saving order in Firestore:', error);
+      });
+
     } else {
       console.log('Form is not valid.');
     }

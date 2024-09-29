@@ -5,8 +5,8 @@
   <div class="subscribe">
     <h2>SUBSCRIBE</h2>
     <p>Sign up with your email address to receive news and updates.</p>
-    <form>
-      <input type="email" placeholder="Email Address" class="email-input" />
+    <form (ngSubmit)="onSubscribe()">
+      <input type="email" placeholder="Email Address" class="email-input" [(ngModel)]="email" name="email" class="email-input" required  />
       <button type="submit" class="sign-up-btn">Sign Up</button>
     </form>
     <p class="privacy-text">We respect your privacy.</p>

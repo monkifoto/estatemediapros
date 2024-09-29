@@ -40,6 +40,7 @@ import { SubscribersComponent } from './Admin/subscribers/subscribers.component'
 import { AddEditProductComponent } from './Admin/add-edit-product/add-edit-product.component';
 import { OrderListComponent } from './Admin/order-list/order-list.component';
 import { RouterModule } from '@angular/router';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
 @NgModule({
   declarations: [
@@ -82,6 +83,7 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
     AngularFireAuthModule,
   ],
   providers: [],
