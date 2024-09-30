@@ -1,0 +1,21 @@
+/* src/app/admin/subscriber-list/subscriber-list.component.css */
+
+.subscriber-list {
+  margin: 20px;
+}
+
+.subscriber-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.subscriber-list th,
+.subscriber-list td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.subscriber-list th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}

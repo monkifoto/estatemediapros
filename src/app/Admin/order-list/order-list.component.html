@@ -1,1 +1,43 @@
-<p>order-list works!</p>
+<!-- src/app/admin/order-list/order-list.component.html -->
+
+<div class="order-list">
+  <h2>Order List</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone Number</th>
+        <th>Square Footage</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Items</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders">
+        <td (click)="navigateToGallery(order.id)">{{ order.id }}</td>
+        <td>{{ order.status || 'Pending' }}</td>
+        <td>{{ order.customerInfo.Name }}</td>
+        <td>{{ order.customerInfo.Email }}</td>
+        <td>{{ order.customerInfo.PhoneNumber }}</td>
+        <td>{{ order.squareFootage }}</td>
+        <td>{{ order.customerInfo.Date }}</td>
+        <td>{{ order.customerInfo.Time }}</td>
+        <td>
+          <ul>
+            <li *ngFor="let item of order.cartContents">{{ item.name }} - {{ item.price | currency }}</li>
+          </ul>
+        </td>
+        <td>
+          <button (click)="navigateToFileUpload(order.id)">Upload Files</button>
+        </td>
+        <td>
+          <button (click)="markAsCompleted(order.id)">Mark as Completed</button>
+          <button (click)="markAsDeleted(order.id)">Mark as Deleted</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

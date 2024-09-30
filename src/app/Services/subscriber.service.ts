@@ -6,13 +6,17 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class SubscriberService {
-  private collectionName = 'Subscribers';
-
   constructor(private firestore: AngularFirestore) {}
 
+  private subscribersCollection = this.firestore.collection('Subscribers');
+
+  // Fetch all subscribers from Firestore
+  getSubscribers(): Observable<any[]> {
+    return this.subscribersCollection.valueChanges({ idField: 'id' });
+  }
   // Method to add a new subscriber to Firestore
   subscribe(email: string): Promise<any> {
     const subscriber = { email, subscribedAt: new Date() };
-    return this.firestore.collection(this.collectionName).add(subscriber);
+    return this.subscribersCollection.add(subscriber);
   }
 }

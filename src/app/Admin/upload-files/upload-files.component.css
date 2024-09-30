@@ -1,0 +1,15 @@
+/* src/app/admin/upload-files/upload-files.component.css */
+
+.drop-zone {
+  width: 100%;
+  height: 150px;
+  border: 2px dashed #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+input[type='file'] {
+  margin-bottom: 20px;
+}

@@ -1,1 +1,19 @@
-<p>subscribers works!</p>
+<!-- src/app/admin/subscriber-list/subscriber-list.component.html -->
+
+<div class="subscriber-list">
+  <h2>Subscriber List</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Subscriber ID</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let subscriber of subscribers">
+        <td>{{ subscriber.id }}</td>
+        <td>{{ subscriber.email }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -89,6 +89,7 @@ export class StoreComponent {
       this.orderService.saveOrder(order).then(() => {
         console.log('Order saved in Firestore successfully.');
 
+
         // 2. Send email with order details
         this.orderService.sendOrderEmail(order).subscribe(
           (response: any) => {

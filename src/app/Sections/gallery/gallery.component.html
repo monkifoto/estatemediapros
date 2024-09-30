@@ -1,0 +1,8 @@
+<!-- src/app/gallery/gallery.component.html -->
+
+<div class="gallery">
+  <h2>Gallery for Order: {{ orderId }}</h2>
+  <div class="image-grid">
+    <img *ngFor="let imageUrl of imageUrls | async" [src]="imageUrl" />
+  </div>
+</div>

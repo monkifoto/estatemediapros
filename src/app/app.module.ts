@@ -41,6 +41,8 @@ import { AddEditProductComponent } from './Admin/add-edit-product/add-edit-produ
 import { OrderListComponent } from './Admin/order-list/order-list.component';
 import { RouterModule } from '@angular/router';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { GalleryComponent } from './Sections/gallery/gallery.component';
+import { UploadFilesComponent } from './Admin/upload-files/upload-files.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +76,9 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
     ProductListComponent,
     SubscribersComponent,
     AddEditProductComponent,
-    OrderListComponent
+    OrderListComponent,
+    GalleryComponent,
+    UploadFilesComponent
   ],
   imports: [
     BrowserModule,
