@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/Model/product.model';
 import { ProductService } from 'src/app/Services/product.service';
+import { EMPTY, from, Observable, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-add-edit-product',
@@ -14,6 +15,7 @@ export class AddEditProductComponent implements OnInit {
     name: '',
     description: '',
     imageUrl: '',
+    detailThumbnails: [], // Add thumbnails property
     baseSqFt: 0,
     basePrice: 0,
     priceIncrementPerSqFt: 0,
@@ -27,43 +29,88 @@ export class AddEditProductComponent implements OnInit {
   };
 
   editingProduct: boolean = false;
+  private productIdCounter: number = 0; // Counter for generating incremental product IDs
 
   constructor(
-    private productService: ProductService, // Service to handle products
+    private productService: ProductService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
 
   ngOnInit(): void {
-    // Check if the route has a product ID to edit
     const productId = this.route.snapshot.paramMap.get('id');
     if (productId) {
       this.editingProduct = true;
       this.loadProduct(productId);
     }
+    //  else {
+    //   this.generateProductId(); // Generate new product ID when adding
+    // }
   }
 
-  // Function to load the product for editing
-  loadProduct(id: string) {
-    const product = this.productService.getProductById(id);
-    if (product) {
-      this.product = product; // only assign if product is found
-    } else {
-      // Handle the case where the product isn't found, e.g., navigate to a 404 page or show an error message
-      console.error('Product not found');
+  // Load product by ID for editing
+  loadProduct(id: string): void {
+    this.productService.getProductById(id).subscribe({
+      next: (product) => {
+        if (product) {
+          this.product = product;
+          console.log('Product loaded:', this.product);
+        } else {
+          console.error('Product not found');
+        }
+      },
+      error: (error: any) => {
+        console.error('Error loading product:', error);
+      }
+    });
+  }
+
+  // Handle file input for thumbnail uploads
+  onFileChange(event: any) {
+    const files = event.target.files;
+    this.product.detailThumbnails = []; // Clear existing thumbnails
+
+    for (let i = 0; i < files.length && i < 3; i++) {
+      const file = files[i];
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.product.detailThumbnails?.push(e.target.result); // Store thumbnail as base64
+      };
+      reader.readAsDataURL(file); // Read file as base64
     }
   }
 
-  // Save or update product on form submission
+  // Generate a new product ID
+  // generateProductId() {
+  //   this.productIdCounter++; // Increment product ID counter
+  //   this.product.id = String(this.productIdCounter).padStart(3, '0'); // Format ID to three digits
+  // }
+
   onSubmit() {
-    // if (this.editingProduct) {
-    //   this.productService.updateProduct(this.product).subscribe(() => {
-    //     this.router.navigate(['/admin/products']); // Navigate back to the product list
-    //   });
-    // } else {
-    //   this.productService.addProduct(this.product).subscribe(() => {
-    //     this.router.navigate(['/admin/products']);
-    //   });
-    // }
-  }
+    const productObservable = this.editingProduct
+        ? this.productService.checkProductExists(this.product.id).pipe(
+            switchMap(exists => {
+                if (exists) {
+                    return this.productService.updateProduct(this.product);
+                }else {
+                  console.error('Product does not exist for update:', this.product.id);
+                  // If the product doesn't exist, we add it instead of returning EMPTY
+                  return this.productService.addProduct({ ...this.product, id: this.product.id }); // Add the product
+              }
+            })
+        )
+        : this.productService.addProduct(this.product);
+
+    // Subscribe to the Observable
+    productObservable.subscribe({
+        next: () => {
+            this.router.navigate(['/admin/products']);
+        },
+        error: (error: any) => {
+            console.error('Error saving product:', error);
+        }
+    });
+}
+
+
 }

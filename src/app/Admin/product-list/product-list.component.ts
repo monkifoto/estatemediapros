@@ -14,11 +14,18 @@ export class ProductListComponent  implements OnInit {
   constructor(private productService: ProductService, private router: Router) {}
 
   ngOnInit(): void {
-    this.products = this.productService.getProducts();
+    this.productService.getProducts().subscribe({
+      next: (products: Product[]) => {
+        this.products = products;
+        console.log('Products fetched successfully:', this.products);
+      },
+      error: (error: any) => {
+        console.error('Error fetching products:', error);
+      }
+    });
   }
-
   editProduct(product: Product) {
-    this.router.navigate(['/admin/edit-product', product.id]);
+    this.router.navigate(['/admin/add-product', product.id]);
   }
   deleteProduct(productId: string) {
     //this.productService.deleteProduct(productId);

@@ -1,0 +1,56 @@
+/* General Product Form Styling */
+.product-form {
+  width: 100%;
+  max-width: 600px; /* Limit the width of the form */
+  margin: 50px auto; /* Center the form */
+  padding: 20px;
+  background-color: #fff; /* White background for the form */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Header Styling */
+.product-form h2 {
+  text-align: center; /* Center the header */
+  margin-bottom: 20px; /* Space below the header */
+  color: #333; /* Dark color for the header */
+}
+
+/* Form Group Styling */
+.form-group {
+  margin-bottom: 15px; /* Space between form groups */
+}
+
+/* Label Styling */
+label {
+  font-weight: bold; /* Bold labels */
+}
+
+/* Input Styling */
+.form-control {
+  width: 100%; /* Full width for inputs */
+  padding: 10px; /* Padding inside inputs */
+  border: 1px solid #ddd; /* Light border */
+  border-radius: 4px; /* Rounded corners for inputs */
+  transition: border-color 0.3s; /* Transition for border color */
+}
+
+.form-control:focus {
+  border-color: #007bff; /* Blue border on focus */
+  outline: none; /* Remove outline */
+}
+
+/* Button Styling */
+.btn {
+  padding: 10px 15px;
+  background-color: #007bff; /* Primary button color */
+  color: #fff; /* White text */
+  border: none; /* No border */
+  border-radius: 4px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor */
+  transition: background-color 0.3s; /* Transition for hover effect */
+}
+
+.btn:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}

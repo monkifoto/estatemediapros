@@ -1,8 +1,27 @@
-<!-- src/app/gallery/gallery.component.html -->
-
 <div class="gallery">
   <h2>Gallery for Order: {{ orderId }}</h2>
-  <div class="image-grid">
-    <img *ngFor="let imageUrl of imageUrls | async" [src]="imageUrl" />
+
+  <!-- Order Details - Display only if order is available -->
+  <div *ngIf="order">
+    <h3>Order Details</h3>
+    <p>Name: {{ order.customerInfo.Name }}</p>
+    <p>Address: {{ order.customerInfo.Address }}</p>
+    <p>Email: {{ order.customerInfo.Email }}</p>
+    <p>Phone: {{ order.customerInfo.PhoneNumber }}</p>
+    <p>Date: {{ order.customerInfo.Date }}</p>
+    <p>Time: {{ order.customerInfo.Time }}</p>
+
+    <!-- Cart Contents -->
+    <h4>Cart Contents</h4>
+    <ul>
+      <li *ngFor="let item of order?.cartContents">
+        {{ item.name }} - {{ item.price | currency }}
+      </li>
+    </ul>
+  </div>
+
+  <!-- Gallery Images - Show only if images are loaded -->
+  <div class="image-grid" *ngIf="imageUrls | async as urls">
+    <img *ngFor="let imageUrl of urls" [src]="imageUrl" />
   </div>
 </div>

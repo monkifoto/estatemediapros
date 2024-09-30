@@ -18,6 +18,7 @@ export class OrderListComponent implements OnInit {
     this.orderService.getOrders().subscribe(
       (data) => {
         this.orders = data;
+        console.log ("Orders list Data: ", data);
       },
       (error) => {
         console.error('Error fetching orders:', error);

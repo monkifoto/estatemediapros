@@ -1,23 +1,40 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
+import { Order } from '../Model/order.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
+  private ordersCollection = this.firestore.collection('Orders');
+  private orderCollection!: AngularFirestoreCollection<Order>;
 
   private emailUrl: string = 'https://us-central1-pacificpropertyphotos-50a8c.cloudfunctions.net/sendOrderEmail';
 
-  constructor(private firestore: AngularFirestore, private http: HttpClient) {}
+  constructor(private firestore: AngularFirestore, private http: HttpClient) {
+    this.orderCollection = this.firestore.collection<Order>('Orders');
+  }
 
-  private ordersCollection = this.firestore.collection('Orders');
+
 
 
   // Fetch all orders from Firestore
-  getOrders(): Observable<any[]> {
-    return this.ordersCollection.valueChanges({ idField: 'id' });
+  // getOrders(): Observable<any[]> {
+  //   return this.ordersCollection.valueChanges({ idField: 'id' });
+  // }
+
+  getOrders(): Observable<Order[]> {
+    return this.orderCollection.valueChanges({ idField: 'id' }).pipe(
+      map((orders: Order[]) =>
+        orders.map((order: Order) => ({
+          ...order,
+          cartContents: order.cartContents || [],
+          customerInfo: order.customerInfo || {},
+        }))
+      )
+    );
   }
 
   updateOrderStatus(orderId: string, status: string): Promise<void> {
@@ -44,4 +61,18 @@ export class OrderService {
     return this.http.post(this.emailUrl, order, { responseType: 'text' });
 
   }
+
+    // Fetch order by ID from Firestore
+    getOrderById(orderId: string): Observable<Order> {
+      console.log("getOrderById: ", orderId)
+      return this.firestore
+        .collection('Orders')
+        .doc(orderId)
+        .valueChanges()
+        .pipe(
+          map(orderData => {
+            return orderData as Order; // Explicitly map the data to the Order type
+          })
+        );
+      }
 }

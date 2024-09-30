@@ -12,7 +12,7 @@ export interface Product {
   isDetailsVisible:boolean;
   detailFeatures?: string;
   isActive?: boolean;
-  detailThumbnails?: [];
+  detailThumbnails?: string[];
   isPromotion?:boolean;
   promotionDiscount?:0;
 }

@@ -6,6 +6,8 @@
     <thead>
       <tr>
         <th>Order ID</th>
+        <th>Order Status</th>
+        <th>Address</th>
         <th>Name</th>
         <th>Email</th>
         <th>Phone Number</th>
@@ -13,12 +15,16 @@
         <th>Date</th>
         <th>Time</th>
         <th>Items</th>
+        <th>Upload Files</th>
+        <th>Mark Completed</th>
+        <th>Mark Deleted</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let order of orders">
         <td (click)="navigateToGallery(order.id)">{{ order.id }}</td>
         <td>{{ order.status || 'Pending' }}</td>
+        <td>{{order.customerInfo.Address}}</td>
         <td>{{ order.customerInfo.Name }}</td>
         <td>{{ order.customerInfo.Email }}</td>
         <td>{{ order.customerInfo.PhoneNumber }}</td>
@@ -34,9 +40,9 @@
           <button (click)="navigateToFileUpload(order.id)">Upload Files</button>
         </td>
         <td>
-          <button (click)="markAsCompleted(order.id)">Mark as Completed</button>
-          <button (click)="markAsDeleted(order.id)">Mark as Deleted</button>
+          <button (click)="markAsCompleted(order.id)">Completed</button>
         </td>
+        <td><button (click)="markAsDeleted(order.id)">Delete</button></td>
       </tr>
     </tbody>
   </table>
