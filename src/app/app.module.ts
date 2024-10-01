@@ -28,7 +28,7 @@ import { CustomerInfoComponent } from './Sections/Store/customer-info/customer-i
 import { ReactiveFormsModule } from '@angular/forms';
 import { FilterByTypePipe } from './Pipes/filter-by-type.pipe';
 import { HomeSectionComponent } from './Sections/home-section/home-section.component';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { ProductItemComponent } from './Sections/Store/product-item/product-item.component';
 import { AngularFireModule } from '@angular/fire/compat'
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
@@ -44,53 +44,46 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { GalleryComponent } from './Sections/gallery/gallery.component';
 import { UploadFilesComponent } from './Admin/upload-files/upload-files.component';
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    NavbarComponent,
-    HeroSectionComponent,
-    PhotoSectionComponent,
-    TestPageComponent,
-    AerialSectionComponent,
-    VideoSectionComponent,
-    Tour3dSectionComponent,
-    FloorplanSectionComponent,
-    StagingSectionComponent,
-    FooterSectionComponent,
-    ContactSectionComponent,
-    PricingSectionComponent,
-    StoreComponent,
-    CartComponent,
-    PhotosComponent,
-    VideoComponent,
-    TourComponent,
-    StagingComponent,
-    FloorplanComponent,
-    BundlesComponent,
-    CustomerInfoComponent,
-    FilterByTypePipe,
-    HomeSectionComponent,
-    ProductItemComponent,
-    AdminComponent,
-    LoginComponent,
-    ProductListComponent,
-    SubscribersComponent,
-    AddEditProductComponent,
-    OrderListComponent,
-    GalleryComponent,
-    UploadFilesComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule,
-    AngularFireAuthModule,
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        NavbarComponent,
+        HeroSectionComponent,
+        PhotoSectionComponent,
+        TestPageComponent,
+        AerialSectionComponent,
+        VideoSectionComponent,
+        Tour3dSectionComponent,
+        FloorplanSectionComponent,
+        StagingSectionComponent,
+        FooterSectionComponent,
+        ContactSectionComponent,
+        PricingSectionComponent,
+        StoreComponent,
+        CartComponent,
+        PhotosComponent,
+        VideoComponent,
+        TourComponent,
+        StagingComponent,
+        FloorplanComponent,
+        BundlesComponent,
+        CustomerInfoComponent,
+        FilterByTypePipe,
+        HomeSectionComponent,
+        ProductItemComponent,
+        AdminComponent,
+        LoginComponent,
+        ProductListComponent,
+        SubscribersComponent,
+        AddEditProductComponent,
+        OrderListComponent,
+        GalleryComponent,
+        UploadFilesComponent
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        AngularFireModule.initializeApp(environment.firebase),
+        AngularFirestoreModule,
+        AngularFireAuthModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }
