@@ -3,45 +3,43 @@
   width: 100%;
   padding: 20px;
   margin-top: 70px;
-  background-color: #f8f9fa; /* Light background for the container */
-  border-radius: 8px; /* Rounded corners */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* Header Styling */
 .products-list h2 {
   font-size: 24px;
   font-weight: bold;
-  color: #333; /* Dark text color */
+  color: #333;
   margin-bottom: 20px;
-  text-align: center; /* Center the title */
+  text-align: center;
 }
 
 /* Table Styling */
 table {
   width: 100%;
-  border-collapse: collapse; /* Remove spacing between table cells */
+  border-collapse: collapse;
 }
 
 thead {
-  background-color: #333; /* Dark header background */
-  color: #fff; /* White text for header */
+  background-color: #333;
+  color: #fff;
 }
 
 th, td {
-  padding: 12px 15px; /* Cell padding */
-  text-align: left; /* Align text to the left */
-  border-bottom: 1px solid #ddd; /* Light border between rows */
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
 }
 
 tr:hover {
-  background-color: #f1f1f1; /* Highlight row on hover */
+  background-color: #f1f1f1;
 }
 
-/* Image Styling */
 td img {
-  border-radius: 4px; /* Rounded corners for images */
-  object-fit: cover; /* Maintain aspect ratio */
+  border-radius: 4px;
+  object-fit: cover;
 }
 
 /* Button Styling */
@@ -55,30 +53,60 @@ td img {
 }
 
 .btn-primary {
-  background-color: #007bff; /* Primary button color */
+  background-color: #007bff;
 }
 
 .btn-danger {
-  background-color: #dc3545; /* Danger button color */
+  background-color: #dc3545;
 }
 
 .btn:hover {
-  opacity: 0.8; /* Slight fade on hover */
+  opacity: 0.8;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .products-list {
-    padding: 10px; /* Reduce padding on smaller screens */
+  /* Hide table headers and convert rows to block style */
+  table, thead, tbody, th, td, tr {
+    display: block;
   }
 
-  th, td {
-    font-size: 14px; /* Smaller font size for mobile */
-    padding: 10px 8px; /* Reduce cell padding */
+  thead tr {
+    display: none;
+  }
+
+  tr {
+    margin-bottom: 10px;
+    border-bottom: 2px solid #ddd;
+  }
+
+  td {
+    padding: 10px;
+    text-align: right;
+    position: relative;
+  }
+
+  td:before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 50%;
+    padding-left: 15px;
+    font-weight: bold;
+    text-align: left;
   }
 
   td img {
-    width: 40px; /* Smaller image size for mobile */
-    height: 40px; /* Maintain aspect ratio */
+    width: 40px;
+    height: 40px;
+  }
+
+  .products-list {
+    padding: 10px;
+  }
+
+  td[data-label="Actions"] {
+    display: flex;
+    justify-content: space-around;
   }
 }

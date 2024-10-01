@@ -8,11 +8,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent {
-  activeTab: string = 'products';
+  activeTab: string = 'orders';
+  isSidebarCollapsed = false;
 
   constructor(private afAuth: AngularFireAuth, private router: Router) {}
 
-  activeSection: string = 'products';  // Default section
+  activeSection: string = 'orders';  // Default section
 
   // Function to switch between sections
   setActiveSection(section: string) {

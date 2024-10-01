@@ -1,7 +1,7 @@
 <nav class="navbar">
   <div class="navbar-container">
     <div class="logo">
-      <img src="../../assets/p3Logo.png" alt="p3logo">
+      <img src="../../assets/ppp_logo.png" alt="p3logo">
     </div>
     <div class="menu-icon" (click)="toggleMenu()">
       <div class="bar1" [ngClass]="{'open-bar1': menuOpen}"></div>
@@ -23,6 +23,18 @@
       </li>
       <li class="nav-item">
         <a routerLink="/book" class="nav-links" (click)="closeMenu()">Schedule a Shoot</a>
+      </li>
+      <li class="nav-item" *ngIf="isLoggedIn">
+        <div class="dropdown">
+          <button class="dropbtn" (click)="toggleDropdown()">Admin</button>
+          <div class="dropdown-content" [ngClass]="{'show': dropdownOpen}">
+            <a routerLink="/admin/products" (click)="closeMenu()">Products</a>
+            <a routerLink="/admin/orders" (click)="closeMenu()">Orders</a>
+            <a routerLink="/admin/subscribers" (click)="closeMenu()">Subscribers</a>
+            <a routerLink="/admin/add-product" (click)="closeMenu()">Add Product</a>
+            <button class="btn btn-primary" (click)="logout()">Logout</button>
+          </div>
+        </div>
       </li>
     </ul>
     <div class="cart-total">

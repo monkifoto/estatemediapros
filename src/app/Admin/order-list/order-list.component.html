@@ -5,15 +5,11 @@
   <table>
     <thead>
       <tr>
-        <th>Order ID</th>
-        <th>Order Status</th>
+        <th>Order ID/Status</th>
         <th>Address</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Phone Number</th>
+        <th>Contact Info</th>
         <th>Square Footage</th>
-        <th>Date</th>
-        <th>Time</th>
+        <th>Date/Time</th>
         <th>Items</th>
         <th>Upload Files</th>
         <th>Mark Completed</th>
@@ -22,15 +18,21 @@
     </thead>
     <tbody>
       <tr *ngFor="let order of orders">
-        <td (click)="navigateToGallery(order.id)">{{ order.id }}</td>
-        <td>{{ order.status || 'Pending' }}</td>
+        <td>
+          <a class="link"  (click)="navigateToGallery(order.id)">
+            {{ order.id }}
+          </a>
+          <div [ngStyle]="{'color': order.status === 'Pending' ? 'red' : '', 'font-weight': order.status === 'Pending' ? 'bold' : ''}">
+              {{ order.status || 'Pending' }}
+          </div>
+        </td>
         <td>{{order.customerInfo.Address}}</td>
-        <td>{{ order.customerInfo.Name }}</td>
-        <td>{{ order.customerInfo.Email }}</td>
-        <td>{{ order.customerInfo.PhoneNumber }}</td>
+        <td>{{ order.customerInfo.Name }}<br>
+          {{ order.customerInfo.Email }}<br>
+          {{ order.customerInfo.PhoneNumber }}
+        </td>
         <td>{{ order.squareFootage }}</td>
-        <td>{{ order.customerInfo.Date }}</td>
-        <td>{{ order.customerInfo.Time }}</td>
+        <td>{{ order.customerInfo.Date }}<br>{{ order.customerInfo.Time }}</td>
         <td>
           <ul>
             <li *ngFor="let item of order.cartContents">{{ item.name }} - {{ item.price | currency }}</li>
