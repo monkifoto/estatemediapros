@@ -1,51 +1,6 @@
+
 <div class="general-product-container">
   <div class="general-product-item" *ngFor="let product of products">
-    <div class="product-container">
-      <div class="product-header">
-        <h1 class="product-name">{{ product.name }}</h1>
-        <p class="product-id">{{ product.id }}</p>
-      </div>
-      <div class="product-content">
-        <img src="https://via.placeholder.com/250x150" alt="Product Image" class="product-image">
-
-        <!-- Description, Total Price, and Buttons under the Image -->
-        <div class="product-details">
-          <p class="product-description">{{ product.description }}</p>
-          <p><strong>Total Price:</strong> {{ product.price | currency }}</p>
-
-
-
-        </div>
-         <!-- Buttons Section -->
-        <div class="product-buttons">
-          <button class="details-button" (click)="viewDetails(product)">DETAIL →</button>
-          <button class="add-to-cart-button" (click)="addToCart(product)">ADD</button>
-        </div>
-      </div>
-    </div>
+    <app-product-item [product]="product" (viewDetails)="viewDetails(product)"></app-product-item>
   </div>
-</div>
-
-<!-- Product Details Section with Close 'X' Button -->
-<div *ngIf="selectedProduct" class="product-details-container">
-  <!-- Close Button -->
-  <span class="close-button" (click)="closeDetails()">&#10006;</span>
-
-  <h2>{{ selectedProduct.name }}</h2>
-  <p>{{ selectedProduct.description }}</p>
-
-  <!-- Base Price and Increment Price in Details Section -->
-  <p><strong>Base Price:</strong> {{ selectedProduct.basePrice | currency }}</p>
-  <small><strong>Increment Price:</strong> {{ selectedProduct.priceIncrementPerSqFt | currency }}</small><br><br>
-
-  <p>Available in (3) colors</p>
-  <p>100% cow leather outer with suede lining</p>
-
-  <div class="product-thumbnails">
-    <img src="https://via.placeholder.com/50x100" alt="Thumbnail 1" class="thumbnail">
-    <img src="https://via.placeholder.com/50x100" alt="Thumbnail 2" class="thumbnail">
-    <img src="https://via.placeholder.com/50x100" alt="Thumbnail 3" class="thumbnail">
-  </div>
-
-  <a href="#" class="bag-detail-link">BAG DETAIL →</a>
 </div>

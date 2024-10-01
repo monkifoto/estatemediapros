@@ -10,4 +10,9 @@ export interface Product {
   price: number;
   productType: string;
   isDetailsVisible:boolean;
+  detailFeatures?: string;
+  isActive?: boolean;
+  detailThumbnails?: string[];
+  isPromotion?:boolean;
+  promotionDiscount?:0;
 }

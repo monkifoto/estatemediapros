@@ -1,3 +1,8 @@
+.cart-header{
+display: flex;
+justify-content: space-between;
+width: 100%;
+}
 
 .cart-summary {
   margin-top: 40px;

@@ -8,7 +8,7 @@
           <label>Select Square Footage:</label>
           <div class="d-flex flex-wrap">
             <label class="radio-option">
-              <input type="radio" name="squareFt" [(ngModel)]="selectedSqFt" value="1000-2000" (change)="onSqftChange(1000, 2000)"> 1000-2000
+              <input type="radio" name="squareFt" [(ngModel)]="selectedSqFt" value="500-2000" (change)="onSqftChange(500, 2000)"> 500-2000
             </label>
             <label class="radio-option">
               <input type="radio" name="squareFt" [(ngModel)]="selectedSqFt" value="2001-3000" (change)="onSqftChange(2000, 3000)"> 2001-3000
@@ -40,12 +40,12 @@
 
         <!-- Tab Content -->
         <div class="tab-content mt-3">
-          <app-photos *ngIf="activeTab === 'photos'" [listOfProducts]="(products | filterByType: 'photo')"></app-photos>
-          <app-video *ngIf="activeTab === 'video'" [listOfProducts]="(products | filterByType: 'video')"></app-video>
-          <app-tour *ngIf="activeTab === '3dTour'" [listOfProducts]="(products | filterByType: 'tour')"></app-tour>
-          <app-floorplan *ngIf="activeTab === 'floorplan'" [listOfProducts]="(products | filterByType: 'floorplan')"></app-floorplan>
-          <app-staging *ngIf="activeTab === 'staging'" [listOfProducts]="(products | filterByType: 'staging')"></app-staging>
-          <app-bundles *ngIf="activeTab === 'bundles'" [listOfProducts]="(products | filterByType: 'bundle')"></app-bundles>
+          <app-photos *ngIf="activeTab === 'photos'" [listOfProducts]="(products | filterByType: 'photo')"(viewProductDetails)="openModal($event)"></app-photos>
+          <app-video *ngIf="activeTab === 'video'" [listOfProducts]="(products | filterByType: 'video')" (viewProductDetails)="openModal($event)"></app-video>
+          <app-tour *ngIf="activeTab === '3dTour'" [listOfProducts]="(products | filterByType: 'tour')" (viewProductDetails)="openModal($event)"></app-tour>
+          <app-floorplan *ngIf="activeTab === 'floorplan'" [listOfProducts]="(products | filterByType: 'floorplan')" (viewProductDetails)="openModal($event)"></app-floorplan>
+          <app-staging *ngIf="activeTab === 'staging'" [listOfProducts]="(products | filterByType: 'staging')" (viewProductDetails)="openModal($event)"></app-staging>
+          <app-bundles *ngIf="activeTab === 'bundles'" [listOfProducts]="(products | filterByType: 'bundle')" (viewProductDetails)="openModal($event)"></app-bundles>
         </div>
       </div>
 
@@ -57,3 +57,21 @@
     </div>
   </form>
 </div>
+
+
+  <!-- Product Details Modal -->
+  <div *ngIf="showModal" class="modal-overlay" (click)="closeModal()">
+    <div class="modal-window" (click)="$event.stopPropagation()">
+      <span class="close-button" (click)="closeModal()">&#10006;</span>
+      <h2>{{ selectedProduct?.name }}</h2>
+      <p>{{ selectedProduct?.description }}</p>
+      <p><strong>Base Price:</strong> {{ selectedProduct?.basePrice | currency }}</p>
+      <small><strong>Increment Price:</strong> {{ selectedProduct?.priceIncrementPerSqFt | currency }}</small>
+      <div class="product-thumbnails">
+        <img src="https://via.placeholder.com/50x100" alt="Thumbnail 1" class="thumbnail">
+        <img src="https://via.placeholder.com/50x100" alt="Thumbnail 2" class="thumbnail">
+        <img src="https://via.placeholder.com/50x100" alt="Thumbnail 3" class="thumbnail">
+      </div>
+    </div>
+  </div>
+

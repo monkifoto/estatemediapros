@@ -29,6 +29,20 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FilterByTypePipe } from './Pipes/filter-by-type.pipe';
 import { HomeSectionComponent } from './Sections/home-section/home-section.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ProductItemComponent } from './Sections/Store/product-item/product-item.component';
+import { AngularFireModule } from '@angular/fire/compat'
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { environment } from 'src/Environments/environment';
+import { AdminComponent } from './Admin/admin/admin.component';
+import { LoginComponent } from './Admin/login/login.component';
+import { ProductListComponent } from './Admin/product-list/product-list.component';
+import { SubscribersComponent } from './Admin/subscribers/subscribers.component';
+import { AddEditProductComponent } from './Admin/add-edit-product/add-edit-product.component';
+import { OrderListComponent } from './Admin/order-list/order-list.component';
+import { RouterModule } from '@angular/router';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { GalleryComponent } from './Sections/gallery/gallery.component';
+import { UploadFilesComponent } from './Admin/upload-files/upload-files.component';
 
 @NgModule({
   declarations: [
@@ -55,14 +69,26 @@ import { HttpClientModule } from '@angular/common/http';
     BundlesComponent,
     CustomerInfoComponent,
     FilterByTypePipe,
-    HomeSectionComponent
+    HomeSectionComponent,
+    ProductItemComponent,
+    AdminComponent,
+    LoginComponent,
+    ProductListComponent,
+    SubscribersComponent,
+    AddEditProductComponent,
+    OrderListComponent,
+    GalleryComponent,
+    UploadFilesComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

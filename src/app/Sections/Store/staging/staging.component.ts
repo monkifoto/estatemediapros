@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Product } from 'src/app/Model/product.model';
 import { CartService } from 'src/app/Services/cart.service';
 import { ProductService } from 'src/app/Services/product.service';
@@ -12,11 +12,10 @@ export class StagingComponent implements OnInit {
   products!: Product[];
   @Input()
   listOfProducts: Product[] = [];
-  selectedProduct: any = null;
+  @Output() viewProductDetails = new EventEmitter<Product>();
 
   constructor(
     private cartService: CartService,
-    private productService: ProductService
   ) {}
 
   ngOnInit(): void {
@@ -27,12 +26,9 @@ export class StagingComponent implements OnInit {
     this.cartService.addProduct(product);
   }
 
-  viewDetails(product: any) {
-    this.selectedProduct = product;
+  viewDetails(product: Product) {
+    this.viewProductDetails.emit(product); // Emit the product to the parent
   }
 
-  // Function to close the product details view
-  closeDetails() {
-    this.selectedProduct = null;
-  }
+
 }

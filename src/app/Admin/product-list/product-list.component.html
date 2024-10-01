@@ -1,0 +1,42 @@
+<h2>Products</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Image</th>
+      <th>Base SqFt</th>
+      <th>Base Price</th>
+      <th>Price Increment/1000 SqFt</th>
+      <th>Increment SqFt Step</th>
+      <th>Price</th>
+      <th>Product Type</th>
+      <th>Active</th>
+      <th>Promotion</th>
+      <th>Promotion Discount</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of products">
+      <td>{{ product.name }}</td>
+      <td>{{ product.description }}</td>
+      <td>
+        <img [src]="product.imageUrl" alt="{{ product.name }}" width="50" height="50">
+      </td>
+      <td>{{ product.baseSqFt }}</td>
+      <td>{{ product.basePrice | currency }}</td>
+      <td>{{ product.priceIncrementPerSqFt | currency }}</td>
+      <td>{{ product.incrementSqFtStep }}</td>
+      <td>{{ product.price | currency }}</td>
+      <td>{{ product.productType }}</td>
+      <td>{{ product.isActive ? 'Yes' : 'No' }}</td>
+      <td>{{ product.isPromotion ? 'Yes' : 'No' }}</td>
+      <td>{{ product.promotionDiscount ? product.promotionDiscount + '%' : 'N/A' }}</td>
+      <td>
+        <button class="btn btn-primary" (click)="editProduct(product)">Edit</button>
+        <button class="btn btn-danger" (click)="deleteProduct(product.id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
