@@ -20,9 +20,20 @@
     </ul>
   </div>
 
-  <button (click)="downloadAll()">Download All</button>
+  <button (click)="downloadAllAsZip()">Download All</button>
   <!-- Gallery Images - Show only if images are loaded -->
   <div class="image-grid" *ngIf="imageUrls | async as urls">
-    <img *ngFor="let imageUrl of urls" [src]="imageUrl" />
+    <img *ngFor="let imageUrl of urls" [src]="imageUrl" (click)="openModal(imageUrl)" (contextmenu)="disableRightClick($event)" />
+  </div>
+</div>
+
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+        <img id="fullImage" src="" alt="Full Image" />
+      </div>
+    </div>
   </div>
 </div>

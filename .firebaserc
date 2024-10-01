@@ -1,5 +1,9 @@
 {
   "projects": {
-    "default": "pacificpropertyphotos-50a8c"
-  }
+    "default": "pacificpropertyphotos-50a8c",
+    "ppp-staging": "estate-media-pros"
+  },
+  "targets": {},
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
 }

@@ -6,6 +6,10 @@ import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { from, Observable } from 'rxjs';
 import { OrderService } from 'src/app/Services/order.service';
 import { Order } from 'src/app/Model/order.model';
+import JSZip from 'jszip';
+import { saveAs } from 'file-saver';
+import { DomSanitizer } from '@angular/platform-browser';
+import * as bootstrap from 'bootstrap';
 
 @Component({
   selector: 'app-gallery',
@@ -16,8 +20,9 @@ export class GalleryComponent implements OnInit {
   orderId!: string;
   order!: Order;
   imageUrls: Observable<string[]> | null = null;
+  selectedImageUrl: string | undefined;
 
-  constructor(private route: ActivatedRoute, private storage: AngularFireStorage, private orderService: OrderService) {}
+  constructor(private route: ActivatedRoute, private storage: AngularFireStorage, private orderService: OrderService, private sanitizer: DomSanitizer) {}
 
   ngOnInit(): void {
     this.orderId = this.route.snapshot.paramMap.get('id')!;
@@ -57,20 +62,45 @@ export class GalleryComponent implements OnInit {
     });
   }
 
-  downloadAll(): void {
+  openModal(imageUrl: string) {
+    console.log(imageUrl);
+    this.selectedImageUrl = imageUrl;
+    const modalElement = document.getElementById('imageModal') as HTMLElement;
+    const modalImg = document.getElementById('fullImage') as HTMLImageElement;
+    modalImg.src = imageUrl;
+
+    // Use Bootstrap modal to show the modal
+    const modalInstance = new bootstrap.Modal(modalElement);
+    modalInstance.show();
+  }
+
+  // Disable right-click to prevent saving images
+  disableRightClick(event: Event) {
+    event.preventDefault();
+  }
+
+  downloadAllAsZip(): void {
     if (this.imageUrls) {
-      // Subscribe to the observable to get the image URLs
-      this.imageUrls.subscribe((urls: string[]) => {
-        urls.forEach((url, index) => {
-          // Create an anchor element to programmatically trigger the download
-          const a = document.createElement('a');
-          a.href = url;
-          a.download = `image-${index + 1}.jpg`;  // You can customize the file name here
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
+      this.imageUrls.subscribe(async (urls: string[]) => {
+        const zip = new JSZip();
+        const imgFolder = zip.folder('images');
+
+        // Fetch and add each image to the zip folder
+        const imagePromises = urls.map(async (url, index) => {
+          const response = await fetch(url);
+          const blob = await response.blob();
+          imgFolder?.file(`image-${index + 1}.jpg`, blob);
+        });
+
+        // Wait for all the images to be added to the zip
+        await Promise.all(imagePromises);
+
+        // Generate the zip file
+        zip.generateAsync({ type: 'blob' }).then((zipContent) => {
+          // Save the zip file
+          saveAs(zipContent, 'images.zip');
         });
       });
     }
-  } 
+  }
 }

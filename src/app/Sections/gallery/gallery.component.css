@@ -1,7 +1,3 @@
-.gallery {
-  margin: 20px;
-}
-
 .order-details {
   margin-bottom: 20px;
   border: 1px solid #ddd;
@@ -10,11 +6,8 @@
   background-color: #f9f9f9;
 }
 
-.image-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  grid-gap: 10px;
-}
+
+
 
 .mosaic-image {
   width: 100%;
@@ -26,4 +19,38 @@
 
 .mosaic-image:hover {
   transform: scale(1.05);
+}
+
+/* Gallery Styles */
+.gallery {
+  margin: 20px auto;
+  width: 90%;
+  max-width: 1200px;
+}
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+
+.image-grid img {
+  width: 150px;
+  height: 100px;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+/* Bootstrap Modal Image */
+.modal-content img {
+  width: 100%;
+  height: auto;
+}
+
+/* Disable right-click */
+img {
+  /* -webkit-user-drag: none;
+  pointer-events: none;
+  user-select: none; */
 }
