@@ -20,6 +20,7 @@
     </ul>
   </div>
 
+  <button (click)="downloadAll()">Download All</button>
   <!-- Gallery Images - Show only if images are loaded -->
   <div class="image-grid" *ngIf="imageUrls | async as urls">
     <img *ngFor="let imageUrl of urls" [src]="imageUrl" />

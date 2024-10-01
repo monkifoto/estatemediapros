@@ -56,4 +56,21 @@ export class GalleryComponent implements OnInit {
       console.error('Error loading gallery images:', error); // Log any errors
     });
   }
+
+  downloadAll(): void {
+    if (this.imageUrls) {
+      // Subscribe to the observable to get the image URLs
+      this.imageUrls.subscribe((urls: string[]) => {
+        urls.forEach((url, index) => {
+          // Create an anchor element to programmatically trigger the download
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = `image-${index + 1}.jpg`;  // You can customize the file name here
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+        });
+      });
+    }
+  }
 }
