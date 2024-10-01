@@ -43,6 +43,7 @@ import { RouterModule } from '@angular/router';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { GalleryComponent } from './Sections/gallery/gallery.component';
 import { UploadFilesComponent } from './Admin/upload-files/upload-files.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({ declarations: [
         AppComponent,
@@ -79,7 +80,9 @@ import { UploadFilesComponent } from './Admin/upload-files/upload-files.componen
         GalleryComponent,
         UploadFilesComponent
     ],
-    bootstrap: [AppComponent], imports: [BrowserModule,
+    bootstrap: [AppComponent],
+    imports: [BrowserModule,
+      CommonModule,
         AppRoutingModule,
         FormsModule,
         ReactiveFormsModule,
