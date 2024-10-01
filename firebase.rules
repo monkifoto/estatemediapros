@@ -4,7 +4,10 @@ service cloud.firestore {
     match /Subscribers/{subscriberId} {
       allow read, write: if true;
     }
-    match /Orders/{orderId} {
+     match /Orders/{orderId} {
+      allow read, write: if true;
+    }
+    match /Products/{id} {
       allow read, write: if true;
     }
   }
