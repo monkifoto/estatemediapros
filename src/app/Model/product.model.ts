@@ -15,4 +15,5 @@ export interface Product {
   detailThumbnails?: string[];
   isPromotion?:boolean;
   promotionDiscount?:0;
+  sort?: number;
 }

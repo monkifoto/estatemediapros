@@ -30,6 +30,12 @@
           <li class="nav-item">
             <a class="nav-link" [class.active]="activeTab === 'photos'" (click)="activeTab = 'photos'">Photos</a>
           </li>
+          <li class="nav-item" *ngIf="true">
+            <a class="nav-link" [class.active]="activeTab === 'video'" (click)="activeTab = 'video'">Video</a>
+          </li>
+          <li class="nav-item" *ngIf="true">
+            <a class="nav-link" [class.active]="activeTab === '3dTour'" (click)="activeTab = '3dTour'">3D Tour</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" [class.active]="activeTab === 'floorplan'" (click)="activeTab = 'floorplan'">Floor Plans</a>
           </li>
@@ -40,12 +46,12 @@
 
         <!-- Tab Content -->
         <div class="tab-content mt-3">
-          <app-photos *ngIf="activeTab === 'photos'" [listOfProducts]="(products | filterByType: 'photo')"(viewProductDetails)="openModal($event)"></app-photos>
-          <app-video *ngIf="activeTab === 'video'" [listOfProducts]="(products | filterByType: 'video')" (viewProductDetails)="openModal($event)"></app-video>
-          <app-tour *ngIf="activeTab === '3dTour'" [listOfProducts]="(products | filterByType: 'tour')" (viewProductDetails)="openModal($event)"></app-tour>
-          <app-floorplan *ngIf="activeTab === 'floorplan'" [listOfProducts]="(products | filterByType: 'floorplan')" (viewProductDetails)="openModal($event)"></app-floorplan>
-          <app-staging *ngIf="activeTab === 'staging'" [listOfProducts]="(products | filterByType: 'staging')" (viewProductDetails)="openModal($event)"></app-staging>
-          <app-bundles *ngIf="activeTab === 'bundles'" [listOfProducts]="(products | filterByType: 'bundle')" (viewProductDetails)="openModal($event)"></app-bundles>
+          <app-photos *ngIf="activeTab === 'photos'" [listOfProducts]="(products | filterByType: 'photo' | sortBy: 'sort')"(viewProductDetails)="openModal($event)"></app-photos>
+          <app-video *ngIf="activeTab === 'video'" [listOfProducts]="(products | filterByType: 'video' | sortBy: 'sort')" (viewProductDetails)="openModal($event)"></app-video>
+          <app-tour *ngIf="activeTab === '3dTour'" [listOfProducts]="(products | filterByType: 'tour'| sortBy: 'sort')" (viewProductDetails)="openModal($event)"></app-tour>
+          <app-floorplan *ngIf="activeTab === 'floorplan'" [listOfProducts]="(products | filterByType: 'floorplan'| sortBy: 'sort')" (viewProductDetails)="openModal($event)"></app-floorplan>
+          <app-staging *ngIf="activeTab === 'staging'" [listOfProducts]="(products | filterByType: 'staging'| sortBy: 'sort')" (viewProductDetails)="openModal($event)"></app-staging>
+          <app-bundles *ngIf="activeTab === 'bundles'" [listOfProducts]="(products | filterByType: 'bundle'| sortBy: 'sort')" (viewProductDetails)="openModal($event)"></app-bundles>
         </div>
       </div>
 

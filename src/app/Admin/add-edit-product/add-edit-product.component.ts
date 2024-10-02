@@ -25,7 +25,8 @@ export class AddEditProductComponent implements OnInit {
     isDetailsVisible: false,
     isActive: true,
     isPromotion: false,
-    promotionDiscount: 0
+    promotionDiscount: 0,
+    sort:0
   };
 
   editingProduct: boolean = false;

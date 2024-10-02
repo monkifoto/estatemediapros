@@ -27,6 +27,7 @@ import { BundlesComponent } from './Sections/Store/bundles/bundles.component';
 import { CustomerInfoComponent } from './Sections/Store/customer-info/customer-info.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FilterByTypePipe } from './Pipes/filter-by-type.pipe';
+import { SortByPipe } from './Pipes/sort-by.pipe';
 import { HomeSectionComponent } from './Sections/home-section/home-section.component';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { ProductItemComponent } from './Sections/Store/product-item/product-item.component';
@@ -70,6 +71,7 @@ import { OrderEditComponent } from './Admin/order-edit/order-edit.component';
         BundlesComponent,
         CustomerInfoComponent,
         FilterByTypePipe,
+        SortByPipe,
         HomeSectionComponent,
         ProductItemComponent,
         AdminComponent,
