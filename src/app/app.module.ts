@@ -44,6 +44,7 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { GalleryComponent } from './Sections/gallery/gallery.component';
 import { UploadFilesComponent } from './Admin/upload-files/upload-files.component';
 import { CommonModule } from '@angular/common';
+import { OrderEditComponent } from './Admin/order-edit/order-edit.component';
 
 @NgModule({ declarations: [
         AppComponent,
@@ -78,7 +79,8 @@ import { CommonModule } from '@angular/common';
         AddEditProductComponent,
         OrderListComponent,
         GalleryComponent,
-        UploadFilesComponent
+        UploadFilesComponent,
+        OrderEditComponent
     ],
     bootstrap: [AppComponent],
     imports: [BrowserModule,

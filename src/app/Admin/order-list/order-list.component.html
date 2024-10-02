@@ -11,6 +11,7 @@
         <th>Square Footage</th>
         <th>Date/Time</th>
         <th>Items</th>
+        <th>Edit</th>
         <th>Upload Files</th>
         <th>Mark Completed</th>
         <th>Mark Deleted</th>
@@ -37,6 +38,9 @@
           <ul>
             <li *ngFor="let item of order.cartContents">{{ item.name }} - {{ item.price | currency }}</li>
           </ul>
+        </td>
+        <td>
+          <button (click)="navigateToEditOrder(order.id)">Edit</button>
         </td>
         <td>
           <button (click)="navigateToFileUpload(order.id)">Upload Files</button>

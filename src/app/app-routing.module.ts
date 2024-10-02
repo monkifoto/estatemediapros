@@ -14,6 +14,7 @@ import { OrderListComponent } from './Admin/order-list/order-list.component';
 import { SubscribersComponent } from './Admin/subscribers/subscribers.component';
 import { GalleryComponent } from './Sections/gallery/gallery.component';
 import { UploadFilesComponent } from './Admin/upload-files/upload-files.component';
+import { OrderEditComponent } from './Admin/order-edit/order-edit.component';
 
 const routes: Routes = [
   { path: '', component: HomeSectionComponent, title: 'PACIFIC PROPERY PHOTOS - Home', pathMatch: 'full' },
@@ -35,6 +36,7 @@ const routes: Routes = [
     { path: '', redirectTo: 'products', pathMatch: 'full' }, // Default route
     { path: 'admin/order-list', component: OrderListComponent },
     { path: 'upload-files/:id', component: UploadFilesComponent },
+    { path: 'edit-order/:id', component: OrderEditComponent },
 
 ] },
   { path: 'login', component: LoginComponent },

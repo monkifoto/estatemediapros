@@ -8,8 +8,8 @@ import { OrderService } from 'src/app/Services/order.service';
 import { Order } from 'src/app/Model/order.model';
 import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
-import { DomSanitizer } from '@angular/platform-browser';
 import * as bootstrap from 'bootstrap';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-gallery',
@@ -21,8 +21,15 @@ export class GalleryComponent implements OnInit {
   order!: Order;
   imageUrls: Observable<string[]> | null = null;
   selectedImageUrl: string | undefined;
+  safeTourLink: SafeResourceUrl | null = null;
+  safeVideoLink: SafeResourceUrl | null = null;
 
-  constructor(private route: ActivatedRoute, private storage: AngularFireStorage, private orderService: OrderService, private sanitizer: DomSanitizer) {}
+  constructor(
+    private route: ActivatedRoute,
+    private storage: AngularFireStorage,
+    private orderService: OrderService,
+     private sanitizer: DomSanitizer
+    ) {}
 
   ngOnInit(): void {
     this.orderId = this.route.snapshot.paramMap.get('id')!;
@@ -33,6 +40,12 @@ export class GalleryComponent implements OnInit {
   loadOrderDetails() {
     this.orderService.getOrderById(this.orderId).subscribe((order) => {
       this.order = order;  // Populate the order object
+      if (this.order.tourLink) {
+        this.safeTourLink = this.sanitizer.bypassSecurityTrustResourceUrl(this.order.tourLink);
+      }
+      if (this.order.videoLink) {
+        this.safeVideoLink = this.sanitizer.bypassSecurityTrustResourceUrl(this.order.videoLink);
+      }
       console.log ("loadOrderDetails", order);
     });
   }

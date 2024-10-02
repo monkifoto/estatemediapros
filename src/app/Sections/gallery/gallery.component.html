@@ -1,5 +1,5 @@
 <div class="gallery">
-  <h2>Gallery for Order: {{ orderId }}</h2>
+
 
   <!-- Order Details - Display only if order is available -->
   <div *ngIf="order">
@@ -26,7 +26,18 @@
     <img *ngFor="let imageUrl of urls" [src]="imageUrl" (click)="openModal(imageUrl)" (contextmenu)="disableRightClick($event)" />
   </div>
 </div>
+<div class="gallery">
+<div *ngIf="safeTourLink">
+  <h4>3D Tour</h4>
+  <iframe width="853" height="480" [src]="safeTourLink" frameborder="0" allowfullscreen allow="xr-spatial-tracking"></iframe>
+</div>
+</div>
+<div class="gallery">
+  <h4>Video</h4>
+  <iframe width="560" height="315" [src]="safeVideoLink" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
 
+<h2> Order: {{ orderId }}</h2>
 <!-- Bootstrap Modal -->
 <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg">

@@ -49,4 +49,8 @@ export class OrderListComponent implements OnInit {
     this.router.navigate([`/admin/upload-files/${orderId}`]);
   }
 
+  navigateToEditOrder(orderId: string): void {
+    this.router.navigate([`/admin/edit-order/${orderId}`]);
+  }
+
 }
