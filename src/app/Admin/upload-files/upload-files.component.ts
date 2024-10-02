@@ -1,9 +1,7 @@
-// src/app/admin/upload-files/upload-files.component.ts
-
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FileUploadService } from 'src/app/Services/file-upload.service';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
-import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-upload-files',
@@ -12,46 +10,64 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class UploadFilesComponent implements OnInit {
   selectedFiles: File[] = [];
-  orderId: string = '';
+  uploadedFilesUrls: { name: string, url: string }[] = [];  // List to store file URLs and names
+  @Input() orderId!: string;
 
-
-  constructor(private fileUploadService: FileUploadService, private route: ActivatedRoute) {}
+  constructor(private fileUploadService: FileUploadService) {}
 
   ngOnInit() {
-    // Get the orderId from the route
-    this.orderId = this.route.snapshot.paramMap.get('id')!;
+    this.loadExistingFiles();
   }
 
-  // onFilesSelected(event: any): void {
-  //   this.selectedFiles = Array.from(event.target.files);
-  // }
+  // Fetch existing files for this order from Firebase
+  loadExistingFiles() {
+    this.fileUploadService.getFilesForOrder(this.orderId).subscribe(files => {
+      this.uploadedFilesUrls = files;
+    });
+  }
 
   onFilesSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files) {
-      this.selectedFiles = Array.from(input.files); // Convert FileList to an array
+      this.selectedFiles = Array.from(input.files);
+      this.uploadFiles();  // Automatically start uploading the files
     }
   }
 
   onDrop(event: any) {
     event.preventDefault();
-    this.selectedFiles = event.dataTransfer.files;
+    this.selectedFiles = Array.from(event.dataTransfer.files);
+    this.uploadFiles();  // Automatically start uploading the files
   }
 
   onDragOver(event: any) {
     event.preventDefault();
   }
 
+  // Automatically upload files when selected/dropped
   uploadFiles(): void {
     this.selectedFiles.forEach((file) => {
       this.fileUploadService.uploadFile(file, this.orderId).subscribe(
         (downloadUrl) => {
+          // Add the uploaded file's URL and name to the list for display
+          this.uploadedFilesUrls.push({ name: file.name, url: downloadUrl });
           console.log('File uploaded, URL:', downloadUrl);
         },
         (error) => {
           console.error('File upload error:', error);
         }
       );
+    });
+    // Clear the selectedFiles array after starting upload
+    this.selectedFiles = [];
+  }
+
+  // Remove file from Firebase storage and the gallery
+  removeFile(fileName: string): void {
+    this.fileUploadService.deleteFile(fileName, this.orderId).subscribe(() => {
+      // Remove the file from the gallery after successful deletion
+      this.uploadedFilesUrls = this.uploadedFilesUrls.filter(file => file.name !== fileName);
+      console.log(`${fileName} has been removed.`);
     });
   }
 }

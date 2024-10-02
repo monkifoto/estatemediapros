@@ -12,7 +12,6 @@
         <th>Date/Time</th>
         <th>Items</th>
         <th>Edit</th>
-        <th>Upload Files</th>
         <th>Mark Completed</th>
         <th>Mark Deleted</th>
       </tr>
@@ -41,9 +40,6 @@
         </td>
         <td>
           <button (click)="navigateToEditOrder(order.id)">Edit</button>
-        </td>
-        <td>
-          <button (click)="navigateToFileUpload(order.id)">Upload Files</button>
         </td>
         <td>
           <button (click)="markAsCompleted(order.id)">Completed</button>

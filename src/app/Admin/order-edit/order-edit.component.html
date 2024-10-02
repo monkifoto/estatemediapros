@@ -11,8 +11,12 @@
     </div>
     <div>
       <label for="videoLink">Video Link:</label>
+      <div>Please use the URL from the youtube embeded generated code.</div>
       <input id="videoLink" formControlName="videoLink" type="text">
     </div>
     <button type="submit" [disabled]="orderForm.invalid">Save</button>
   </form>
+</div>
+<div class="order-edit">
+<app-upload-files [orderId]="orderId"></app-upload-files>
 </div>

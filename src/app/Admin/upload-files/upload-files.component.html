@@ -1,5 +1,3 @@
-<!-- src/app/admin/upload-files/upload-files.component.html -->
-
 <div class="file-upload">
   <h2>Upload Files for Order: {{ orderId }}</h2>
 
@@ -15,6 +13,21 @@
   <!-- File Selection -->
   <input type="file" (change)="onFilesSelected($event)" multiple />
 
-  <!-- Upload Button -->
-  <button (click)="uploadFiles()">Upload</button>
+  <!-- List of selected/dropped files -->
+  <div *ngIf="selectedFiles.length > 0">
+    <h3>Files to be uploaded:</h3>
+    <ul>
+      <li *ngFor="let file of selectedFiles">{{ file.name }}</li>
+    </ul>
+  </div>
+
+  <!-- Thumbnails for files being uploaded and existing files -->
+  <div class="thumbnail-gallery">
+    <div *ngFor="let file of uploadedFilesUrls" class="thumbnail">
+      <img [src]="file.url" alt="File thumbnail" />
+      <button class="remove-btn" (click)="removeFile(file.name)">
+        X
+      </button>
+    </div>
+  </div>
 </div>

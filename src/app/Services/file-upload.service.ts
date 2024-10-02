@@ -21,4 +21,24 @@ export class FileUploadService {
       switchMap(() => fileRef.getDownloadURL()) // Get download URL after upload completes
     );
   }
+
+   // Fetch existing files for the order
+   getFilesForOrder(orderId: string): Observable<{ name: string, url: string }[]> {
+    const folderRef = this.storage.ref(`orders/${orderId}`);
+    return folderRef.listAll().pipe(
+      switchMap(result => {
+        // Map the results into file name and download URL objects
+        const fileObservables = result.items.map(item =>
+          item.getDownloadURL().then(url => ({ name: item.name, url }))
+        );
+        return Promise.all(fileObservables);  // Wait for all URLs to be fetched
+      })
+    );
+  }
+
+  // Delete a file from Firebase storage
+  deleteFile(fileName: string, orderId: string): Observable<void> {
+    const fileRef = this.storage.ref(`orders/${orderId}/${fileName}`);
+    return fileRef.delete();  // Delete the file from storage
+  }
 }
