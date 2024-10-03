@@ -14,6 +14,7 @@ export class AddEditProductComponent implements OnInit {
     id: '',
     name: '',
     description: '',
+    detailedDescription: '',
     imageUrl: '',
     detailThumbnails: [], // Add thumbnails property
     baseSqFt: 0,

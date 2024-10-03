@@ -15,6 +15,12 @@
       <li class="nav-item">
         <a routerLink="/photos" class="nav-links" (click)="closeMenu()">Photos</a>
       </li>
+      <li class="nav-item" *ngIf="showVideoandTour">
+        <a routerLink="/video" class="nav-links" (click)="closeMenu()">Video</a>
+      </li>
+      <li class="nav-item" *ngIf="showVideoandTour">
+        <a routerLink="/tour" class="nav-links" (click)="closeMenu()">3D Tour</a>
+      </li>
       <li class="nav-item">
         <a routerLink="/floorplan" class="nav-links" (click)="closeMenu()">Floor Plans</a>
       </li>
@@ -32,7 +38,7 @@
             <a routerLink="/admin/orders" (click)="closeMenu()">Orders</a>
             <a routerLink="/admin/subscribers" (click)="closeMenu()">Subscribers</a>
             <a routerLink="/admin/add-product" (click)="closeMenu()">Add Product</a>
-            <button class="btn btn-primary" (click)="logout()">Logout</button>
+            <a href="#" (click)="logout(); closeMenu()">Logout</a>
           </div>
         </div>
       </li>

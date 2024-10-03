@@ -69,7 +69,8 @@ form {
 .links {
   display: flex;
   justify-content: space-between;
-  max-width: 400px;
+  width: 50%;
+  /* max-width: 400px; */
 }
 
 .sitemap, .follow {

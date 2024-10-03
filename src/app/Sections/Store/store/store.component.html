@@ -30,10 +30,10 @@
           <li class="nav-item">
             <a class="nav-link" [class.active]="activeTab === 'photos'" (click)="activeTab = 'photos'">Photos</a>
           </li>
-          <li class="nav-item" *ngIf="true">
+          <li class="nav-item" *ngIf="showVideoandTour">
             <a class="nav-link" [class.active]="activeTab === 'video'" (click)="activeTab = 'video'">Video</a>
           </li>
-          <li class="nav-item" *ngIf="true">
+          <li class="nav-item" *ngIf="showVideoandTour">
             <a class="nav-link" [class.active]="activeTab === '3dTour'" (click)="activeTab = '3dTour'">3D Tour</a>
           </li>
           <li class="nav-item">
@@ -70,9 +70,9 @@
     <div class="modal-window" (click)="$event.stopPropagation()">
       <span class="close-button" (click)="closeModal()">&#10006;</span>
       <h2>{{ selectedProduct?.name }}</h2>
-      <p>{{ selectedProduct?.description }}</p>
+      <p>{{ selectedProduct?.detailedDescription }}</p>
       <p><strong>Base Price:</strong> {{ selectedProduct?.basePrice | currency }}</p>
-      <small><strong>Increment Price:</strong> {{ selectedProduct?.priceIncrementPerSqFt | currency }}</small>
+      <small><strong>Increment Price:</strong> {{ selectedProduct?.priceIncrementPerSqFt | currency }} / {{selectedProduct?.incrementSqFtStep}} sqft</small>
       <div class="product-thumbnails">
         <img src="https://via.placeholder.com/50x100" alt="Thumbnail 1" class="thumbnail">
         <img src="https://via.placeholder.com/50x100" alt="Thumbnail 2" class="thumbnail">

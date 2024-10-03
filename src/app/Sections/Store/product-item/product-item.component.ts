@@ -22,7 +22,7 @@ export class ProductItemComponent {
   viewProductDetails() {
     this.viewDetails.emit(this.product);
   }
-  
+
   closeDetails(): void {
     this.selectedProduct = null;
   }

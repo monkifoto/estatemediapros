@@ -8,7 +8,7 @@
     </div>
 
     <div class="form-group">
-      <label for="sort">Promotion Discount:</label>
+      <label for="sort">Sorting Order in Cart based on category: <small>(ex: photo, video, tour, staging, floorplan)</small></label>
       <input id="sort" type="number" [(ngModel)]="product.sort" name="sort" class="form-control">
     </div>
 
@@ -16,7 +16,10 @@
       <label for="description">Description:</label>
       <textarea id="description" [(ngModel)]="product.description" name="description" required class="form-control"></textarea>
     </div>
-
+    <div class="form-group">
+      <label for="detailedDescription">Detailed Description:</label>
+      <textarea id="detailedDescription" [(ngModel)]="product.detailedDescription" name="detailedDescription" required class="form-control"></textarea>
+    </div>
     <div class="form-group">
       <label for="imageUrl">Image URL:</label>
       <input id="imageUrl" [(ngModel)]="product.imageUrl" name="imageUrl" class="form-control">

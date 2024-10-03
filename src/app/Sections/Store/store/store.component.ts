@@ -20,6 +20,7 @@ export class StoreComponent implements OnInit {
   productsPhotos!: Product[];
   orderForm!: FormGroup;
   showCustomerInfo: boolean = false;
+  showVideoandTour: boolean = false;
 
   // Modal properties
   showModal: boolean = false;

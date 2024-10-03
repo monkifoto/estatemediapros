@@ -12,6 +12,7 @@ export class NavbarComponent implements OnInit {
   menuOpen: boolean = false;
   dropdownOpen: boolean = false;  // Manage dropdown visibility
   isLoggedIn: boolean = false;  // Track login status
+  showVideoandTour: boolean = false;
 
   constructor(private cartService: CartService, private authService: AuthService) {}
 

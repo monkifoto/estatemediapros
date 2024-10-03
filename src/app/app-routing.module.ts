@@ -15,16 +15,23 @@ import { SubscribersComponent } from './Admin/subscribers/subscribers.component'
 import { GalleryComponent } from './Sections/gallery/gallery.component';
 import { UploadFilesComponent } from './Admin/upload-files/upload-files.component';
 import { OrderEditComponent } from './Admin/order-edit/order-edit.component';
+import { PolicyComponent } from './Sections/policy/policy.component';
+import { TosComponent } from './Sections/tos/tos.component';
+import { VideoSectionComponent } from './Sections/video-section/video-section.component';
+import { Tour3dSectionComponent } from './Sections/tour3d-section/tour3d-section.component';
 
 const routes: Routes = [
   { path: '', component: HomeSectionComponent, title: 'PACIFIC PROPERY PHOTOS - Home', pathMatch: 'full' },
-  { path: 'home', component: HomeSectionComponent, title: 'home' },
-  { path: 'home2', component: HomeSectionComponent, title: 'home2' },
+  { path: 'home', component: HomeSectionComponent, title: 'PACIFIC PROPERY PHOTOS' },
+  { path: 'video', component: VideoSectionComponent, title: 'PACIFIC PROPERY PHOTOS - Video' },
+  { path: 'tour', component: Tour3dSectionComponent, title: 'PACIFIC PROPERY PHOTOS - 3D Tours' },
   { path: 'photos', component: PhotoSectionComponent, title: 'PACIFIC PROPERY PHOTOS - Photos' },
   { path: 'floorplan', component: FloorplanSectionComponent, title: 'PACIFIC PROPERY PHOTOS - Floorplan' },
   { path: 'virtualstaging', component: StagingSectionComponent, title: 'PACIFIC PROPERY PHOTOS - Virtual Staging' },
   { path: 'book', component: StoreComponent, title: 'PACIFIC PROPERY PHOTOS - Booking' },
   { path: 'gallery/:id', component: GalleryComponent },
+  { path: 'policy', component: PolicyComponent},
+  { path: 'tos', component: TosComponent},
 
 
   { path: 'admin', component: AdminComponent, canActivate: [adminAuthGuard] , children: [
