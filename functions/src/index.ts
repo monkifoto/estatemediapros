@@ -67,7 +67,10 @@ export const sendOrderEmail = functions.https.onRequest((req, res) => {
         Phone: ${customerInfo.PhoneNumber}
         Date: ${customerInfo.Date}
         Time: ${customerInfo.Time}
-        Square Footage: ${squareFootage}
+        Best Feature: ${customerInfo.bestFeature}
+        Access: ${customerInfo.propertyAccess}
+        Going Live Date: ${customerInfo.liveDate}
+        Garage or ADU: ${customerInfo.garageAdu}
 
         Cart Contents:\n${cartItems}`,
       };

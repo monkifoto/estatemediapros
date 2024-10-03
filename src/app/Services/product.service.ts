@@ -13,8 +13,8 @@ export class ProductService {
   constructor(private firestore: AngularFirestore) {}
 
   getProducts(): Observable<Product[]> {
-    return this.firestore.collection<Product>('Products').valueChanges().pipe(
-      tap(products => console.log('Fetched products from Firestore:', products)),
+    return this.firestore.collection<Product>('Products', ref => ref.where('isActive', '==', true)).valueChanges().pipe(
+      tap(products => console.log('Fetched active products from Firestore:', products)),
       catchError(error => {
         console.error('Error fetching products from Firestore:', error);
         return throwError(error); // Handle error

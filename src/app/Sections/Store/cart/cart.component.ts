@@ -18,6 +18,10 @@ export class CartComponent implements OnInit {
     phone: '',
     date: new Date(),
     time:'',
+    bestFeature: '',
+    propertyAccess: '',
+    liveDate: new Date(),
+    garageAdu: false
   };
 
   constructor(private cartService: CartService) {}

@@ -29,5 +29,28 @@
     <input id="time" formControlName="Time" type="time" class="form-control"/>
   </div>
 
+  <div class="form">
+    <div class="form-check">
+      <input id="garageAdu" type="checkbox" formControlName="garageAdu" class="form-check-input" />
+      <label class="form-check-label" for="garageAdu">Check if you have and ADU</label>
+    </div>
+  </div>
+<br>
+  <div class="form-group">
+    <label for="bestFeature">What is the best feature of the home?</label>
+    <input id="bestFeature" formControlName="bestFeature" placeholder="What is the best feature of the home?" class="form-control"/>
+  </div>
+
+  <div class="form-group">
+    <label for="propertyAccess">How will we gain access to the property?</label>
+    <input id="propertyAccess" formControlName="propertyAccess" placeholder="How will we gain access to the property?" class="form-control"/>
+  </div>
+
+  <div class="form-group">
+    <label for="liveDate">Going Live Date</label>
+    <input id="liveDate" formControlName="liveDate" type="date" class="form-control"/>
+  </div>
+
+
 <button type="button" class="book-now-btn" (click)="bookNow()">BOOK NOW</button>
 </div>

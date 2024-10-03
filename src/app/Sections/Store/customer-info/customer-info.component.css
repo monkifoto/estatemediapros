@@ -38,6 +38,21 @@
   outline: none;
 }
 
+.form-check {
+  display: flex;
+  align-items: center;
+  width: fit-content; /* Shrinks to fit the content */
+  margin-top: 10px; /* Optional: spacing from other controls */
+}
+
+.form-check-input {
+  margin-right: 10px; /* Space between checkbox and label */
+}
+
+.form-check-label {
+  margin: 0; /* Remove default margin */
+}
+
 .book-now-btn {
   bottom: 20px;
   right: 20px;

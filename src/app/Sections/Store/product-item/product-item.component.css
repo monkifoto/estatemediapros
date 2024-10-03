@@ -36,15 +36,18 @@
 }
 
 .product-details {
-  text-align: center;
+  text-align: left;
 }
 
+.product-pricing {
+  text-align: center;
+}
 .product-description {
   font-size: 14px;
   line-height: 1.6;
   margin-bottom: 10px;
   padding: 0 10px;
-  height: 100px;
+  height: 130px;
 }
 
 .product-buttons {
@@ -114,7 +117,24 @@
   transition: background-color 0.3s;
 }
 
+/* Promotion Badge */
+.promotion-badge {
+  position: absolute;
+  top: 80px;
+  right: 10px;
+  background-color: red;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  z-index: 1;
+}
 
+.product-container {
+  position: relative;
+  /* Other styles remain unchanged */
+}
 
 /* Close Button */
 .close-button {

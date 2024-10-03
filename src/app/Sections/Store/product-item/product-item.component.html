@@ -1,13 +1,21 @@
 <!-- product-item.component.html -->
+
 <div class="product-container">
   <div class="product-header">
     <h1 class="product-name">{{ product.name }}</h1>
     <!-- <p class="product-id">{{ product.id }}</p> -->
   </div>
   <div class="product-content">
+      <!-- Conditional promotion badge -->
+      <div *ngIf="product.isPromotion" class="promotion-badge">
+        {{ product.promotionDiscount }}% OFF
+      </div>
     <img src="{{product.imageUrl}}" alt="Product Image" class="product-image">
     <div class="product-details">
-      <p class="product-description">{{ product.description }}</p>
+      <p class="product-description roboto-slab-about">{{ product.description }}</p>
+
+    </div>
+    <div class="product-pricing">
       <p><strong>Total Price:</strong> {{ product.price | currency }}</p>
     </div>
     <div class="product-buttons">

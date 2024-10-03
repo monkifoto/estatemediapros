@@ -1,8 +1,9 @@
 /* General Subscriber List Styling */
 .subscriber-list {
+  max-width: 1400px;
   width: 100%;
+  margin: 50px auto; /* Center the form */
   padding: 20px;
-  margin-top: 70px;
   background-color: #f8f9fa; /* Light background for the container */
   border-radius: 8px; /* Rounded corners */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */

@@ -2,78 +2,82 @@
   <h2 *ngIf="editingProduct">Edit Product {{product.id}}</h2>
   <h2 *ngIf="!editingProduct">Add Product</h2>
   <form (ngSubmit)="onSubmit()" #productForm="ngForm">
-    <div class="form-group">
-      <label for="name">Name:</label>
-      <input id="name" [(ngModel)]="product.name" name="name" required class="form-control">
-    </div>
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input id="name" [(ngModel)]="product.name" name="name" required class="form-control">
+      </div>
 
-    <div class="form-group">
-      <label for="sort">Sorting Order in Cart based on category: <small>(ex: photo, video, tour, staging, floorplan)</small></label>
-      <input id="sort" type="number" [(ngModel)]="product.sort" name="sort" class="form-control">
-    </div>
+      <div class="form-group">
+        <label for="sort">Sorting Order in Cart:</label>
+        <input id="sort" type="number" [(ngModel)]="product.sort" name="sort" class="form-control">
+      </div>
 
-    <div class="form-group">
-      <label for="description">Description:</label>
-      <textarea id="description" [(ngModel)]="product.description" name="description" required class="form-control"></textarea>
-    </div>
-    <div class="form-group">
-      <label for="detailedDescription">Detailed Description:</label>
-      <textarea id="detailedDescription" [(ngModel)]="product.detailedDescription" name="detailedDescription" required class="form-control"></textarea>
-    </div>
-    <div class="form-group">
-      <label for="imageUrl">Image URL:</label>
-      <input id="imageUrl" [(ngModel)]="product.imageUrl" name="imageUrl" class="form-control">
-    </div>
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea id="description" [(ngModel)]="product.description" name="description" required class="form-control"></textarea>
+      </div>
 
-    <div class="form-group">
-      <label for="thumbnails">Upload Thumbnails (up to 3):</label>
-      <input id="thumbnails" type="file" (change)="onFileChange($event)" multiple class="form-control">
-      <small>Supported formats: JPG, PNG</small>
-    </div>
+      <div class="form-group">
+        <label for="detailedDescription">Detailed Description:</label>
+        <textarea id="detailedDescription" [(ngModel)]="product.detailedDescription" name="detailedDescription" required class="form-control"></textarea>
+      </div>
 
-    <div class="form-group">
-      <label for="baseSqFt">Base Sq Ft:</label>
-      <input id="baseSqFt" type="number" [(ngModel)]="product.baseSqFt" name="baseSqFt" required class="form-control">
-    </div>
+      <div class="form-group">
+        <label for="imageUrl">Image URL:</label>
+        <input id="imageUrl" [(ngModel)]="product.imageUrl" name="imageUrl" class="form-control">
+      </div>
 
-    <div class="form-group">
-      <label for="basePrice">Base Price:</label>
-      <input id="basePrice" type="number" [(ngModel)]="product.basePrice" name="basePrice" required class="form-control">
-    </div>
+      <div class="form-group">
+        <label for="thumbnails">Upload Thumbnails (up to 3):</label>
+        <input id="thumbnails" type="file" (change)="onFileChange($event)" multiple class="form-control">
+        <small>Supported formats: JPG, PNG</small>
+      </div>
 
-    <div class="form-group">
-      <label for="priceIncrementPerSqFt">Price Increment Per Sq Ft:</label>
-      <input id="priceIncrementPerSqFt" type="number" [(ngModel)]="product.priceIncrementPerSqFt" name="priceIncrementPerSqFt" required class="form-control">
-    </div>
+      <div class="form-group">
+        <label for="baseSqFt">Base Sq Ft:</label>
+        <input id="baseSqFt" type="number" [(ngModel)]="product.baseSqFt" name="baseSqFt" required class="form-control">
+      </div>
 
-    <div class="form-group">
-      <label for="incrementSqFtStep">Increment Sq Ft Step:</label>
-      <input id="incrementSqFtStep" type="number" [(ngModel)]="product.incrementSqFtStep" name="incrementSqFtStep" required class="form-control">
-    </div>
+      <div class="form-group">
+        <label for="basePrice">Base Price:</label>
+        <input id="basePrice" type="number" [(ngModel)]="product.basePrice" name="basePrice" required class="form-control">
+      </div>
 
-    <div class="form-group">
-      <label for="price">Price:</label>
-      <input id="price" type="number" [(ngModel)]="product.price" name="price" required class="form-control">
-    </div>
+      <div class="form-group">
+        <label for="priceIncrementPerSqFt">Price Increment Per Sq Ft:</label>
+        <input id="priceIncrementPerSqFt" type="number" [(ngModel)]="product.priceIncrementPerSqFt" name="priceIncrementPerSqFt" required class="form-control">
+      </div>
 
-    <div class="form-group">
-      <label for="productType">Product Type:</label>
-      <input id="productType" [(ngModel)]="product.productType" name="productType" required class="form-control">
-    </div>
+      <div class="form-group">
+        <label for="incrementSqFtStep">Increment Sq Ft Step:</label>
+        <input id="incrementSqFtStep" type="number" [(ngModel)]="product.incrementSqFtStep" name="incrementSqFtStep" required class="form-control">
+      </div>
 
-    <div class="form-group">
-      <label for="isActive">Is Active:</label>
-      <input id="isActive" type="checkbox" [(ngModel)]="product.isActive" name="isActive" class="form-check-input">
-    </div>
+      <div class="form-group">
+        <label for="price">Price:</label>
+        <input id="price" type="number" [(ngModel)]="product.price" name="price" required class="form-control">
+      </div>
 
-    <div class="form-group">
-      <label for="isPromotion">Is Promotion:</label>
-      <input id="isPromotion" type="checkbox" [(ngModel)]="product.isPromotion" name="isPromotion" class="form-check-input">
-    </div>
+      <div class="form-group">
+        <label for="productType">Product Type:</label>
+        <input id="productType" [(ngModel)]="product.productType" name="productType" required class="form-control">
+      </div>
 
-    <div class="form-group">
-      <label for="promotionDiscount">Promotion Discount:</label>
-      <input id="promotionDiscount" type="number" [(ngModel)]="product.promotionDiscount" name="promotionDiscount" class="form-control">
+      <div class="form-group">
+        <label for="isActive">Is Active:</label>
+        <input id="isActive" type="checkbox" [(ngModel)]="product.isActive" name="isActive" class="form-check-input">
+      </div>
+
+      <div class="form-group">
+        <label for="isPromotion">Is Promotion:</label>
+        <input id="isPromotion" type="checkbox" [(ngModel)]="product.isPromotion" name="isPromotion" class="form-check-input">
+      </div>
+
+      <div class="form-group">
+        <label for="promotionDiscount">Promotion Discount:</label>
+        <input id="promotionDiscount" type="number" [(ngModel)]="product.promotionDiscount" name="promotionDiscount" class="form-control">
+      </div>
     </div>
 
     <button class="btn btn-primary" type="submit" [disabled]="productForm.invalid">Save</button>

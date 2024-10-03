@@ -53,6 +53,21 @@ export class CartService {
     }
   }
 
+
+  updateCartItems(updatedProducts: Product[]): void {
+    // this.cart = this.cart.map(cartItem => {
+    //   const updatedProduct = updatedProducts.find(product => product.id === cartItem.id);
+    //   if (updatedProduct) {
+    //     cartItem.price = updatedProduct.price;  // Update the price
+    //   }
+    //   return cartItem;
+    // });
+
+    // Emit the updated cart items and recalculate the total
+//    this.cartItemsSource.next([...this.cart]);  // Make sure you're passing the correct updated cart
+    this.updateCartTotal(this.calculateTotal(this.cart));
+  }
+
   // Calculates total cost of the cart items
   private calculateTotal(items: any[]): number {
     return items.reduce((total, item) => total + item.price, 0);

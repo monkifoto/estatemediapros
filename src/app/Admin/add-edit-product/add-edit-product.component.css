@@ -1,7 +1,9 @@
 /* General Product Form Styling */
+
+
 .product-form {
   width: 100%;
-  max-width: 600px; /* Limit the width of the form */
+  max-width: 1400px; /* Limit the width of the form */
   margin: 50px auto; /* Center the form */
   padding: 20px;
   background-color: #fff; /* White background for the form */
@@ -14,6 +16,23 @@
   text-align: center; /* Center the header */
   margin-bottom: 20px; /* Space below the header */
   color: #333; /* Dark color for the header */
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+textarea.form-control {
+  grid-column: span 2; /* Textarea spans both columns */
+}
+
+button {
+  grid-column: span 2; /* Button spans both columns */
 }
 
 /* Form Group Styling */

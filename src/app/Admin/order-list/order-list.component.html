@@ -2,6 +2,18 @@
 
 <div class="order-list">
   <h2>Order List</h2>
+
+  <!-- Checkbox to show/hide Deleted orders -->
+  <div class="form-group d-flex justify-content-between align-items-center">
+    <div>
+      <input type="checkbox" id="showDeleted" [(ngModel)]="showDeletedOrders" (change)="updateFilteredOrders()">
+      <label for="showDeleted">Show Deleted Orders</label>
+    </div>
+    <!-- Display the number of orders shown -->
+    <div>
+      <strong>Orders Shown: {{ filteredOrderList.length }}</strong>
+    </div>
+  </div>
   <table>
     <thead>
       <tr>
@@ -11,13 +23,12 @@
         <th>Square Footage</th>
         <th>Date/Time</th>
         <th>Items</th>
-        <th>Edit</th>
-        <th>Mark Completed</th>
-        <th>Mark Deleted</th>
+        <td>Comments</td>
+        <th>Commands</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let order of orders">
+      <tr *ngFor="let order of filteredOrderList">
         <td>
           <a class="link"  (click)="navigateToGallery(order.id)">
             {{ order.id }}
@@ -39,12 +50,15 @@
           </ul>
         </td>
         <td>
-          <button (click)="navigateToEditOrder(order.id)">Edit</button>
+          {{order.comments}}
         </td>
         <td>
+          <button (click)="navigateToEditOrder(order.id)">Edit</button>
+          <br>
           <button (click)="markAsCompleted(order.id)">Completed</button>
-        </td>
-        <td><button (click)="markAsDeleted(order.id)">Delete</button></td>
+          <br>
+        <button (click)="markAsDeleted(order.id)">Delete</button>
+      </td>
       </tr>
     </tbody>
   </table>

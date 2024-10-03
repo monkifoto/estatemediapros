@@ -1,5 +1,5 @@
 import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/Model/product.model';
 import { CartService } from 'src/app/Services/cart.service';
@@ -13,8 +13,8 @@ import { OrderService } from './../../../Services/order.service';
 })
 export class StoreComponent implements OnInit {
   activeTab: string = 'bundles';
-  squareFootage: { min: number; max: number } = { min: 500, max: 2000 };
-  selectedSqFt: string = '500-2000';
+  squareFootage: { min: number; max: number } = { min: 500, max: 1000 };
+  selectedSqFt: string = '500-1000';
   product: any;
   products!: Product[];
   productsPhotos!: Product[];
@@ -37,10 +37,14 @@ export class StoreComponent implements OnInit {
     this.orderForm = this.fb.group({
       Name: ['Customer Name'],
       Address: ['15325 SE 155th Pl Unit E2, Renton Wa 980058'],
-      Email: ['seattlerealestatephoto@gmail.com'],
+      Email: ['seattlerealestatephoto@gmail.com',[Validators.required, Validators.email]],
       PhoneNumber: ['425 390 4204'],
       Date: ['10/01/2024'],
       Time: ['5 : 00 PM'],
+      bestFeature: [''],
+      propertyAccess: [''],
+      liveDate: [''],
+      garageAdu: [false]
     });
   }
 
@@ -54,15 +58,14 @@ export class StoreComponent implements OnInit {
         this.updatePrices();
 
         setTimeout(() => {
-          this.activeTab = 'photos'; // Set the active tab to 'bundles'
-          this.cdRef.detectChanges(); // Ensure Angular detects the changes
+          this.activeTab = 'photos';
+          this.cdRef.detectChanges();
         }, 0);
       },
       error: (error: any) => {
         console.error('Error fetching products:', error);
       }
     });
-    //this.onSqftChange(this.squareFootage.min, this.squareFootage.max);
   }
 
   onSqftChange(min: number, max: number) {
@@ -80,6 +83,7 @@ export class StoreComponent implements OnInit {
           this.squareFootage.max
         );
       });
+      this.cartService.updateCartItems(this.products.filter(p => this.cartService.getCartItems().some(cartItem => cartItem.id === p.id)));
     } else {
       console.error('No products available to update prices.');
     }
