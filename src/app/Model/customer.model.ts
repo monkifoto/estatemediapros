@@ -4,6 +4,7 @@ export interface Customer {
   email: string,
   phone: string,
   date: Date,
+  bookingDate: Date,
   time: string,
   bestFeature: string,
   propertyAccess: string,

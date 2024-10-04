@@ -61,12 +61,13 @@ export const sendOrderEmail = functions.https.onRequest((req, res) => {
         cc: 'sorin.bucse@gmail.com',
         subject: 'New Order Received - Pacific Property Photos',
         text: `You have a new order:\n
-        Customer Name: ${customerInfo.Name}
-        Email: ${customerInfo.Email}
-        Address: ${customerInfo.Address}
-        Phone: ${customerInfo.PhoneNumber}
-        Date: ${customerInfo.Date}
-        Time: ${customerInfo.Time}
+        Customer Name: ${customerInfo.name}
+        Email: ${customerInfo.email}
+        Address: ${customerInfo.address}
+        Square Footage: ${squareFootage}
+        Phone: ${customerInfo.phoneNumber}
+        Date: ${customerInfo.date}
+        Time: ${customerInfo.time}
         Best Feature: ${customerInfo.bestFeature}
         Access: ${customerInfo.propertyAccess}
         Going Live Date: ${customerInfo.liveDate}

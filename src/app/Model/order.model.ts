@@ -1,11 +1,12 @@
 import { CartItem } from "./cart-item.model";
-import { CustomerInfo } from "./customer-info.model";
+import { Customer } from "./customer.model";
 
 export interface Order {
   cartContents: CartItem[];
-  customerInfo: CustomerInfo;
+  customerInfo: Customer;
   comments: string;
   tourLink: string;
   videoLink: string;
+  squareFootage: string;
 
 }

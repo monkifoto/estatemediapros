@@ -5,6 +5,7 @@ import { Product } from 'src/app/Model/product.model';
 import { CartService } from 'src/app/Services/cart.service';
 import { ProductService } from 'src/app/Services/product.service';
 import { OrderService } from './../../../Services/order.service';
+import { Order } from 'src/app/Model/order.model';
 
 @Component({
   selector: 'app-store',
@@ -35,16 +36,16 @@ export class StoreComponent implements OnInit {
     private cdRef: ChangeDetectorRef // Inject ChangeDetectorRef
   ) {
     this.orderForm = this.fb.group({
-      Name: ['Customer Name'],
-      Address: ['15325 SE 155th Pl Unit E2, Renton Wa 980058'],
-      Email: ['seattlerealestatephoto@gmail.com',[Validators.required, Validators.email]],
-      PhoneNumber: ['425 390 4204'],
-      Date: ['10/01/2024'],
-      Time: ['5 : 00 PM'],
-      bestFeature: [''],
-      propertyAccess: [''],
-      liveDate: [''],
-      garageAdu: [false]
+      name: ['Customer Name'],
+      address: ['15325 SE 155th Pl Unit E2, Renton Wa 980058'],
+      email: ['seattlerealestatephoto@gmail.com', [Validators.required, Validators.email]],
+      phoneNumber: ['425 390 4204'],
+      date: [new Date('2024-10-07')],  // Ensure valid date object
+      time: ['5:00 PM'],
+      bestFeature: ['GARAGE'],
+      propertyAccess: ['Door code: 4444'],
+      liveDate: [new Date('2024-10-07')],  // Ensure valid date object
+      garageAdu: [false],
     });
   }
 
@@ -103,12 +104,16 @@ export class StoreComponent implements OnInit {
 
   onSubmit(): void {
     if (this.orderForm.valid) {
-      const order = {
+      const order : Order = {
         customerInfo: this.orderForm.value,
         squareFootage: this.selectedSqFt,
         cartContents: this.cartService.getCartItems(),
+        comments: '',
+        tourLink: '',
+        videoLink: ''
       };
-
+      console.log(this.orderForm.value.date);   // Should print the date in ISO format
+      console.log(this.orderForm.value.liveDate);
       console.log('Order has been submitted:', order);
 
       // 1. Save the order in Firestore

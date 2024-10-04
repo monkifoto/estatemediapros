@@ -51,7 +51,7 @@ export class OrderService {
   }
 
   // Save order to Firestore
-  saveOrder(order: any): Promise<any> {
+  saveOrder(order: Order): Promise<any> {
     return this.ordersCollection.add(order);
   }
 

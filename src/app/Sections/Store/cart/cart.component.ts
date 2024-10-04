@@ -17,6 +17,7 @@ export class CartComponent implements OnInit {
     email: '',
     phone: '',
     date: new Date(),
+    bookingDate: new Date(),
     time:'',
     bestFeature: '',
     propertyAccess: '',

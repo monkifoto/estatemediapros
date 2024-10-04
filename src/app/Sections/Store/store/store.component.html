@@ -65,7 +65,7 @@
       <!-- Cart Section on the Right -->
       <div class="cart-section">
         <app-cart (bookNowClicked)="onBookNow()"></app-cart>
-        <app-customer-info *ngIf="showCustomerInfo" [customerForm]="orderForm" (submitForm)="onSubmit()"></app-customer-info>
+        <app-customer-info *ngIf="showCustomerInfo" [orderForm]="orderForm" (submitForm)="onSubmit()"></app-customer-info>
       </div>
     </div>
   </form>

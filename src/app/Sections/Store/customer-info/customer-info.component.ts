@@ -8,7 +8,7 @@ import { Customer } from 'src/app/Model/customer.model';
   styleUrls: ['./customer-info.component.css']
 })
 export class CustomerInfoComponent {
-  @Input() customerForm!: FormGroup;
+  @Input() orderForm!: FormGroup;
   @Output() submitForm = new EventEmitter<void>();
 
   bookNow() {
