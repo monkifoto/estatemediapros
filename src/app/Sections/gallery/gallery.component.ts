@@ -40,6 +40,7 @@ export class GalleryComponent implements OnInit {
   loadOrderDetails() {
     this.orderService.getOrderById(this.orderId).subscribe((order) => {
       this.order = order;  // Populate the order object
+      console.log(order);
       if (this.order.tourLink) {
         this.safeTourLink = this.sanitizer.bypassSecurityTrustResourceUrl(this.order.tourLink);
       }

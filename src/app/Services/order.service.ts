@@ -4,8 +4,9 @@ import {
   AngularFirestoreCollection,
 } from '@angular/fire/compat/firestore';
 import { HttpClient } from '@angular/common/http';
-import { map, Observable } from 'rxjs';
+import { from, map, Observable, switchMap } from 'rxjs';
 import { Order } from '../Model/order.model';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 
 @Injectable({
   providedIn: 'root',
@@ -13,11 +14,12 @@ import { Order } from '../Model/order.model';
 export class OrderService {
   private ordersCollection = this.firestore.collection('Orders');
   private orderCollection!: AngularFirestoreCollection<Order>;
+  orderId: string = '33L4evImBNnr4pZG6SGj';
 
   private emailUrl: string =
     'https://us-central1-pacificpropertyphotos-50a8c.cloudfunctions.net/sendOrderEmail';
 
-  constructor(private firestore: AngularFirestore, private http: HttpClient) {
+  constructor(private firestore: AngularFirestore, private http: HttpClient, private storage: AngularFireStorage,) {
     this.orderCollection = this.firestore.collection<Order>('Orders');
   }
 
@@ -79,4 +81,19 @@ export class OrderService {
   updateOrder(orderId: string, orderData: any): Promise<void> {
     return this.ordersCollection.doc(orderId).update(orderData);
   }
+
+  ////////Experimental //////
+
+  loadGalleryImages(): Observable<string[]> {
+    const folderPath = `orders/${this.orderId}`;
+    return this.storage.ref(folderPath).listAll().pipe(
+      switchMap((result) => {
+        // Create an array of promises to get download URLs
+        const downloadUrlPromises = result.items.map(item => item.getDownloadURL());
+        // Wait for all promises to resolve, then return the observable of the resulting URLs
+        return from(Promise.all(downloadUrlPromises));
+      })
+    );
+  }
+
 }
