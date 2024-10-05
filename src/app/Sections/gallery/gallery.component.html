@@ -21,6 +21,7 @@
   </div>
 
   <button (click)="downloadAllAsZip()">Download All</button>
+  <app-order-pdf></app-order-pdf>
   <!-- Gallery Images - Show only if images are loaded -->
   <div class="image-grid" *ngIf="imageUrls | async as urls">
     <img *ngFor="let imageUrl of urls" [src]="imageUrl" (click)="openModal(imageUrl)" (contextmenu)="disableRightClick($event)" />
@@ -48,4 +49,3 @@
     </div>
   </div>
 </div>
-<app-order-pdf></app-order-pdf>

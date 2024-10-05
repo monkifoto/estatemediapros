@@ -88,13 +88,13 @@ body {
   font-style: normal;
 }
 
-img{
+/* img{
   opacity: .7;
 }
 
 img:hover{
   opacity: 1;
-}
+} */
 /* shared by all pages */
 
 .hero-subtitle {
