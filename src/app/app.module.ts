@@ -46,6 +46,7 @@ import { GalleryComponent } from './Sections/gallery/gallery.component';
 import { UploadFilesComponent } from './Admin/upload-files/upload-files.component';
 import { CommonModule } from '@angular/common';
 import { OrderEditComponent } from './Admin/order-edit/order-edit.component';
+import { OrderPdfComponent } from './Sections/order-pdf/order-pdf.component';
 
 @NgModule({ declarations: [
         AppComponent,
@@ -82,7 +83,8 @@ import { OrderEditComponent } from './Admin/order-edit/order-edit.component';
         OrderListComponent,
         GalleryComponent,
         UploadFilesComponent,
-        OrderEditComponent
+        OrderEditComponent,
+        OrderPdfComponent
     ],
     bootstrap: [AppComponent],
     imports: [BrowserModule,

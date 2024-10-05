@@ -1,56 +1,95 @@
-.order-details {
-  margin-bottom: 20px;
-  border: 1px solid #ddd;
-  padding: 10px;
-  border-radius: 5px;
-  background-color: #f9f9f9;
-}
-
-
-
-
-.mosaic-image {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  border-radius: 5px;
-  transition: transform 0.3s ease;
-}
-
-.mosaic-image:hover {
-  transform: scale(1.05);
-}
-
-/* Gallery Styles */
+/* General Layout */
 .gallery {
   margin: 20px auto;
   width: 90%;
   max-width: 1200px;
 }
 
+h3, h4 {
+  font-family: 'Roboto', sans-serif;
+  color: #333;
+}
+
+.order-details {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.order-details h3, .order-details p {
+  margin: 10px 0;
+}
+
+/* Cart List */
+.order-details ul {
+  list-style: none;
+  padding: 0;
+}
+
+.order-details ul li {
+  padding: 10px;
+  background-color: #fff;
+  margin-bottom: 5px;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Buttons */
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Image Grid */
 .image-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 10px;
+  gap: 15px;
 }
 
-
 .image-grid img {
-  width: 150px;
-  height: 100px;
+  width: 100%;
+  height: auto;
   object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
 }
 
-/* Bootstrap Modal Image */
-.modal-content img {
-  width: 100%;
-  height: auto;
+.image-grid img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Disable right-click */
-img {
-  /* -webkit-user-drag: none;
-  pointer-events: none;
-  user-select: none; */
+/* 3D Tour & Video Section */
+iframe {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal-content img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .image-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
 }
