@@ -28,6 +28,72 @@ export class OrderPdfComponent implements OnInit {
     });
   }
 
+  generatePdf3() {
+    console.log("Generating PDF with custom layout...");
+    const doc = new jsPDF('p', 'mm', 'a4'); // Portrait orientation
+    const margin = 10;
+
+    const mainImageWidth = doc.internal.pageSize.width - 2 * margin;
+    const mainImageHeight = 80;
+
+    const smallImageWidth = (mainImageWidth - margin * 2) / 3;
+    const smallImageHeight = 45;
+
+    const textX = margin;
+    const textY = mainImageHeight + smallImageHeight + margin * 4;
+
+    // Order address and other text details
+    const orderAddress = "1234 Elm Street, Springfield, IL 62704";
+    const priceDetails = "$150 STILLS\nUp to 2000 Sq.Ft.\n+$15 for each additional 500 Sq.Ft.";
+
+    // Fetch the images (first 6 images)
+    const imagesToLoad = this.imageUrls.slice(0, 6);
+
+    forkJoin(imagesToLoad.map(url => this.loadImage(url))).subscribe({
+      next: (images) => {
+        if (images.length < 6) {
+          console.warn('Not enough images available. At least 6 images are required for the layout.');
+          return;
+        }
+
+        console.log('Images loaded successfully:', images);
+
+        // Add the main image at the top
+        doc.addImage(images[0], 'JPEG', margin, margin, mainImageWidth, mainImageHeight);
+
+        // Add the smaller images in a row below the main image
+        let xPos = margin;
+        let yPos = mainImageHeight + margin * 2;
+
+        for (let i = 1; i <= 5; i++) {
+          doc.addImage(images[i], 'JPEG', xPos, yPos, smallImageWidth, smallImageHeight);
+          xPos += smallImageWidth + margin;
+
+          // Move to the next row after every 3 images
+          if (i === 3) {
+            xPos = margin;
+            yPos += smallImageHeight + margin;
+          }
+        }
+
+        // Add the address and price details below the images
+        doc.setFontSize(14);
+        doc.setFont("helvetica", "bold");
+        doc.text("SOMETHING REAL ESTATE MEDIA", textX, textY);
+
+        doc.setFontSize(12);
+        doc.setFont("helvetica", "normal");
+        doc.text(orderAddress, textX, textY + 10);
+        doc.text(priceDetails, textX, textY + 20);
+
+        console.log('Saving PDF...');
+        doc.save('order.pdf');
+      },
+      error: (err) => {
+        console.error('Error loading images:', err);
+      }
+    });
+  }
 
   generatePdf2() {
     console.log("Generating PDF...");
