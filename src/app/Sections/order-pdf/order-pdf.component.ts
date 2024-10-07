@@ -31,22 +31,30 @@ export class OrderPdfComponent implements OnInit {
   generatePdf3() {
     console.log("Generating PDF with custom layout...");
     const doc = new jsPDF('p', 'mm', 'a4'); // Portrait orientation
-    const margin = 10;
+    const pageWidth = doc.internal.pageSize.width;
+    const pageHeight = doc.internal.pageSize.height;
 
-    const mainImageWidth = doc.internal.pageSize.width - 2 * margin;
+    const border = 10;
+    const backgroundColor = [0, 0, 0]; // Black background
+
+    // Main layout sizes and positions
     const mainImageHeight = 80;
+    const smallImageHeight = 30;
+    const smallImageWidth = 50;
 
-    const smallImageWidth = (mainImageWidth - margin * 2) / 3;
-    const smallImageHeight = 45;
+    const textAreaWidth = pageWidth - (border * 2) - smallImageWidth - 10;
 
-    const textX = margin;
-    const textY = mainImageHeight + smallImageHeight + margin * 4;
+    // Row positions
+    const mainImageY = border;
+    const row1Y = mainImageY + mainImageHeight + 15;
+    const row2Y = row1Y + smallImageHeight + 10;
+    const row3Y = row2Y + smallImageHeight + 10;
+    const footerY = pageHeight - border - 10;
 
-    // Order address and other text details
-    const orderAddress = "1234 Elm Street, Springfield, IL 62704";
-    const priceDetails = "$150 STILLS\nUp to 2000 Sq.Ft.\n+$15 for each additional 500 Sq.Ft.";
+    const textColor = [255, 255, 255]; // White text color
+    const websiteUrl = "https://pacificpropertyphotos.com";
 
-    // Fetch the images (first 6 images)
+    // Load only the first 6 images for this layout
     const imagesToLoad = this.imageUrls.slice(0, 6);
 
     forkJoin(imagesToLoad.map(url => this.loadImage(url))).subscribe({
@@ -58,33 +66,33 @@ export class OrderPdfComponent implements OnInit {
 
         console.log('Images loaded successfully:', images);
 
+        // Draw the black background within the border
+        doc.setFillColor(75,75,75);
+        doc.rect(border, border, pageWidth - (border * 2), pageHeight - (border * 2), 'F');
+
         // Add the main image at the top
-        doc.addImage(images[0], 'JPEG', margin, margin, mainImageWidth, mainImageHeight);
+        doc.addImage(images[0], 'JPEG', border + 10, mainImageY, pageWidth - (border * 2) - 20, mainImageHeight);
 
-        // Add the smaller images in a row below the main image
-        let xPos = margin;
-        let yPos = mainImageHeight + margin * 2;
-
-        for (let i = 1; i <= 5; i++) {
-          doc.addImage(images[i], 'JPEG', xPos, yPos, smallImageWidth, smallImageHeight);
-          xPos += smallImageWidth + margin;
-
-          // Move to the next row after every 3 images
-          if (i === 3) {
-            xPos = margin;
-            yPos += smallImageHeight + margin;
-          }
-        }
-
-        // Add the address and price details below the images
-        doc.setFontSize(14);
-        doc.setFont("helvetica", "bold");
-        doc.text("SOMETHING REAL ESTATE MEDIA", textX, textY);
-
+        // Row 1: One image on the left, text on the right
+        doc.addImage(images[1], 'JPEG', border + 10, row1Y, smallImageWidth, smallImageHeight);
+        doc.setTextColor(190,190,190);
         doc.setFontSize(12);
-        doc.setFont("helvetica", "normal");
-        doc.text(orderAddress, textX, textY + 10);
-        doc.text(priceDetails, textX, textY + 20);
+        doc.text("Premium Property Stills\nUp to 2000 Sq.Ft.\nAdditional 500 Sq.Ft. for $15", border + 20 + smallImageWidth, row1Y + 10);
+
+        // Row 2: One image on the left, different text on the right
+        doc.addImage(images[2], 'JPEG', border + 10, row2Y, smallImageWidth, smallImageHeight);
+        doc.text("Enhanced Photography Package\nIncludes aerial and twilight shots\nAdditional for Virtual Tours", border + 20 + smallImageWidth, row2Y + 10);
+
+        // Row 3: Three images across the row
+        let xPos = border + 10;
+        images.slice(3, 6).forEach((image, index) => {
+          doc.addImage(image, 'JPEG', xPos, row3Y, smallImageWidth, smallImageHeight);
+          xPos += smallImageWidth + 10;
+        });
+
+        // Footer with website URL centered
+        doc.setFontSize(10);
+        doc.text(websiteUrl, pageWidth / 2, footerY, { align: 'center' });
 
         console.log('Saving PDF...');
         doc.save('order.pdf');
@@ -94,6 +102,7 @@ export class OrderPdfComponent implements OnInit {
       }
     });
   }
+
 
   generatePdf2() {
     console.log("Generating PDF...");
@@ -228,7 +237,7 @@ export class OrderPdfComponent implements OnInit {
         const ctx = canvas.getContext('2d');
         ctx?.drawImage(img, 0, 0);
         const imageData = canvas.toDataURL('image/jpeg');
-        console.log('Image loaded:', imageData);  // Log base64 data
+        console.log('Image loaded:', imageData);  
         observer.next(imageData);
         observer.complete();
       };
