@@ -37,6 +37,10 @@ export class GalleryComponent implements OnInit {
     private clipboard: Clipboard
   ) {}
 
+  get selectedCount(): number {
+    return this.selectedImages.length;
+  }
+
   ngOnInit(): void {
     this.orderId = this.route.snapshot.paramMap.get('id')!;
     this.loadOrderDetails();
@@ -162,6 +166,9 @@ export class GalleryComponent implements OnInit {
     } else {
       alert('No link to copy.');
     }
+  }
+  disableRightClick(event: MouseEvent): void {
+    event.preventDefault(); // Prevent the default context menu from opening
   }
 
 }

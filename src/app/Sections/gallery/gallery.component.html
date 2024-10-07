@@ -31,10 +31,10 @@
 
     <!-- Right Button -->
     <div class="button-right">
-      <button (click)="generateSelectedPdf()">Generate Selected PDF</button>
+      <button (click)="generateSelectedPdf()"  [disabled]="selectedCount !== 6">Generate PDF</button>
     </div>
   </div>
-
+<div><small>Please select 6 images to generate PDF.</small></div>
   <div class="image-gallery-grid">
     <div
       *ngFor="let image of imageUrls | async"
@@ -45,7 +45,7 @@
       <div class="actions">
         <!-- Vertical Ellipsis Icon -->
         <span class="vertical-dots" (click)="openContextMenu($event, image)">⋮</span>
-        <img [src]="image" alt="Photo" class="photo" />
+        <img [src]="image" alt="Photo" class="photo"  (contextmenu)="disableRightClick($event)" />
       </div>
     </div>
   </div>
@@ -91,7 +91,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body" style="display: flex; justify-content: center;">
-          <img id="fullImage" src="" alt="Full Image" style="max-width: 100%; max-height: 100%;" />
+          <img id="fullImage" src="" alt="Full Image" style="max-width: 100%; max-height: 100%;"  (contextmenu)="disableRightClick($event)" />
         </div>
       </div>
     </div>
