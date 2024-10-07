@@ -7,6 +7,8 @@ export interface Order {
   comments: string;
   tourLink: string;
   videoLink: string;
+  MLStourLink: string;
+  MLSvideoLink: string;
   squareFootage: string;
 
 }

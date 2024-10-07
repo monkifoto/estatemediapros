@@ -1,95 +1,175 @@
-/* General Layout */
+/* gallery.component.css */
+
 .gallery {
   margin: 20px auto;
   width: 90%;
   max-width: 1200px;
 }
 
-h3, h4 {
-  font-family: 'Roboto', sans-serif;
-  color: #333;
+.order-container {
+  display: flex;
+  flex-wrap: wrap; /* Allows wrapping on smaller screens */
+  max-width: 1200px;
+  margin: 20px auto;
+  gap: 20px;
+  padding: 0 15px;
 }
 
-.order-details {
-  background-color: #f9f9f9;
-  padding: 20px;
-  border-radius: 8px;
-  margin-bottom: 30px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.order-info,
+.cart-contents {
+  flex: 1 1 100%; /* Default to full width */
+  padding: 10px;
 }
 
-.order-details h3, .order-details p {
-  margin: 10px 0;
+.order-info {
+  padding-right: 10px;
+  border-right: 1px solid #ccc; /* Optional: adds a dividing line */
 }
 
-/* Cart List */
-.order-details ul {
+.cart-contents {
+  padding-left: 10px;
+}
+
+/* Responsive stacking behavior */
+@media (min-width: 768px) {
+  .order-info,
+  .cart-contents {
+    flex: 1 1 48%; /* Take 48% of the width for side-by-side layout */
+  }
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+.button-left,
+.button-right {
+  flex: 1;
+}
+
+.button-left {
+  text-align: left;
+}
+
+.button-right {
+  text-align: right;
+}
+
+.image-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.image-container {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  border: 5px solid transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: #f7f7f7;
+}
+
+.image-container.selected {
+  border-color: greenyellow;
+}
+
+.photo {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+
+.dots {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.vertical-dots {
+  cursor: pointer;
+  position: absolute;
+  top: -4px;
+  right: 2px;
+}
+
+
+.context-menu {
+  position: absolute;
+  background: white;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  z-index: 100;
+  border-radius: 4px;
+}
+
+.context-menu ul {
   list-style: none;
+  margin: 0;
   padding: 0;
 }
 
-.order-details ul li {
-  padding: 10px;
-  background-color: #fff;
-  margin-bottom: 5px;
-  border-radius: 4px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-}
-
-/* Buttons */
-button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-button:hover {
-  background-color: #0056b3;
-}
-
-/* Image Grid */
-.image-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 15px;
-}
-
-.image-grid img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  border-radius: 8px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+.context-menu li {
+  padding: 8px 12px;
   cursor: pointer;
 }
 
-.image-grid img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+.context-menu li:hover {
+  background-color: #f0f0f0;
 }
 
-/* 3D Tour & Video Section */
-iframe {
+
+.media-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap; /* Allows wrapping on smaller screens */
+  max-width: 1200px;
+  margin: 20px auto;
+  gap: 20px;
+  padding: 0 15px;
+}
+
+.tour-section,
+.video-section {
+  flex: 1 1 100%;
+  text-align: center;
+}
+
+/* Adjusts iframe for responsive scaling */
+.responsive-iframe {
   width: 100%;
   height: auto;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  aspect-ratio: 16 / 9; /* Maintains aspect ratio */
+  max-width: 1000px; /* Limit width on larger screens */
 }
 
-.modal-content img {
-  width: 100%;
-  border-radius: 8px;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .image-grid {
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+/* Side-by-side layout for larger screens */
+@media (min-width: 768px) {
+  .tour-section,
+  .video-section {
+    flex: 1 1 45%; /* Make each section occupy 45% width */
   }
+}
+
+.modal-content {
+  border-radius: 8px; /* Rounded corners for modal */
+}
+
+.modal-header {
+  border-bottom: none; /* Optional: Remove bottom border */
+}
+
+.modal-body {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Center the image vertically as well */
+}
+
+.btn-close {
+  margin: -10px; /* Adjust margin for better positioning */
 }

@@ -1,16 +1,18 @@
+<!-- gallery.component.html -->
+
 <div class="gallery">
-
-
   <!-- Order Details - Display only if order is available -->
-  <div *ngIf="order">
+  <div *ngIf="order" class="order-container">
+    <div class="order-info">
     <h3>Order Details</h3>
-    <p>Name: {{ order.customerInfo.name }}</p>
-    <p>Address: {{ order.customerInfo.address }}</p>
-    <p>Email: {{ order.customerInfo.email }}</p>
-    <p>Phone: {{ order.customerInfo.phone }}</p>
-    <p>Date: {{ order.customerInfo.date }}</p>
-    <p>Time: {{ order.customerInfo.time }}</p>
-
+    <div>Name: {{ order.customerInfo.name }}</div>
+    <div>Address: {{ order.customerInfo.address }}</div>
+    <div>Email: {{ order.customerInfo.email }}</div>
+    <div>Phone: {{ order.customerInfo.phone }}</div>
+    <div>Date: {{ order.customerInfo.date }}</div>
+    <div>Time: {{ order.customerInfo.time }}</div>
+  </div>
+  <div class="cart-contents">
     <!-- Cart Contents -->
     <h4>Cart Contents</h4>
     <ul>
@@ -19,33 +21,78 @@
       </li>
     </ul>
   </div>
-
-  <button (click)="downloadAllAsZip()">Download All</button>
-  <app-order-pdf></app-order-pdf>
-  <!-- Gallery Images - Show only if images are loaded -->
-  <div class="image-grid" *ngIf="imageUrls | async as urls">
-    <img *ngFor="let imageUrl of urls" [src]="imageUrl" (click)="openModal(imageUrl)" (contextmenu)="disableRightClick($event)" />
   </div>
-</div>
-<div class="gallery">
-<div *ngIf="safeTourLink">
-  <h4>3D Tour</h4>
-  <iframe width="853" height="480" [src]="safeTourLink" frameborder="0" allowfullscreen allow="xr-spatial-tracking"></iframe>
-</div>
-</div>
-<div class="gallery">
-  <h4>Video</h4>
-  <iframe width="560" height="315" [src]="safeVideoLink" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</div>
 
-<h2> Order: {{ orderId }}</h2>
-<!-- Bootstrap Modal -->
-<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content">
-      <div class="modal-body">
-        <img id="fullImage" src="" alt="Full Image" />
+  <div class="button-container">
+    <!-- Left Button -->
+    <div class="button-left">
+      <button (click)="downloadAllAsZip()">Download All</button>
+    </div>
+
+    <!-- Right Button -->
+    <div class="button-right">
+      <button (click)="generateSelectedPdf()">Generate Selected PDF</button>
+    </div>
+  </div>
+
+  <div class="image-gallery-grid">
+    <div
+      *ngFor="let image of imageUrls | async"
+      class="image-container"
+      [class.selected]="selectedImages.includes(image)"
+      (click)="toggleSelectImage(image)"
+    >
+      <div class="actions">
+        <!-- Vertical Ellipsis Icon -->
+        <span class="vertical-dots" (click)="openContextMenu($event, image)">⋮</span>
+        <img [src]="image" alt="Photo" class="photo" />
       </div>
     </div>
   </div>
+
+  <!-- Context Menu -->
+  <div
+    class="context-menu"
+    *ngIf="contextMenuVisible"
+    [style.top.px]="contextMenuPosition.y"
+    [style.left.px]="contextMenuPosition.x"
+  >
+    <ul>
+      <li (click)="performAction('Open', selectedImageUrl!)">Open</li>
+      <li (click)="performAction('Share', selectedImageUrl!)">Share</li>
+      <li (click)="performAction('Delete', selectedImageUrl!)">Delete</li>
+    </ul>
+  </div>
+
+
+  <div class="media-container">
+    <!-- 3D Tour -->
+    <div *ngIf="safeTourLink" class="tour-section">
+      <h4>3D Tour</h4>
+      <button (click)="copyLinkToClipboard(order.MLStourLink)" class="copy-link-button">Copy Link</button>
+      <iframe class="responsive-iframe" [src]="safeTourLink" frameborder="0" allowfullscreen allow="xr-spatial-tracking"></iframe>
+    </div>
+
+    <!-- Video Section -->
+    <div *ngIf="safeVideoLink" class="video-section">
+      <h4>Video</h4>
+      <button (click)="copyLinkToClipboard(order.MLSvideoLink)" class="copy-link-button">Copy Link</button>
+      <iframe class="responsive-iframe" [src]="safeVideoLink" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+  </div>
 </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="imageModalLabel">Image Preview</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" style="display: flex; justify-content: center;">
+          <img id="fullImage" src="" alt="Full Image" style="max-width: 100%; max-height: 100%;" />
+        </div>
+      </div>
+    </div>
+  </div>

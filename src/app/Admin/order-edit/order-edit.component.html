@@ -8,11 +8,17 @@
     <div>
       <label for="tourLink">3D Tour Link:</label>
       <input id="tourLink" formControlName="tourLink" type="text">
+
+      <label for="MLStourLink">MLS 3D Tour Link:</label>
+      <input id="MLStourLink" formControlName="MLStourLink" type="text">
     </div>
     <div>
       <label for="videoLink">Video Link:</label>
       <div>Please use the URL from the youtube embeded generated code.</div>
       <input id="videoLink" formControlName="videoLink" type="text">
+
+      <label for="MLStourLink">MLS Video Link:</label>
+      <input id="MLSvideoLink" formControlName="MLSvideoLink" type="text">
     </div>
     <button type="submit" [disabled]="orderForm.invalid">Save</button>
   </form>

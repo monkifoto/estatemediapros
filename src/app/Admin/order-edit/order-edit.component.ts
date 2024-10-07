@@ -27,9 +27,9 @@ export class OrderEditComponent implements OnInit {
 
     // Initialize form
     this.orderForm = this.formBuilder.group({
-      comments: ['', Validators.required],
-      tourLink: ['', Validators.required],
-      videoLink: ['', Validators.required],
+      comments: [''],
+      tourLink: [''],
+      videoLink: [''],
     });
 
     // Load order details
@@ -39,7 +39,9 @@ export class OrderEditComponent implements OnInit {
         this.orderForm.patchValue({
           comments: order.comments || '',
           tourLink: order.tourLink || '',
-          videoLink: order.videoLink || ''
+          videoLink: order.videoLink || '',
+           MLStourLink: order.MLStourLink || '',
+          MLSvideoLink: order.MLSvideoLink || ''
         });
       });
     }
@@ -51,7 +53,9 @@ export class OrderEditComponent implements OnInit {
       ...this.order,
       comments: this.orderForm.value.comments,
       tourLink: this.orderForm.value.tourLink,
-      videoLink: this.orderForm.value.videoLink
+      videoLink: this.orderForm.value.videoLink,
+      MLStourLink: this.orderForm.value.tourLink,
+      MLSvideoLink: this.orderForm.value.videoLink
     };
 
     this.orderService.updateOrder(this.orderId, updatedOrder).then(() => {

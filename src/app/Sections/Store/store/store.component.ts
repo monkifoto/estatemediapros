@@ -110,7 +110,9 @@ export class StoreComponent implements OnInit {
         cartContents: this.cartService.getCartItems(),
         comments: '',
         tourLink: '',
-        videoLink: ''
+        videoLink: '',
+        MLStourLink: '',
+        MLSvideoLink: ''
       };
       console.log(this.orderForm.value.date);   // Should print the date in ISO format
       console.log(this.orderForm.value.liveDate);
