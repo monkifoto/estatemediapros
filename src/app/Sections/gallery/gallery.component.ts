@@ -1,7 +1,7 @@
 // gallery.component.ts
 
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { from, Observable } from 'rxjs';
 import { OrderService } from 'src/app/Services/order.service';
@@ -11,6 +11,7 @@ import { saveAs } from 'file-saver';
 import * as bootstrap from 'bootstrap';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Clipboard } from '@angular/cdk/clipboard';
+import { ImageSelectionService } from 'src/app/Services/image-selection.service';
 
 
 @Component({
@@ -34,7 +35,9 @@ export class GalleryComponent implements OnInit {
     private storage: AngularFireStorage,
     private orderService: OrderService,
     private sanitizer: DomSanitizer,
-    private clipboard: Clipboard
+    private clipboard: Clipboard,
+    private imageSelectionService: ImageSelectionService,
+    private router: Router,
   ) {}
 
   get selectedCount(): number {
@@ -86,12 +89,14 @@ export class GalleryComponent implements OnInit {
       console.error('Error loading gallery images:', error); // Log any errors
     });
   }
+
   toggleSelectImage(imageUrl: string): void {
     if (this.selectedImages.includes(imageUrl)) {
       this.selectedImages = this.selectedImages.filter((img) => img !== imageUrl);
     } else {
       this.selectedImages.push(imageUrl);
     }
+    this.imageSelectionService.updateSelectedImages(this.selectedImages);
   }
 
   isSelected(imageUrl: string): boolean {
@@ -138,13 +143,19 @@ export class GalleryComponent implements OnInit {
     }
   }
 
-  generateSelectedPdf(): void {
-    if (this.selectedImages.length === 0) {
-      alert('Please select at least one image.');
-      return;
-    }
-    // Implement the PDF generation with selected images
-  }
+  // generateSelectedPdf(): void {
+  //   console.log("Selected Image count", this.selectedImages.length);
+  //   if (this.selectedImages.length === 0) {
+  //     alert('Please select at least one image.');
+  //     return;
+  //   }
+  //   else{
+
+  //     this.imageSelectionService.updateSelectedImages(this.selectedImages);
+  //     // this.router.navigate(['/order-pdf']);
+  //   }
+  //   // Implement the PDF generation with selected images
+  // }
 
   openModal(imageUrl: string): void {
     this.selectedImageUrl = imageUrl;

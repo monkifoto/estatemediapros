@@ -1,5 +1,2 @@
-<div class="container">
-  <button (click)="generatePdf()">Generate PDF</button>
-  <button (click)="generatePdf2()">Generate PDF 2</button>
-  <button (click)="generatePdf3()">Generate PDF 2</button>
-</div>
+
+<button (click)="generatePdf3()" [disabled]="imageUrls.length !== 6">Generate PDF</button>

@@ -5,6 +5,7 @@ import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import { OrderService } from 'src/app/Services/order.service';
 import { Observable, forkJoin } from 'rxjs';
+import { ImageSelectionService } from 'src/app/Services/image-selection.service';
 
 @Component({
   selector: 'app-order-pdf',
@@ -15,10 +16,17 @@ export class OrderPdfComponent implements OnInit {
 
   imageUrls: string[] = [];
 
-  constructor(private ordersService: OrderService,private ngZone: NgZone) { }
+  constructor(private ordersService: OrderService,private ngZone: NgZone, private imageSelectionService: ImageSelectionService) { }
 
   ngOnInit(): void {
-    this.loadImages();
+    //this.loadImages();
+    this.imageSelectionService.selectedImages$.subscribe(images => {
+      this.imageUrls = images;
+    });
+    console.log ("order pdf init ", this.imageUrls.length)
+    if (this.imageUrls) {
+      this.generatePdf3(); // Automatically generate PDF when images are received
+    }
   }
 
   // Load the images from the service
@@ -237,7 +245,7 @@ export class OrderPdfComponent implements OnInit {
         const ctx = canvas.getContext('2d');
         ctx?.drawImage(img, 0, 0);
         const imageData = canvas.toDataURL('image/jpeg');
-        console.log('Image loaded:', imageData);  
+        console.log('Image loaded:', imageData);
         observer.next(imageData);
         observer.complete();
       };
