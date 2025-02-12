@@ -40,14 +40,17 @@ export class AddEditProductComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const productId = this.route.snapshot.paramMap.get('id');
+    this.route.paramMap.subscribe(params => {
+      const productId = params.get('id');
+      console.log('Product ID from route:', productId);
     if (productId) {
       this.editingProduct = true;
       this.loadProduct(productId);
     }
-    //  else {
-    //   this.generateProductId(); // Generate new product ID when adding
-    // }
+     else {
+      //this.generateProductId(); // Generate new product ID when adding
+    }
+    });
   }
 
   // Load product by ID for editing

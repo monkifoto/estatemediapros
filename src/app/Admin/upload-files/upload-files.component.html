@@ -26,7 +26,7 @@
     <div *ngFor="let file of uploadedFilesUrls" class="thumbnail">
       <img [src]="file.url" alt="File thumbnail" />
       <button class="remove-btn" (click)="removeFile(file.name)">
-        X
+        <i class="fa-solid fa-trash"></i>
       </button>
     </div>
   </div>

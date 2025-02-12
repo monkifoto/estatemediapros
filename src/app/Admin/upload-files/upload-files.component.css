@@ -33,13 +33,22 @@ input[type='file'] {
 
 .remove-btn {
   position: absolute;
-  top: 5px;
-  right: 5px;
-  background-color: red;
+  top: 2px !important;
+  right: 2px !important;
+  background-color: red; /* Make it more visible */
+  padding: 5px;
   color: white;
   border: none;
   border-radius: 50%;
   cursor: pointer;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.remove-btn i {
+  font-size: 14px;
 }
 
 button {

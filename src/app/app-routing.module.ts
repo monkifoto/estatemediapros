@@ -47,7 +47,7 @@ const routes: Routes = [
 
 ] },
   { path: 'login', component: LoginComponent },
-  // { path: 'admin/add-product/:id', component: AddEditProductComponent },
+   { path: 'admin/add-product/:id', component: AddEditProductComponent },
   { path: '**', redirectTo: '' },
 ];
 

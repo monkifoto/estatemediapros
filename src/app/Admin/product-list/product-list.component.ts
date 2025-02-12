@@ -16,8 +16,8 @@ export class ProductListComponent  implements OnInit {
   ngOnInit(): void {
     this.productService.getProducts().subscribe({
       next: (products: Product[]) => {
-        this.products = products;
-        console.log('Products fetched successfully:', this.products);
+        this.products = products.sort((a, b) => a.productType.localeCompare(b.productType));
+        console.log('Products fetched and sorted successfully:', this.products);
       },
       error: (error: any) => {
         console.error('Error fetching products:', error);
@@ -25,6 +25,7 @@ export class ProductListComponent  implements OnInit {
     });
   }
   editProduct(product: Product) {
+    console.log('Editing product:', product.id);
     this.router.navigate(['/admin/edit-product', product.id]);
   }
   deleteProduct(productId: string) {
