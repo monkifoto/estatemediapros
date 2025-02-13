@@ -8,9 +8,10 @@ import { OrderService } from './../../../Services/order.service';
 import { Order } from 'src/app/Model/order.model';
 
 @Component({
-  selector: 'app-store',
-  templateUrl: './store.component.html',
-  styleUrls: ['./store.component.css'],
+    selector: 'app-store',
+    templateUrl: './store.component.html',
+    styleUrls: ['./store.component.css'],
+    standalone: false
 })
 export class StoreComponent implements OnInit {
   activeTab: string = 'bundles';

@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { SubscriberService } from 'src/app/services/subscriber.service';
 
 @Component({
-  selector: 'app-subscribers',
-  templateUrl: './subscribers.component.html',
-  styleUrls: ['./subscribers.component.css']
+    selector: 'app-subscribers',
+    templateUrl: './subscribers.component.html',
+    styleUrls: ['./subscribers.component.css'],
+    standalone: false
 })
 export class SubscribersComponent implements OnInit {
   subscribers: any[] = [];

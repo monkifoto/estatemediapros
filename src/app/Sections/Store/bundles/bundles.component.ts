@@ -4,9 +4,10 @@ import { CartService } from 'src/app/Services/cart.service';
 import { ProductService } from 'src/app/Services/product.service';
 
 @Component({
-  selector: 'app-bundles',
-  templateUrl: './bundles.component.html',
-  styleUrls: ['./bundles.component.css']
+    selector: 'app-bundles',
+    templateUrl: './bundles.component.html',
+    styleUrls: ['./bundles.component.css'],
+    standalone: false
 })
 export class BundlesComponent implements OnInit {
   products!: Product[];

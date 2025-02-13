@@ -2,9 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-contact-section',
-  templateUrl: './contact-section.component.html',
-  styleUrls: ['./contact-section.component.css']
+    selector: 'app-contact-section',
+    templateUrl: './contact-section.component.html',
+    styleUrls: ['./contact-section.component.css'],
+    standalone: false
 })
 export class ContactSectionComponent {
   formData = {

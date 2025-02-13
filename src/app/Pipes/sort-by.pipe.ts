@@ -2,7 +2,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { Product } from 'src/app/Model/product.model';
 
 @Pipe({
-  name: 'sortBy'
+    name: 'sortBy',
+    standalone: false
 })
 export class SortByPipe implements PipeTransform {
 

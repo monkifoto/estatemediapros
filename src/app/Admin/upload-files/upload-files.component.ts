@@ -4,9 +4,10 @@ import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-upload-files',
-  templateUrl: './upload-files.component.html',
-  styleUrls: ['./upload-files.component.css'],
+    selector: 'app-upload-files',
+    templateUrl: './upload-files.component.html',
+    styleUrls: ['./upload-files.component.css'],
+    standalone: false
 })
 export class UploadFilesComponent implements OnInit {
   selectedFiles: File[] = [];

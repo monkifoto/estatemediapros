@@ -3,9 +3,10 @@ import { FormGroup } from '@angular/forms';
 import { Customer } from 'src/app/Model/customer.model';
 
 @Component({
-  selector: 'app-customer-info',
-  templateUrl: './customer-info.component.html',
-  styleUrls: ['./customer-info.component.css']
+    selector: 'app-customer-info',
+    templateUrl: './customer-info.component.html',
+    styleUrls: ['./customer-info.component.css'],
+    standalone: false
 })
 export class CustomerInfoComponent {
   @Input() orderForm!: FormGroup;

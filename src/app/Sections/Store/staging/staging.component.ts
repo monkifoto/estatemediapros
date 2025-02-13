@@ -4,9 +4,10 @@ import { CartService } from 'src/app/Services/cart.service';
 import { ProductService } from 'src/app/Services/product.service';
 
 @Component({
-  selector: 'app-staging',
-  templateUrl: './staging.component.html',
-  styleUrls: ['./staging.component.css']
+    selector: 'app-staging',
+    templateUrl: './staging.component.html',
+    styleUrls: ['./staging.component.css'],
+    standalone: false
 })
 export class StagingComponent implements OnInit {
   products!: Product[];

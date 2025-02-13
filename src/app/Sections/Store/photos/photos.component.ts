@@ -4,9 +4,10 @@ import { CartService } from 'src/app/Services/cart.service';
 import { ProductService } from 'src/app/Services/product.service';
 
 @Component({
-  selector: 'app-photos',
-  templateUrl: './photos.component.html',
-  styleUrls: ['./photos.component.css']
+    selector: 'app-photos',
+    templateUrl: './photos.component.html',
+    styleUrls: ['./photos.component.css'],
+    standalone: false
 })
 export class PhotosComponent implements OnInit {
   products!: Product[];

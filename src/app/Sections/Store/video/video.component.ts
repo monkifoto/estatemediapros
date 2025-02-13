@@ -4,9 +4,10 @@ import { CartService } from 'src/app/Services/cart.service';
 import { ProductService } from 'src/app/Services/product.service';
 
 @Component({
-  selector: 'app-video',
-  templateUrl: './video.component.html',
-  styleUrls: ['./video.component.css']
+    selector: 'app-video',
+    templateUrl: './video.component.html',
+    styleUrls: ['./video.component.css'],
+    standalone: false
 })
 export class  VideoComponent implements OnInit {
   products!: Product[];

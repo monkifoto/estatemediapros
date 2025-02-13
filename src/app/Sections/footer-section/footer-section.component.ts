@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { SubscriberService } from '../../services/subscriber.service';
 
 @Component({
-  selector: 'app-footer-section',
-  templateUrl: './footer-section.component.html',
-  styleUrls: ['./footer-section.component.css']
+    selector: 'app-footer-section',
+    templateUrl: './footer-section.component.html',
+    styleUrls: ['./footer-section.component.css'],
+    standalone: false
 })
 export class FooterSectionComponent {
   email: string = ''; // Two-way binding for email input

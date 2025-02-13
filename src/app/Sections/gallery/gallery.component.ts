@@ -15,9 +15,10 @@ import { ImageSelectionService } from 'src/app/Services/image-selection.service'
 
 
 @Component({
-  selector: 'app-gallery',
-  templateUrl: './gallery.component.html',
-  styleUrls: ['./gallery.component.css'],
+    selector: 'app-gallery',
+    templateUrl: './gallery.component.html',
+    styleUrls: ['./gallery.component.css'],
+    standalone: false
 })
 export class GalleryComponent implements OnInit {
   orderId!: string;

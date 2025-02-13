@@ -5,9 +5,10 @@ import { ProductService } from 'src/app/Services/product.service';
 import { EMPTY, from, Observable, switchMap } from 'rxjs';
 
 @Component({
-  selector: 'app-add-edit-product',
-  templateUrl: './add-edit-product.component.html',
-  styleUrls: ['./add-edit-product.component.css']
+    selector: 'app-add-edit-product',
+    templateUrl: './add-edit-product.component.html',
+    styleUrls: ['./add-edit-product.component.css'],
+    standalone: false
 })
 export class AddEditProductComponent implements OnInit {
   @Input() product: Product = {

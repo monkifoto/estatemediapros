@@ -5,9 +5,10 @@ import { OrderService } from 'src/app/Services/order.service';
 import { Order } from 'src/app/Model/order.model';
 
 @Component({
-  selector: 'app-order-edit',
-  templateUrl: './order-edit.component.html',
-  styleUrls: ['./order-edit.component.css']
+    selector: 'app-order-edit',
+    templateUrl: './order-edit.component.html',
+    styleUrls: ['./order-edit.component.css'],
+    standalone: false
 })
 export class OrderEditComponent implements OnInit {
   orderForm!: FormGroup;

@@ -3,9 +3,10 @@ import { Customer } from 'src/app/Model/customer.model';
 import { CartService } from 'src/app/Services/cart.service';
 
 @Component({
-  selector: 'app-cart',
-  templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css']
+    selector: 'app-cart',
+    templateUrl: './cart.component.html',
+    styleUrls: ['./cart.component.css'],
+    standalone: false
 })
 export class CartComponent implements OnInit {
   @Output() bookNowClicked: EventEmitter<void> = new EventEmitter<void>();

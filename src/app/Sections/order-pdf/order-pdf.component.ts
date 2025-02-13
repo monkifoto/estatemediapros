@@ -8,9 +8,10 @@ import { Observable, forkJoin } from 'rxjs';
 import { ImageSelectionService } from 'src/app/Services/image-selection.service';
 
 @Component({
-  selector: 'app-order-pdf',
-  templateUrl: './order-pdf.component.html',
-  styleUrls: ['./order-pdf.component.css']
+    selector: 'app-order-pdf',
+    templateUrl: './order-pdf.component.html',
+    styleUrls: ['./order-pdf.component.css'],
+    standalone: false
 })
 export class OrderPdfComponent implements OnInit {
 

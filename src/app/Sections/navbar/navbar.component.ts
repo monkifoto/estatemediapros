@@ -3,9 +3,10 @@ import { CartService } from '../../Services/cart.service';
 import { AuthService } from 'src/app/Services/auth.service';
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+    selector: 'app-navbar',
+    templateUrl: './navbar.component.html',
+    styleUrls: ['./navbar.component.css'],
+    standalone: false
 })
 export class NavbarComponent implements OnInit {
   cartTotal: number = 0;  // Variable to hold the total cost

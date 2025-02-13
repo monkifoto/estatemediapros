@@ -4,9 +4,10 @@ import { Product } from 'src/app/Model/product.model';
 import { CartService } from 'src/app/Services/cart.service';
 
 @Component({
-  selector: 'app-product-item',
-  templateUrl: './product-item.component.html',
-  styleUrls: ['./product-item.component.css']
+    selector: 'app-product-item',
+    templateUrl: './product-item.component.html',
+    styleUrls: ['./product-item.component.css'],
+    standalone: false
 })
 export class ProductItemComponent {
   @Input() product!: Product;  // Input property to receive product data

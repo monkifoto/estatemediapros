@@ -4,9 +4,10 @@ import { CartService } from 'src/app/Services/cart.service';
 import { ProductService } from 'src/app/Services/product.service';
 
 @Component({
-  selector: 'app-floorplan',
-  templateUrl: './floorplan.component.html',
-  styleUrls: ['./floorplan.component.css']
+    selector: 'app-floorplan',
+    templateUrl: './floorplan.component.html',
+    styleUrls: ['./floorplan.component.css'],
+    standalone: false
 })
 export class FloorplanComponent implements OnInit {
   products!: Product[];

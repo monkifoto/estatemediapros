@@ -4,9 +4,10 @@ import { CartService } from 'src/app/Services/cart.service';
 import { ProductService } from 'src/app/Services/product.service';
 
 @Component({
-  selector: 'app-tour',
-  templateUrl: './tour.component.html',
-  styleUrls: ['./tour.component.css'],
+    selector: 'app-tour',
+    templateUrl: './tour.component.html',
+    styleUrls: ['./tour.component.css'],
+    standalone: false
 })
 export class TourComponent implements OnInit {
   products!: Product[];
