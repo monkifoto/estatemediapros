@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/Services/auth.service';
 
 @Component({
     selector: 'app-login',
@@ -14,7 +14,7 @@ export class LoginComponent {
   errorMessage: string | null = null;
 
   constructor(
-    private afAuth: AngularFireAuth,
+    private authService: AuthService, // Use the updated AuthService
     private router: Router,
     private fb: FormBuilder
   ) {
@@ -24,15 +24,14 @@ export class LoginComponent {
     });
   }
 
-  async onLogin() {
+  onLogin() {
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.value;
-      try {
-        await this.afAuth.signInWithEmailAndPassword(email, password);
-        this.router.navigate(['/admin']); // Redirect to admin page after successful login
-      } catch (error: any) {
-        this.errorMessage = error.message; // Display error message
-      }
+
+      this.authService.login(email, password).subscribe({
+        next: () => this.router.navigate(['/admin']), // Navigate on success
+        error: (error) => this.errorMessage = error.message // Display error message
+      });
     }
   }
 }

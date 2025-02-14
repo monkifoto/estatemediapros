@@ -28,7 +28,7 @@ export class AddEditProductComponent implements OnInit {
     isActive: true,
     isPromotion: false,
     promotionDiscount: 0,
-    sort:0
+    sort: 0
   };
 
   editingProduct: boolean = false;
@@ -44,13 +44,10 @@ export class AddEditProductComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       const productId = params.get('id');
       console.log('Product ID from route:', productId);
-    if (productId) {
-      this.editingProduct = true;
-      this.loadProduct(productId);
-    }
-     else {
-      //this.generateProductId(); // Generate new product ID when adding
-    }
+      if (productId) {
+        this.editingProduct = true;
+        this.loadProduct(productId);
+      }
     });
   }
 
@@ -86,23 +83,18 @@ export class AddEditProductComponent implements OnInit {
     }
   }
 
-  // Generate a new product ID
-  // generateProductId() {
-  //   this.productIdCounter++; // Increment product ID counter
-  //   this.product.id = String(this.productIdCounter).padStart(3, '0'); // Format ID to three digits
-  // }
-
+  // Handle form submission to save product
   onSubmit() {
     const productObservable = this.editingProduct
         ? this.productService.checkProductExists(this.product.id).pipe(
             switchMap(exists => {
                 if (exists) {
                     return this.productService.updateProduct(this.product);
-                }else {
+                } else {
                   console.error('Product does not exist for update:', this.product.id);
                   // If the product doesn't exist, we add it instead of returning EMPTY
                   return this.productService.addProduct({ ...this.product, id: this.product.id }); // Add the product
-              }
+                }
             })
         )
         : this.productService.addProduct(this.product);
@@ -116,7 +108,5 @@ export class AddEditProductComponent implements OnInit {
             console.error('Error saving product:', error);
         }
     });
-}
-
-
+  }
 }

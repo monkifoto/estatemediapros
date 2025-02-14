@@ -1,74 +1,94 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FileUploadService } from 'src/app/Services/file-upload.service';
-import { AngularFireStorage } from '@angular/fire/compat/storage';
-import { Observable } from 'rxjs';
+import { getStorage, ref, listAll, getDownloadURL, deleteObject } from 'firebase/storage';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
-    selector: 'app-upload-files',
-    templateUrl: './upload-files.component.html',
-    styleUrls: ['./upload-files.component.css'],
-    standalone: false
+  selector: 'app-upload-files',
+  templateUrl: './upload-files.component.html',
+  styleUrls: ['./upload-files.component.css'],
+  standalone: false
 })
 export class UploadFilesComponent implements OnInit {
   selectedFiles: File[] = [];
-  uploadedFilesUrls: { name: string, url: string }[] = [];  // List to store file URLs and names
+  uploadedFilesUrls: { name: string; url: string }[] = [];
   @Input() orderId!: string;
 
   constructor(private fileUploadService: FileUploadService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.loadExistingFiles();
   }
 
-  // Fetch existing files for this order from Firebase
-  loadExistingFiles() {
-    this.fileUploadService.getFilesForOrder(this.orderId).subscribe(files => {
-      this.uploadedFilesUrls = files;
-    });
+  async loadExistingFiles(): Promise<void> {
+    if (!this.orderId) return;
+    try {
+      const storage = getStorage();
+      const folderRef = ref(storage, `orders/${this.orderId}`);
+      const fileList = await listAll(folderRef);
+
+      this.uploadedFilesUrls = await Promise.all(
+        fileList.items.map(async (item) => ({
+          name: item.name,
+          url: await getDownloadURL(item)
+        }))
+      );
+    } catch (error) {
+      console.error('Error loading existing files:', error);
+    }
   }
 
   onFilesSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files) {
       this.selectedFiles = Array.from(input.files);
-      this.uploadFiles();  // Automatically start uploading the files
+      this.uploadFiles();
     }
   }
 
-  onDrop(event: any) {
+  onDrop(event: DragEvent): void {
     event.preventDefault();
-    this.selectedFiles = Array.from(event.dataTransfer.files);
-    this.uploadFiles();  // Automatically start uploading the files
+    if (event.dataTransfer?.files) {
+      this.selectedFiles = Array.from(event.dataTransfer.files);
+      this.uploadFiles();
+    }
   }
 
-  onDragOver(event: any) {
+  onDragOver(event: DragEvent): void {
     event.preventDefault();
   }
 
-  // Automatically upload files when selected/dropped
-  uploadFiles(): void {
-    this.selectedFiles.forEach((file) => {
-      this.fileUploadService.uploadFile(file, this.orderId).subscribe(
-        (downloadUrl) => {
-          // Add the uploaded file's URL and name to the list for display
-          this.uploadedFilesUrls.push({ name: file.name, url: downloadUrl });
-          console.log('File uploaded, URL:', downloadUrl);
-        },
-        (error) => {
-          console.error('File upload error:', error);
-        }
-      );
-    });
-    // Clear the selectedFiles array after starting upload
-    this.selectedFiles = [];
+  async uploadFiles(): Promise<void> {
+    if (!this.orderId || this.selectedFiles.length === 0) return;
+
+    try {
+      const uploadPromises = this.selectedFiles.map(async (file) => {
+        // Convert the Observable to a Promise
+        const downloadUrl = await firstValueFrom(this.fileUploadService.uploadFile(file, this.orderId));
+        this.uploadedFilesUrls.push({ name: file.name, url: downloadUrl });
+        console.log('File uploaded:', file.name, 'URL:', downloadUrl);
+      });
+
+      await Promise.all(uploadPromises);
+    } catch (error) {
+      console.error('File upload error:', error);
+    } finally {
+      this.selectedFiles = []; // Clear selected files after upload
+    }
   }
 
-  // Remove file from Firebase storage and the gallery
-  removeFile(fileName: string): void {
-    this.fileUploadService.deleteFile(fileName, this.orderId).subscribe(() => {
-      // Remove the file from the gallery after successful deletion
+  async removeFile(fileName: string): Promise<void> {
+    if (!this.orderId) return;
+
+    try {
+      const storage = getStorage();
+      const fileRef = ref(storage, `orders/${this.orderId}/${fileName}`);
+      await deleteObject(fileRef);
+
       this.uploadedFilesUrls = this.uploadedFilesUrls.filter(file => file.name !== fileName);
       console.log(`${fileName} has been removed.`);
-    });
+    } catch (error) {
+      console.error(`Error deleting file (${fileName}):`, error);
+    }
   }
 }

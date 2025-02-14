@@ -1,44 +1,58 @@
-// src/app/Services/file-upload.service.ts
-
 import { Injectable } from '@angular/core';
-import { AngularFireStorage } from '@angular/fire/compat/storage';
-import { Observable } from 'rxjs';
-import { finalize, switchMap } from 'rxjs/operators';
+import { getStorage, ref, uploadBytesResumable, getDownloadURL, deleteObject, listAll } from 'firebase/storage';
+import { from, Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FileUploadService {
-  constructor(private storage: AngularFireStorage) {}
+  private storage = getStorage(); // Initialize Firebase storage instance
 
+  constructor() {}
+
+  // Upload a file and return an Observable with the download URL
   uploadFile(file: File, orderId: string): Observable<string> {
     const filePath = `orders/${orderId}/${file.name}`;
-    const fileRef = this.storage.ref(filePath);
-    const uploadTask = this.storage.upload(filePath, file);
+    const fileRef = ref(this.storage, filePath);
+    const uploadTask = uploadBytesResumable(fileRef, file);
 
-    return uploadTask.snapshotChanges().pipe(
-      finalize(() => {}),  // Finalize completes the upload
-      switchMap(() => fileRef.getDownloadURL()) // Get download URL after upload completes
-    );
+    return new Observable<string>((observer) => {
+      uploadTask.on(
+        'state_changed',
+        null,
+        (error) => observer.error(error), // Handle error
+        async () => {
+          try {
+            const downloadURL = await getDownloadURL(fileRef);
+            observer.next(downloadURL);
+            observer.complete();
+          } catch (error) {
+            observer.error(error);
+          }
+        }
+      );
+    });
   }
 
-   // Fetch existing files for the order
-   getFilesForOrder(orderId: string): Observable<{ name: string, url: string }[]> {
-    const folderRef = this.storage.ref(`orders/${orderId}`);
-    return folderRef.listAll().pipe(
-      switchMap(result => {
-        // Map the results into file name and download URL objects
-        const fileObservables = result.items.map(item =>
-          item.getDownloadURL().then(url => ({ name: item.name, url }))
-        );
-        return Promise.all(fileObservables);  // Wait for all URLs to be fetched
+  // Fetch existing files for the order
+  getFilesForOrder(orderId: string): Observable<{ name: string; url: string }[]> {
+    const folderRef = ref(this.storage, `orders/${orderId}`);
+
+    return from(listAll(folderRef)).pipe(
+      switchMap(async (result) => {
+        const filePromises = result.items.map(async (item) => ({
+          name: item.name,
+          url: await getDownloadURL(item),
+        }));
+        return Promise.all(filePromises); // Wait for all download URLs
       })
     );
   }
 
   // Delete a file from Firebase storage
   deleteFile(fileName: string, orderId: string): Observable<void> {
-    const fileRef = this.storage.ref(`orders/${orderId}/${fileName}`);
-    return fileRef.delete();  // Delete the file from storage
+    const fileRef = ref(this.storage, `orders/${orderId}/${fileName}`);
+    return from(deleteObject(fileRef));
   }
 }

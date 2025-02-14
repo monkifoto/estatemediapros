@@ -7,7 +7,7 @@ import { FloorplanSectionComponent } from './Sections/floorplan-section/floorpla
 import { StagingSectionComponent } from './Sections/staging-section/staging-section.component';
 import { AdminComponent } from './Admin/admin/admin.component';
 import { LoginComponent } from './Admin/login/login.component';
-import { adminAuthGuard } from './Guard/auth.guard';
+import { AdminAuthGuard } from './Guard/auth.guard';
 import { AddEditProductComponent } from './Admin/add-edit-product/add-edit-product.component';
 import { ProductListComponent } from './Admin/product-list/product-list.component';
 import { OrderListComponent } from './Admin/order-list/order-list.component';
@@ -34,7 +34,7 @@ const routes: Routes = [
   { path: 'tos', component: TosComponent},
 
 
-  { path: 'admin', component: AdminComponent, canActivate: [adminAuthGuard] , children: [
+  { path: 'admin', component: AdminComponent, canActivate: [AdminAuthGuard] , children: [
     { path: 'products', component: ProductListComponent },
     { path: 'orders', component: OrderListComponent },
     { path: 'subscribers', component: SubscribersComponent },

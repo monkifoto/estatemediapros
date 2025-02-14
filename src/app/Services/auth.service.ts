@@ -1,38 +1,63 @@
-// src/app/services/auth.service.ts
-import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Injectable, inject } from '@angular/core';
+import { Auth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import { Observable, from } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
-import firebase from 'firebase/compat/app';
+import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  user$: Observable<any>;
+  private auth = inject(Auth); // Use Modular SDK injection
+  user$: Observable<any>; // Observable for authentication state
 
-  constructor(private afAuth: AngularFireAuth, private router: Router) {
-    this.user$ = this.afAuth.authState;
+  constructor(private router: Router) {
+    // Convert Firebase auth state into an observable
+    this.user$ = new Observable((subscriber) => {
+      onAuthStateChanged(this.auth, (user) => {
+        subscriber.next(user);
+      }, (error) => {
+        subscriber.error(error);
+      }, () => {
+        subscriber.complete();
+      });
+    });
   }
 
-  login(email: string, password: string): Observable<firebase.auth.UserCredential> {
-    this.router.navigate(['/admin']);
-    return from(this.afAuth.signInWithEmailAndPassword(email, password)).pipe(
-      catchError(error => {
-        console.error('Login error: ', error);
-        throw error;
-      })
-    );
+  /**
+   * Login method using signInWithEmailAndPassword from Firebase Modular SDK
+   */
+  login(email: string, password: string): Observable<any> {
+    return new Observable((observer) => {
+      signInWithEmailAndPassword(this.auth, email, password)
+        .then((userCredential) => {
+          this.router.navigate(['/admin']);
+          observer.next(userCredential.user);
+          observer.complete();
+        })
+        .catch((error) => {
+          console.error('Login error:', error);
+          observer.error(error);
+        });
+    });
   }
 
-  async logout() {
-    await this.afAuth.signOut();
-    this.router.navigate(['/login']);
+  /**
+   * Logout method using signOut from Firebase Modular SDK
+   */
+  async logout(): Promise<void> {
+    try {
+      await signOut(this.auth);
+      this.router.navigate(['/login']);
+    } catch (error) {
+      console.error('Logout error:', error);
+    }
   }
 
+  /**
+   * Check if a user is logged in, returning an observable boolean
+   */
   isLoggedIn(): Observable<boolean> {
     return this.user$.pipe(map(user => !!user));
   }
 }
-

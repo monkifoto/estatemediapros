@@ -1,9 +1,9 @@
-// gallery.component.ts
 
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AngularFireStorage } from '@angular/fire/compat/storage';
-import { from, Observable } from 'rxjs';
+import { Storage, ref, listAll, getDownloadURL } from '@angular/fire/storage';
+import { inject } from '@angular/core';
+import { from, Observable, switchMap } from 'rxjs';
 import { OrderService } from 'src/app/Services/order.service';
 import { Order } from 'src/app/Model/order.model';
 import JSZip from 'jszip';
@@ -12,7 +12,6 @@ import * as bootstrap from 'bootstrap';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { ImageSelectionService } from 'src/app/Services/image-selection.service';
-
 
 @Component({
     selector: 'app-gallery',
@@ -23,17 +22,17 @@ import { ImageSelectionService } from 'src/app/Services/image-selection.service'
 export class GalleryComponent implements OnInit {
   orderId!: string;
   order!: Order;
-  imageUrls: Observable<string[]> | null = null;
+  imageUrls$: Observable<string[]> | null = null; // Observable for images
   selectedImages: string[] = [];
   safeTourLink: SafeResourceUrl | null = null;
   safeVideoLink: SafeResourceUrl | null = null;
   contextMenuVisible = false;
   contextMenuPosition = { x: 0, y: 0 };
   selectedImageUrl: string | null = null;
+  private storage: Storage = inject(Storage); // Inject Firebase Storage
 
   constructor(
     private route: ActivatedRoute,
-    private storage: AngularFireStorage,
     private orderService: OrderService,
     private sanitizer: DomSanitizer,
     private clipboard: Clipboard,
@@ -53,42 +52,26 @@ export class GalleryComponent implements OnInit {
 
   loadOrderDetails() {
     this.orderService.getOrderById(this.orderId).subscribe((order) => {
-      this.order = order;  // Populate the order object
-      console.log(order);
+      this.order = order;
       if (this.order.tourLink) {
         this.safeTourLink = this.sanitizer.bypassSecurityTrustResourceUrl(this.order.tourLink);
       }
       if (this.order.videoLink) {
         this.safeVideoLink = this.sanitizer.bypassSecurityTrustResourceUrl(this.order.videoLink);
       }
-      console.log ("loadOrderDetails", order);
     });
   }
 
-
   loadGalleryImages() {
     const folderPath = `orders/${this.orderId}`;
+    const storageRef = ref(this.storage, folderPath);
 
-    this.storage.ref(folderPath).listAll().subscribe((result) => {
-      console.log('Files in folder:', result.items); // Logs the metadata of all files
-
-      // Log file names
-      result.items.forEach(item => {
-        console.log('File:', item.name); // Logs each file name
-
-        // Get and log the download URL
-        item.getDownloadURL().then(url => {
-          console.log('File URL:', url);
-        }).catch(err => {
-          console.error('Error fetching URL:', err);
-        });
-      });
-
-      // Convert the Promise to an Observable for handling the image URLs
-      this.imageUrls = from(Promise.all(result.items.map((item) => item.getDownloadURL())));
-    }, (error) => {
-      console.error('Error loading gallery images:', error); // Log any errors
-    });
+    this.imageUrls$ = from(listAll(storageRef)).pipe(
+      switchMap((result) => {
+        const downloadUrlPromises = result.items.map((item) => getDownloadURL(item));
+        return from(Promise.all(downloadUrlPromises));
+      })
+    );
   }
 
   toggleSelectImage(imageUrl: string): void {
@@ -106,13 +89,13 @@ export class GalleryComponent implements OnInit {
 
   openContextMenu(event: MouseEvent, image: string): void {
     event.stopPropagation();
-    this.selectedImageUrl = image;  // set selected image for the context menu actions
+    this.selectedImageUrl = image;
     this.contextMenuPosition = { x: event.clientX, y: event.clientY };
     this.contextMenuVisible = true;
   }
 
   performAction(action: string, imageUrl: string): void {
-    switch(action) {
+    switch (action) {
       case 'Open':
         this.openModal(imageUrl);
         break;
@@ -127,10 +110,9 @@ export class GalleryComponent implements OnInit {
     this.closeContextMenu();
   }
 
-
   downloadAllAsZip(): void {
-    if (this.imageUrls) {
-      this.imageUrls.subscribe(async (urls: string[]) => {
+    if (this.imageUrls$) {
+      this.imageUrls$.subscribe(async (urls: string[]) => {
         const zip = new JSZip();
         const imgFolder = zip.folder('images');
         const imagePromises = urls.map(async (url, index) => {
@@ -144,19 +126,20 @@ export class GalleryComponent implements OnInit {
     }
   }
 
-  // generateSelectedPdf(): void {
-  //   console.log("Selected Image count", this.selectedImages.length);
-  //   if (this.selectedImages.length === 0) {
-  //     alert('Please select at least one image.');
-  //     return;
-  //   }
-  //   else{
 
-  //     this.imageSelectionService.updateSelectedImages(this.selectedImages);
-  //     // this.router.navigate(['/order-pdf']);
-  //   }
-  //   // Implement the PDF generation with selected images
-  // }
+  generateSelectedPdf(): void {
+    console.log("Selected Image count", this.selectedImages.length);
+    if (this.selectedImages.length === 0) {
+      alert('Please select at least one image.');
+      return;
+    }
+    else{
+
+      this.imageSelectionService.updateSelectedImages(this.selectedImages);
+      // this.router.navigate(['/order-pdf']);
+    }
+    // Implement the PDF generation with selected images
+  }
 
   openModal(imageUrl: string): void {
     this.selectedImageUrl = imageUrl;
@@ -174,13 +157,16 @@ export class GalleryComponent implements OnInit {
   copyLinkToClipboard(link: string): void {
     if (link) {
       this.clipboard.copy(link);
-      alert('Link copied to clipboard!'); // Optional: Notification to user
+      alert('Link copied to clipboard!');
     } else {
       alert('No link to copy.');
     }
   }
-  disableRightClick(event: MouseEvent): void {
-    event.preventDefault(); // Prevent the default context menu from opening
-  }
 
+  disableRightClick(event: MouseEvent): void {
+    event.preventDefault();
+  }
 }
+
+
+

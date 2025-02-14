@@ -37,7 +37,7 @@
 <div><small>Please select 6 images to generate PDF.</small></div>
   <div class="image-gallery-grid">
     <div
-      *ngFor="let image of imageUrls | async"
+      *ngFor="let image of imageUrls$ | async"
       class="image-container"
       [class.selected]="selectedImages.includes(image)"
       (click)="toggleSelectImage(image)"

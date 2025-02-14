@@ -22,45 +22,50 @@ export class OrderEditComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit(): void {
-    // Get orderId from route parameters
+  async ngOnInit(): Promise<void> {
     this.orderId = this.route.snapshot.paramMap.get('id') || '';
 
-    // Initialize form
+    // Initialize form with default values
     this.orderForm = this.formBuilder.group({
       comments: [''],
       tourLink: [''],
       videoLink: [''],
+      MLStourLink: [''],
+      MLSvideoLink: ['']
     });
 
-    // Load order details
-    if (this.orderId) {
-      this.orderService.getOrderById(this.orderId).subscribe(order => {
+    if (!this.orderId) return;
+
+    try {
+      const order = await this.orderService.getOrderById(this.orderId).toPromise();
+      if (order) {
         this.order = order;
-        this.orderForm.patchValue({
+        this.orderForm.setValue({
           comments: order.comments || '',
           tourLink: order.tourLink || '',
           videoLink: order.videoLink || '',
-           MLStourLink: order.MLStourLink || '',
+          MLStourLink: order.MLStourLink || '',
           MLSvideoLink: order.MLSvideoLink || ''
         });
-      });
+      }
+    } catch (error) {
+      console.error('Error fetching order:', error);
     }
   }
 
-  // Save updated order data
-  saveOrder(): void {
-    const updatedOrder = {
+  async saveOrder(): Promise<void> {
+    if (!this.orderId || !this.order) return;
+
+    const updatedOrder: Partial<Order> = {
       ...this.order,
-      comments: this.orderForm.value.comments,
-      tourLink: this.orderForm.value.tourLink,
-      videoLink: this.orderForm.value.videoLink,
-      MLStourLink: this.orderForm.value.tourLink,
-      MLSvideoLink: this.orderForm.value.videoLink
+      ...this.orderForm.value
     };
 
-    this.orderService.updateOrder(this.orderId, updatedOrder).then(() => {
+    try {
+      await this.orderService.updateOrder(this.orderId, updatedOrder);
       this.router.navigate(['/admin/order-list']);
-    });
+    } catch (error) {
+      console.error('Error updating order:', error);
+    }
   }
 }

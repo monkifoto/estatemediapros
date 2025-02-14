@@ -1,47 +1,48 @@
 import { Injectable } from '@angular/core';
-import {
-  AngularFirestore,
-  AngularFirestoreCollection,
-} from '@angular/fire/compat/firestore';
+import { Firestore, collection, doc, addDoc, updateDoc, getDoc, collectionData, query, where } from '@angular/fire/firestore';
+import { Storage, ref, listAll, getDownloadURL, ListResult } from '@angular/fire/storage';
+import { inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { from, map, Observable, switchMap } from 'rxjs';
 import { Order } from '../Model/order.model';
-import { AngularFireStorage } from '@angular/fire/compat/storage';
 
 @Injectable({
   providedIn: 'root',
 })
 export class OrderService {
-  private ordersCollection = this.firestore.collection('Orders');
-  private orderCollection!: AngularFirestoreCollection<Order>;
-  orderId: string = '33L4evImBNnr4pZG6SGj';
+  private firestore: Firestore = inject(Firestore);
+  private storage: Storage = inject(Storage);
 
   private emailUrl: string =
     'https://us-central1-pacificpropertyphotos-50a8c.cloudfunctions.net/sendOrderEmail';
 
-  constructor(private firestore: AngularFirestore, private http: HttpClient, private storage: AngularFireStorage,) {
-    this.orderCollection = this.firestore.collection<Order>('Orders');
-  }
+  private ordersCollection = collection(this.firestore, 'Orders');  // Firestore collection reference
+
+  orderId: string = '33L4evImBNnr4pZG6SGj';
+
+  constructor(private http: HttpClient) {}
 
   // Fetch all orders from Firestore
-  // getOrders(): Observable<any[]> {
-  //   return this.ordersCollection.valueChanges({ idField: 'id' });
-  // }
-
   getOrders(): Observable<Order[]> {
-    return this.orderCollection.valueChanges({ idField: 'id' }).pipe(
-      map((orders: Order[]) =>
-        orders.map((order: Order) => ({
+    return collectionData(this.ordersCollection, { idField: 'id' }).pipe(
+      map((orders: any[]) => // Use 'any' for the document data as it's coming from Firestore
+        orders.map((order: any) => ({
           ...order,
-          cartContents: order.cartContents || [],
-          customerInfo: order.customerInfo || {},
+          cartContents: order.cartContents || [], // Ensure cartContents is an array
+          customerInfo: order.customerInfo || {}, // Ensure customerInfo is an object
+          comments: order.comments || '',
+          tourLink: order.tourLink || '',
+          videoLink: order.videoLink || '',
+          MLStourLink: order.MLStourLink || '',
+          MLSvideoLink: order.MLSvideoLink || '',
+          squareFootage: order.squareFootage || ''
         }))
       )
     );
   }
-
   updateOrderStatus(orderId: string, status: string): Promise<void> {
-    return this.ordersCollection.doc(orderId).update({ status });
+    const orderDoc = doc(this.firestore, `Orders/${orderId}`);
+    return updateDoc(orderDoc, { status });
   }
 
   markOrderAsDeleted(orderId: string): Promise<void> {
@@ -54,7 +55,7 @@ export class OrderService {
 
   // Save order to Firestore
   saveOrder(order: Order): Promise<any> {
-    return this.ordersCollection.add(order);
+    return addDoc(this.ordersCollection, order);
   }
 
   // Send email with order details
@@ -64,37 +65,43 @@ export class OrderService {
     return this.http.post(this.emailUrl, order, { responseType: 'text' });
   }
 
-  // Fetch order by ID from Firestore
-  getOrderById(orderId: string): Observable<Order> {
-    console.log('getOrderById: ', orderId);
-    return this.firestore
-      .collection('Orders')
-      .doc(orderId)
-      .valueChanges()
-      .pipe(
-        map((orderData) => {
-          return orderData as Order; // Explicitly map the data to the Order type
-        })
-      );
-  }
+ // Fetch order by ID from Firestore
+ getOrderById(orderId: string): Observable<Order> {
+  console.log('getOrderById: ', orderId);
+  const orderDocRef = doc(this.firestore, `Orders/${orderId}`); // Reference to the Firestore document
 
+  // Convert the promise to an observable
+  return from(getDoc(orderDocRef)).pipe(
+    map((orderDocSnapshot) => {
+      // Check if the document exists and then map the data
+      if (orderDocSnapshot.exists()) {
+        return orderDocSnapshot.data() as Order;
+      } else {
+        throw new Error('Order not found');
+      }
+    })
+  );
+}
   updateOrder(orderId: string, orderData: any): Promise<void> {
-    return this.ordersCollection.doc(orderId).update(orderData);
+    const orderDoc = doc(this.firestore, `Orders/${orderId}`);
+    return updateDoc(orderDoc, orderData);
   }
 
-  ////////Experimental //////
+  //////// Experimental //////
 
   loadGalleryImages(): Observable<string[]> {
-    this.orderId ='3boU4EUNgmSDmsM0cS3b';
     const folderPath = `orders/${this.orderId}`;
-    return this.storage.ref(folderPath).listAll().pipe(
-      switchMap((result) => {
-        // Create an array of promises to get download URLs
-        const downloadUrlPromises = result.items.map(item => item.getDownloadURL());
+    const storageRef = ref(this.storage, folderPath); // Firebase storage reference
+
+    // Return an Observable by wrapping the promise from `listAll`
+    return from(listAll(storageRef)).pipe(
+      switchMap((result: ListResult) => {
+        // Ensure that result.items has the correct type
+        const downloadUrlPromises = result.items.map(item => getDownloadURL(item));
+
         // Wait for all promises to resolve, then return the observable of the resulting URLs
         return from(Promise.all(downloadUrlPromises));
       })
     );
   }
-
 }
