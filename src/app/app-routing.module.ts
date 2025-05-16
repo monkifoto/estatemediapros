@@ -19,20 +19,29 @@ import { PolicyComponent } from './Sections/policy/policy.component';
 import { TosComponent } from './Sections/tos/tos.component';
 import { VideoSectionComponent } from './Sections/video-section/video-section.component';
 import { Tour3dSectionComponent } from './Sections/tour3d-section/tour3d-section.component';
+import { PhotoGalleryComponent } from './Galleries/photo-gallery/photo-gallery.component';
+import { PhotoGallerySectionComponent } from './Sections/photo-gallery-section/photo-gallery-section.component';
+import { VideoGallerySectionComponent } from './Sections/video-gallery-section/video-gallery-section.component';
+import { FloorGallerySectionComponent } from './Sections/floor-gallery-section/floor-gallery-section.component';
+import { VirtualGallerySectionComponent } from './Sections/virtual-gallery-section/virtual-gallery-section.component';
 
 const routes: Routes = [
-  { path: '', component: HomeSectionComponent, title: 'PACIFIC PROPERY PHOTOS - Home', pathMatch: 'full' },
-  { path: 'home', component: HomeSectionComponent, title: 'PACIFIC PROPERY PHOTOS' },
-  { path: 'video', component: VideoSectionComponent, title: 'PACIFIC PROPERY PHOTOS - Video' },
-  { path: 'tour', component: Tour3dSectionComponent, title: 'PACIFIC PROPERY PHOTOS - 3D Tours' },
-  { path: 'photos', component: PhotoSectionComponent, title: 'PACIFIC PROPERY PHOTOS - Photos' },
-  { path: 'floorplan', component: FloorplanSectionComponent, title: 'PACIFIC PROPERY PHOTOS - Floorplan' },
-  { path: 'virtualstaging', component: StagingSectionComponent, title: 'PACIFIC PROPERY PHOTOS - Virtual Staging' },
-  { path: 'book', component: StoreComponent, title: 'PACIFIC PROPERY PHOTOS - Booking' },
+  { path: '', component: HomeSectionComponent, title: 'SEATTLE RELA ESTATE MEDIA - Home', pathMatch: 'full' },
+  { path: 'home', component: HomeSectionComponent, title: 'SEATTLE RELA ESTATE MEDIA' },
+  { path: 'video', component: VideoSectionComponent, title: 'SEATTLE RELA ESTATE MEDIA - Video' },
+  { path: 'tour', component: Tour3dSectionComponent, title: 'SEATTLE RELA ESTATE MEDIA - 3D Tours' },
+  { path: 'photos', component: PhotoSectionComponent, title: 'SEATTLE RELA ESTATE MEDIA - Photos' },
+  { path: 'floorplan', component: FloorplanSectionComponent, title: 'SEATTLE RELA ESTATE MEDIA - Floorplan' },
+  { path: 'virtualstaging', component: StagingSectionComponent, title: 'SEATTLE RELA ESTATE MEDIA - Virtual Staging' },
+  { path: 'book', component: StoreComponent, title: 'SEATTLE RELA ESTATE MEDIA - Booking' },
   { path: 'gallery/:id', component: GalleryComponent },
   { path: 'policy', component: PolicyComponent},
   { path: 'tos', component: TosComponent},
-
+  { path: 'photo-gallery-section', component: PhotoGallerySectionComponent, title: 'SEATTLE RELA ESTATE MEDIA - Photography Gallery' },
+  { path: 'video-gallery-section', component: VideoGallerySectionComponent, title: 'SEATTLE RELA ESTATE MEDIA - Video Gallery' },
+  { path: 'floor-gallery-section', component: FloorGallerySectionComponent, title: 'SEATTLE RELA ESTATE MEDIA - Floor Plans Gallery' },
+  { path: 'photo-gallery', component: PhotoGallerySectionComponent, title: 'SEATTLE RELA ESTATE MEDIA - Video' },
+  { path: 'virtual-gallery-section', component: VirtualGallerySectionComponent, title: 'SEATTLE RELA ESTATE MEDIA - Virtual Staging Gallery' },
 
   { path: 'admin', component: AdminComponent, canActivate: [AdminAuthGuard] , children: [
     { path: 'products', component: ProductListComponent },

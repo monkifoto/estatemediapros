@@ -1,0 +1,27 @@
+<h1>Virtual Gallery</h1>
+<p class="roboto-slab-about">
+  Explore our virtual gallery, showcasing stunning before-and-after transformations of properties with immersive visuals and engaging storytelling.
+</p>
+
+<div class="gallery">
+  <div
+    class="comparison-container"
+    *ngFor="let img of images; let i = index"
+    #container
+  >
+    <img [src]="img.before" class="comparison-img" />
+    <img [src]="img.after" class="comparison-img after" #afterImg />
+
+    <!-- Labels -->
+    <div class="label before-label">Before</div>
+    <div class="label after-label">After</div>
+
+    <!-- Slider handle -->
+    <div class="divider" #divider>
+      <div class="handle">
+        <span class="arrow left">←</span>
+        <span class="arrow right">→</span>
+      </div>
+    </div>
+  </div>
+</div>
