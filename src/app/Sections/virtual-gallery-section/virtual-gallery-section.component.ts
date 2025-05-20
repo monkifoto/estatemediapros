@@ -19,32 +19,50 @@ import { CommonModule } from '@angular/common';
 export class VirtualGallerySectionComponent implements AfterViewInit {
   @Input() images: { before: string; after: string }[] = [
     {
-      before: 'assets/virtual-staging/A7402305.jpg',
-      after: 'assets/virtual-staging/17471594473_liv3.jpg'
+      before: 'assets/virtual_staging/A7402305.jpg',
+      after: 'assets/virtual_staging/17471594473_liv3.jpg'
     },
       {
-      before: 'assets/virtual-staging/before1.jpg',
-      after: 'assets/virtual-staging/after1.jpg'
+      before: 'assets/virtual_staging/Living Room From Left.jpg',
+      after: 'assets/virtual_staging/Living Room From Left_edited.jpg'
     },
     {
-      before: 'assets/virtual-staging/before2.jpg',
-      after: 'assets/virtual-staging/after2.jpg'
+      before: 'assets/virtual_staging/Family_Room_Left.jpg',
+      after: 'assets/virtual_staging/Family_Room_Left_edited.jpg'
     },
     {
-      before: 'assets/virtual-staging/before3.jpg',
-      after: 'assets/virtual-staging/after3.jpg'
+      before: 'assets/virtual_staging/A7401181.jpg',
+      after: 'assets/virtual_staging/VS-7401181.jpg'
+    },
+      {
+      before: 'assets/virtual_staging/A7401249.jpg',
+      after: 'assets/virtual_staging/VS-7401249.jpg'
+    }
+    ,
+      {
+      before: 'assets/virtual_staging/A7401195.jpg',
+      after: 'assets/virtual_staging/VS-7401195.jpg'
     }
   ];
 
 
-  @ViewChild('container') containerRef!: ElementRef;
-  @ViewChild('afterImg') afterImgRef!: ElementRef;
-  @ViewChild('divider') dividerRef!: ElementRef;
+@ViewChildren('container') containerRefs!: QueryList<ElementRef>;
+@ViewChildren('afterImg') afterImgRefs!: QueryList<ElementRef>;
+@ViewChildren('divider') dividerRefs!: QueryList<ElementRef>;
 
   ngAfterViewInit() {
-    const container = this.containerRef.nativeElement;
-    const afterImg = this.afterImgRef.nativeElement;
-    const divider = this.dividerRef.nativeElement;
+  setTimeout(() => {
+      this.initializeSliders();
+    });
+  }
+
+  private initializeSliders(){
+      this.containerRefs.forEach((containerRef, index) => {
+    const container = containerRef.nativeElement;
+    const afterImg = this.afterImgRefs.get(index)?.nativeElement;
+    const divider = this.dividerRefs.get(index)?.nativeElement;
+
+    if (!afterImg || !divider) return;
 
     const move = (clientX: number) => {
       const rect = container.getBoundingClientRect();
@@ -78,5 +96,6 @@ export class VirtualGallerySectionComponent implements AfterViewInit {
 
     divider.addEventListener('mousedown', startDrag);
     divider.addEventListener('touchstart', startDrag);
+  });
   }
 }
