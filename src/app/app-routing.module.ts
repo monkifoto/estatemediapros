@@ -1,3 +1,4 @@
+
 import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { StoreComponent } from './Sections/Store/store/store.component';
@@ -19,11 +20,11 @@ import { PolicyComponent } from './Sections/policy/policy.component';
 import { TosComponent } from './Sections/tos/tos.component';
 import { VideoSectionComponent } from './Sections/video-section/video-section.component';
 import { Tour3dSectionComponent } from './Sections/tour3d-section/tour3d-section.component';
-import { PhotoGalleryComponent } from './Galleries/photo-gallery/photo-gallery.component';
-import { PhotoGallerySectionComponent } from './Sections/photo-gallery-section/photo-gallery-section.component';
-import { VideoGallerySectionComponent } from './Sections/video-gallery-section/video-gallery-section.component';
-import { FloorGallerySectionComponent } from './Sections/floor-gallery-section/floor-gallery-section.component';
-import { VirtualGallerySectionComponent } from './Sections/virtual-gallery-section/virtual-gallery-section.component';
+import { PhotoGallerySectionComponent } from './Galleries/photo-gallery-section/photo-gallery-section.component';
+import { VideoGallerySectionComponent } from './Galleries/video-gallery-section/video-gallery-section.component';
+import { FloorGallerySectionComponent } from './Galleries/floor-gallery-section/floor-gallery-section.component';
+import { VirtualGallerySectionComponent } from './Galleries/virtual-gallery-section/virtual-gallery-section.component';
+import { TourGallerySectionComponent } from './Galleries/tour-gallery-section/tour-gallery-section.component';
 
 const routes: Routes = [
   { path: '', component: HomeSectionComponent, title: 'SEATTLE RELA ESTATE MEDIA - Home', pathMatch: 'full' },
@@ -42,6 +43,7 @@ const routes: Routes = [
   { path: 'floor-gallery-section', component: FloorGallerySectionComponent, title: 'SEATTLE RELA ESTATE MEDIA - Floor Plans Gallery' },
   { path: 'photo-gallery', component: PhotoGallerySectionComponent, title: 'SEATTLE RELA ESTATE MEDIA - Video' },
   { path: 'virtual-gallery-section', component: VirtualGallerySectionComponent, title: 'SEATTLE RELA ESTATE MEDIA - Virtual Staging Gallery' },
+   { path: 'tour-gallery-section', component: TourGallerySectionComponent, title: 'SEATTLE RELA ESTATE MEDIA - Virtual Staging Gallery' },
 
   { path: 'admin', component: AdminComponent, canActivate: [AdminAuthGuard] , children: [
     { path: 'products', component: ProductListComponent },

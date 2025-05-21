@@ -1,0 +1,25 @@
+<div class="container">
+  <section class="photo-gallery-section">
+
+    <!-- Photography Gallery -->
+    <div class="photo-category">
+      <h2 class="category-title montserrat-h2">Floor Plan Gallery</h2>
+      <p class="category-description roboto-slab-about">
+        Explore a curated collection of high-definition floor plan diagrams.
+      </p>
+      <div class="image-grid">
+        <div class="gallery-image-wrapper" *ngFor="let image of photoGallery" (click)="openModal(image)">
+          <img [src]="image" alt="Photography Image">
+        </div>
+      </div>
+    </div>
+    <!-- Modal -->
+    <div class="image-modal" *ngIf="modalImage" (click)="closeModal()">
+      <div class="modal-content" (click)="$event.stopPropagation()">
+        <span class="close-button" (click)="closeModal()">×</span>
+        <img [src]="modalImage" alt="Full Image">
+      </div>
+    </div>
+
+  </section>
+</div>

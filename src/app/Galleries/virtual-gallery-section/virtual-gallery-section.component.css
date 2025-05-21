@@ -4,6 +4,8 @@
   justify-content: center;
   gap: 24px;
   padding: 40px 0;
+   max-width: var(--site-max-width);
+   margin-top: 70px;
 }
 
 .comparison-container {

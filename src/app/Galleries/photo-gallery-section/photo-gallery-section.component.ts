@@ -5,7 +5,8 @@ import { Component } from '@angular/core';
   selector: 'app-photo-gallery-section',
   imports: [CommonModule],
   templateUrl: './photo-gallery-section.component.html',
-  styleUrl: './photo-gallery-section.component.css'
+  styleUrl: './photo-gallery-section.component.css',
+  standalone: true,
 })
 export class PhotoGallerySectionComponent {
   modalImage: string | null = null;

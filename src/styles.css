@@ -9,6 +9,8 @@
   --nav-text-color: black;
   --nav-active-background: black;
   --nav-active-text: white;
+  --site-max-width: 1480px;
+
 }
 
 
@@ -23,8 +25,9 @@ body {
 
 .container{
   border-bottom: 1px solid #ddd;
-  max-width: 1480px;
-  margin: 0 auto;
+  max-width: var(--site-max-width);
+  margin-top: 70px;
+   position: relative;
 }
 
 .main-content {

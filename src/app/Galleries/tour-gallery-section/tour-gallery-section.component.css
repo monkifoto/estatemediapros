@@ -1,0 +1,69 @@
+.matterport-gallery {
+  padding: 60px 20px;
+}
+
+.gallery-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.gallery-subtitle {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 40px;
+}
+
+.matterport-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-auto-rows: 320px;
+  justify-content: center;
+}
+
+.tour-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease;
+}
+
+.tour-card:hover {
+  transform: scale(1.02);
+}
+
+.iframe-wrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 ratio */
+}
+
+.iframe-wrapper iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 12px 12px 0 0;
+}
+
+.tour-title {
+  padding: 15px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* Optional abstract sizes */
+.tour-card.tall {
+  grid-row: span 2;
+}
+
+.tour-card.wide {
+  grid-column: span 2;
+  /* grid-row: span 2; */
+}
