@@ -30,12 +30,15 @@
     </div>
 
     <!-- Modal -->
-    <div class="image-modal" *ngIf="modalImage" (click)="closeModal()">
-      <div class="modal-content" (click)="$event.stopPropagation()">
-        <span class="close-button" (click)="closeModal()">×</span>
-        <img [src]="modalImage" alt="Full Image">
-      </div>
-    </div>
+<div class="image-modal" *ngIf="modalImage" (click)="closeModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <span class="close-button" (click)="closeModal()">×</span>
+
+    <button class="nav-arrow left-arrow" (click)="prevImage()">‹</button>
+    <img [src]="modalImage" alt="Full Image" class="modal-image" />
+    <button class="nav-arrow right-arrow" (click)="nextImage()">›</button>
+  </div>
+</div>
 
   </section>
 </div>

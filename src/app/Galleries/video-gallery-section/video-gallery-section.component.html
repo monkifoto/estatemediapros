@@ -1,54 +1,78 @@
-<p>video-gallery-section works!</p>
 <div class="container">
-  <section class="video-gallery">
-    <h1 class="montserrat-h2">Video Gallery</h1>
-    <p class="roboto-slab-about">Explore our collection of high-quality real estate videos, showcasing properties and communities with stunning visuals and professional storytelling.</p>
+  <section class="photo-gallery-section">
 
-    <!-- Landscape Videos -->
-    <h2 class="montserrat-h2">Property Videos</h2>
-    <div class="video-grid">
-      <!-- Example Video 1 -->
-      <div class="video-item">
-        <a href="https://www.youtube.com/embed/0UPCqE30AXg?si=tGnhC-FoJpncjvn2" target="_blank">
-          <img src="../../assets/video-placeholder.jpg" alt="Video Thumbnail 1" class="video-thumbnail">
-          <h3 class="video-title roboto-slab-about">Property Showcase</h3>
-        </a>
+    <!-- Walk-through Videos -->
+    <div class="photo-category">
+      <h2 class="category-title montserrat-h2">Walk-through Videos</h2>
+      <p class="category-description roboto-slab-about">
+        Cinematic walkthroughs that give buyers a realistic sense of flow and space.
+      </p>
+      <div class="image-grid">
+        <div
+          class="gallery-image-wrapper"
+          *ngFor="let video of walkthroughVideos; let i = index"
+          (click)="openModal('walkthrough', i)"
+        >
+           <img [src]="getThumbnail(video.videoId)" alt="Walkthrough Video Thumbnail" />
+            <div class="play-icon">▶</div>
+        </div>
       </div>
-      <!-- Example Video 2 -->
-      <div class="video-item">
-        <a href="https://www.youtube.com/embed/dQw4w9WgXcQ" target="_blank">
-          <img src="../../assets/video-placeholder.jpg" alt="Video Thumbnail 2" class="video-thumbnail">
-          <h3 class="video-title roboto-slab-about">Community Spotlight</h3>
-        </a>
-      </div>
-      <!-- Add more video items as needed -->
     </div>
 
-    <!-- Portrait Videos for Social Media -->
-    <h2 class="montserrat-h2">Social Media Reels</h2>
-    <div class="portrait-video-grid">
-      <!-- Example Portrait Video 1 -->
-      <div class="portrait-video-item">
-        <a href="https://www.youtube.com/embed/6JYIGclVQdw" target="_blank">
-          <img src="../../assets/portrait-placeholder.jpg" alt="Portrait Video 1" class="portrait-thumbnail">
-          <h3 class="video-title roboto-slab-about">Reel 1</h3>
-        </a>
+    <!-- Social Media Videos -->
+    <div class="photo-category">
+      <h2 class="category-title montserrat-h2">Social Media Videos</h2>
+      <p class="category-description roboto-slab-about">
+        Vertical, fast-paced edits designed for Instagram Reels, TikTok, and Facebook.
+      </p>
+      <div class="image-grid">
+        <div
+          class="gallery-image-wrapper"
+          *ngFor="let video of socialVideos; let i = index"
+          (click)="openModal('social', i)"
+        >
+          <img [src]="getThumbnail(video.videoId)" alt="Social Video Thumbnail" />
+           <div class="play-icon">▶</div>
+        </div>
       </div>
-      <!-- Example Portrait Video 2 -->
-      <div class="portrait-video-item">
-        <a href="https://www.youtube.com/embed/6JY  IGclVQdw" target="_blank">
-          <img src="../../assets/portrait-placeholder.jpg" alt="Portrait Video 2" class="portrait-thumbnail">
-          <h3 class="video-title roboto-slab-about">Reel 2</h3>
-        </a>
-      </div>
-      <!-- Add more portrait video items as needed -->
     </div>
+
+    <!-- Slideshow Videos -->
+    <div class="photo-category">
+      <h2 class="category-title montserrat-h2">Slideshow Videos</h2>
+      <p class="category-description roboto-slab-about">
+        Elegant video slideshows using high-resolution listing photos with background music.
+      </p>
+      <div class="image-grid">
+        <div
+          class="gallery-image-wrapper"
+          *ngFor="let video of slideshowVideos; let i = index"
+          (click)="openModal('slideshow', i)"
+        >
+          <img [src]="getThumbnail(video.videoId)" alt="Slideshow Video Thumbnail" />
+           <div class="play-icon">▶</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+  <div class="image-modal" *ngIf="activeGallery && modalIndex !== null" (click)="closeModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <span class="close-button" (click)="closeModal()">×</span>
+    <button class="nav-arrow left-arrow" (click)="prev()">‹</button>
+
+<iframe
+  *ngIf="getSafeVideoUrl()"
+  class="modal-image"
+  [src]="getSafeVideoUrl()"
+  frameborder="0"
+  allow="autoplay; encrypted-media"
+  allowfullscreen
+></iframe>
+
+    <button class="nav-arrow right-arrow" (click)="next()">›</button>
+  </div>
+</div>
+
   </section>
 </div>
-<!-- <div class="container"> -->
-<!--   <section class="video-gallery"> -->
-<!--     <h1 class="montserrat-h2">Video Gallery</h1> -->
-<!--     <p class="roboto-slab-about">Explore our collection of high-quality real estate videos, showcasing properties and communities with stunning visuals and professional storytelling.</p> -->
-<!--  -->
-<!--     <div class="video-grid"> -->
-<!--       <div class="video-item"> -->

@@ -64,7 +64,7 @@ import { HomeSectionComponent } from './Sections/home-section/home-section.compo
   declarations: [
     AppComponent,
     NavbarComponent,
-    PhotoSectionComponent,
+    // PhotoSectionComponent,
     TestPageComponent,
     AerialSectionComponent,
     VideoSectionComponent,

@@ -72,6 +72,56 @@ h1{
   padding: 20px; /* Optional: adds some padding inside the right div */
 }
 
+.package-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  max-width: 1480px;
+  margin: 50px auto;
+  gap: 20px;
+}
+
+/* .package-row .left,
+.package-row .right {
+  flex: 1;
+  padding: 20px;
+} */
+
+.package-row .left {
+  width: 40%;
+  padding: 20px;
+}
+
+.package-row .right {
+  width: 60%;
+  padding: 20px;
+}
+
+
+.package-row img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Reverse layout */
+.package-row.reverse {
+  flex-direction: row-reverse;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .package-row,
+  .package-row.reverse {
+    flex-direction: column;
+  }
+
+  .package-row .left,
+  .package-row .right {
+    width: 100%;
+    padding: 10px 0;
+  }
+}
 
 
 /* Responsive Styles */

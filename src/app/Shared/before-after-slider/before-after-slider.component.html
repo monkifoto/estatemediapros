@@ -1,0 +1,14 @@
+<div class="comparison-container" #container>
+  <img [src]="before" class="comparison-img" />
+  <img [src]="after" class="comparison-img after" #afterImg />
+
+  <div class="label before-label">{{ beforeLabel }}</div>
+  <div class="label after-label">{{ afterLabel }}</div>
+
+  <div class="divider" #divider>
+    <div class="handle">
+      <span class="arrow left">←</span>
+      <span class="arrow right">→</span>
+    </div>
+  </div>
+</div>

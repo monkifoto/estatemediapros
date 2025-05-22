@@ -9,8 +9,8 @@ import { Component } from '@angular/core';
   standalone: true,
 })
 export class PhotoGallerySectionComponent {
-  modalImage: string | null = null;
-
+  // modalImage: string | null = null;
+  modalImageIndex: number | null = null;
   photoGallery = [
     './../../../assets/photos/_MKY1150ENFUSE-Edit-Edit.jpg',
     './../../../assets/photos/7R308443.jpg',
@@ -77,11 +77,34 @@ export class PhotoGallerySectionComponent {
   ];
 
 
-  openModal(image: string): void {
-    this.modalImage = image;
-  }
+openModal(image: string): void {
+  const index = this.photoGallery.concat(this.aerialGallery).indexOf(image);
+  this.modalImageIndex = index !== -1 ? index : null;
+}
 
-  closeModal(): void {
-    this.modalImage = null;
+closeModal(): void {
+  this.modalImageIndex = null;
+}
+
+get modalImage(): string | null {
+  if (this.modalImageIndex === null) return null;
+  const allImages = this.photoGallery.concat(this.aerialGallery);
+  return allImages[this.modalImageIndex];
+}
+
+prevImage(): void {
+  if (this.modalImageIndex !== null && this.modalImageIndex > 0) {
+    this.modalImageIndex--;
   }
+}
+
+nextImage(): void {
+  const allImages = this.photoGallery.concat(this.aerialGallery);
+  if (
+    this.modalImageIndex !== null &&
+    this.modalImageIndex < allImages.length - 1
+  ) {
+    this.modalImageIndex++;
+  }
+}
 }
